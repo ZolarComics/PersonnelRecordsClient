@@ -12,9 +12,9 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surename" DisplayMemberBinding="{Binding Surename}" />
+                    <GridViewColumn Header="Surename" DisplayMemberBinding="{Binding Surname}" />
                     <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Patronymic}" />
                     <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />

@@ -9,10 +9,10 @@
       Title="ArchivePage">
 
     <Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Archive}" SelectedItem="{Binding SelectedArchive}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
                     <GridViewColumn Header="StaffingID" DisplayMemberBinding="{Binding Staffing.ID}" />
                     <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding Staffing.Worker.ID}" />
                     <GridViewColumn Header="WorkerName" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />

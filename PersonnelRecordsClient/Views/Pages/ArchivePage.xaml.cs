@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonnelRecordsClient.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace PersonnelRecordsClient.Views.Pages
         public ArchivePage()
         {
             InitializeComponent();
+            DataContext = new ArchivePageVM(Dispatcher);
         }
     }
 }
