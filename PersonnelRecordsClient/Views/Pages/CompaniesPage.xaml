@@ -1,0 +1,32 @@
+﻿<Page x:Class="PersonnelRecordsClient.Views.Pages.CompaniesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CompaniesPage">
+    <Grid>
+        <ListView ItemsSource="{Binding Companies}"  SelectedItem="{Binding SelectedCompany}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Owner" DisplayMemberBinding="{Binding Owner}" />
+                    <GridViewColumn Header="Adress" DisplayMemberBinding="{Binding Adress}" />
+                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+                    <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Description}" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
+                    <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
+                    <MenuItem Header="Staffing" Command="{Binding StaffingList}"/>
+                    <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCopmany}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+    </Grid>
+</Page>
