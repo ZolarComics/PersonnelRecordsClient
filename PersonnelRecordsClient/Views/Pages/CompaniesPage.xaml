@@ -23,7 +23,7 @@
                 <ContextMenu>
                     <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
                     <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
-                    <MenuItem Header="Staffing" Command="{Binding StaffingList}"/>
+                    <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
                     <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCopmany}"/>
                 </ContextMenu>
             </ListView.ContextMenu>

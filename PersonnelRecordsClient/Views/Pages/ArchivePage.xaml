@@ -16,14 +16,14 @@
                     <GridViewColumn Header="StaffingID" DisplayMemberBinding="{Binding Staffing.ID}" />
                     <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding Staffing.Worker.ID}" />
                     <GridViewColumn Header="WorkerName" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
-                    <GridViewColumn Header="ImpactType" DisplayMemberBinding="{Binding TypeOfImpact.Name}" />
+                    <GridViewColumn Header="ImpactType" DisplayMemberBinding="{Binding TypeOfImpact.Type}" />
                     <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Staffing.Note}" />
                 </GridView>
             </ListView.View>
-            <ListView.ContextMenu>
+            <!--<ListView.ContextMenu>
                 <ContextMenu>
                 </ContextMenu>
-            </ListView.ContextMenu>
+            </ListView.ContextMenu>-->
         </ListView>
     </Grid>
 </Page>

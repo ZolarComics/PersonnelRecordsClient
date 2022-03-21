@@ -1,5 +1,6 @@
 ﻿using ModelApi;
 using PersonnelRecordsClient.MVVM;
+using PersonnelRecordsClient.Views.Windows.Companies;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace PersonnelRecordsClient.ViewModel
     internal class CompaniesPageVM : INotifyPropertyChanged// BaseViewModel
     {
         //private readonly Dispatcher dispatcher;
-
+        public CustomCommand GoToStaffingList { get; set; }
         public CompanyApi SelectedCompany { get; set; }
         //public ObservableCollection<CompanyApi> Companies { get; set; } = new ObservableCollection<CompanyApi>();
         public List<CompanyApi> Companies { get; set; }
@@ -24,6 +25,11 @@ namespace PersonnelRecordsClient.ViewModel
         public CompaniesPageVM(Dispatcher dispatcher)
         {
             //this.dispatcher = dispatcher;
+            GoToStaffingList = new CustomCommand(() =>
+            {
+                StaffingList staffingList = new StaffingList();
+                staffingList.Show();
+            });
 
             Task.Run(GetCompanies);
         }
