@@ -20,10 +20,13 @@
                     <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Staffing.Note}" />
                 </GridView>
             </ListView.View>
-            <!--<ListView.ContextMenu>
+            <ListView.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Header="AddArchive" Command="{Binding AddArchive}"/>
+                    <MenuItem Header="EditArchive" Command="{Binding EditCopmany}"/>
+                    <MenuItem Header="RemoveArchive" Command="{Binding RemoveArchiveMetod}"/>
                 </ContextMenu>
-            </ListView.ContextMenu>-->
+            </ListView.ContextMenu>
         </ListView>
     </Grid>
 </Page>
