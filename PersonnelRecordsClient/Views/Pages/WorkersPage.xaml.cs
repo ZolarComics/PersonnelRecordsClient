@@ -21,10 +21,23 @@ namespace PersonnelRecordsClient.Views.Pages
     /// </summary>
     public partial class WorkersPage : Page
     {
+        public List<WorkerApi> Workers = new List<WorkerApi>();
         public WorkersPage()
         {
             InitializeComponent();
             DataContext = new WorkersPageVM(Dispatcher);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var worker in list.SelectedItems)
+            {
+                if (worker is WorkerApi)
+                {
+                    Workers.Add((WorkerApi)worker);
+                }
+            }
+            DataContext = new WorkersPageVM(Workers);
         }
     }
 }

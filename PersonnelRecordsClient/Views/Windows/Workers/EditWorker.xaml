@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers"
         mc:Ignorable="d"
-        Title="EditWorker" Height="450" Width="800">
+        Title="EditWorker" Height="486" Width="834">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="{Binding FullName}" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Фамилия" FontSize="24"/>
+                <TextBox Text="{Binding Surname}" Height="44" Width="297"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                <TextBlock Text="Имя" FontSize="24"/>
+                <TextBox Text="{Binding Name}" Height="44" Width="297"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                <TextBlock Text="Отчество" FontSize="24"/>
+                <TextBox Text="{Binding Patronymic}" Height="44" Width="297"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" HorizontalAlignment="Center">
+                <TextBlock Text="Контактный телефон" FontSize="24"/>
+                <TextBox Text="{Binding Phone}" Height="44" Width="297"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" HorizontalAlignment="Center">
+                <TextBlock Text="Почтовый адрес (email)" FontSize="24"/>
+                <TextBox Text="{Binding Email}" Height="44" Width="297"/>
+            </StackPanel>
+
+        </Grid>
+
     </Grid>
 </Window>
