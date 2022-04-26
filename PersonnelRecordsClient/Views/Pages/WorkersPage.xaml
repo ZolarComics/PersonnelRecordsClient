@@ -34,7 +34,7 @@
                     <MenuItem Header="Passport" Command="{Binding Passport}"/>
                     <MenuItem Header="Education" Command="{Binding EducationList}"/>
                     <MenuItem Header="Experience" Command="{Binding ExperienceList}"/>
-                    <MenuItem Header="RemoveWorker" Command="{Binding DeleteWorker}" Click="MenuItem_Click"/>
+                    <MenuItem Header="RemoveWorker" Command="{Binding DeleteWorkers}" Click="MenuItem_Click"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

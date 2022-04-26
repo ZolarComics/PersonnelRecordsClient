@@ -13,6 +13,8 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
 {
     public class WorkersEditVM : INotifyPropertyChanged
     {
+        private Dispatcher dispatcher;
+
         private string fullName;
         public string FullName
         {
@@ -23,13 +25,12 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
                 SignalChanged();
             }
         }
-
-        private Dispatcher dispatcher;
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         void SignalChanged([CallerMemberName] string prop = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-
+       
         public List<WorkerApi> Workers { get; set; }
         public CustomCommand SaveWorker { get; set; }
         public WorkerApi AddWorker { get; set; }

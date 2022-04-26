@@ -23,7 +23,7 @@ namespace PersonnelRecordsClient.Views.Windows.Workers
         public EditWorker()
         {
             InitializeComponent();
-            DataContext = new WorkersEditVM();
+            DataContext = new WorkersEditVM(Dispatcher);
         }
     }
 }

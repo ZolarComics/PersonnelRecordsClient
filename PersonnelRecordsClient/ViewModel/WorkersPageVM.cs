@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace PersonnelRecordsClient.ViewModel
@@ -18,6 +19,8 @@ namespace PersonnelRecordsClient.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         void SignalChanged([CallerMemberName] string prop = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+
+        public ICollectionView WorkersCollectionView { get; set; }
 
         private WorkerApi selectedWorker;
         public WorkerApi SelectedWorker
@@ -67,20 +70,25 @@ namespace PersonnelRecordsClient.ViewModel
                 }
             }
         }
-
         public WorkersPageVM()
         {
-            CreateWorker = new CustomCommand(() => {
+            CreateWorker = new CustomCommand(() =>
+            {
                 EditWorker editWorker = new EditWorker();
                 editWorker.ShowDialog();
             });
 
-            EditWorker = new CustomCommand(() => {
+            EditWorker = new CustomCommand(() =>
+            {
                 if (SelectedWorker == null)
                     return;
                 EditWorker editWorker = new EditWorker(SelectedWorker);
                 editWorker.ShowDialog();
             });
+
+            WorkersCollectionView = CollectionViewSource.GetDefaultView(Workers);
+            WorkersCollectionView.Filter = FilterWorkers;
+            WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(WorkerApi.Name), ListSortDirection.Ascending));
         }
         public WorkersPageVM(Dispatcher dispatcher)
         {
@@ -114,6 +122,50 @@ namespace PersonnelRecordsClient.ViewModel
         public async Task LoadEntities()
         {
             var result = await Api.GetListAsync<WorkerApi>("Worker");
+        }
+
+        private bool FilterWorkers(object obj)
+        {
+            if (obj is WorkerApi worker)
+            {
+                return worker.Name.Contains(WorkersFilter, StringComparison.InvariantCultureIgnoreCase);
+            }
+            return false;
+        }
+        //
+        private string _workersFilter = string.Empty;
+        public string WorkersFilter
+        {
+            get
+            {
+                return _workersFilter;
+            }
+            set
+            {
+                _workersFilter = value;
+                OnPropertyChanged(nameof(WorkersFilter));
+                WorkersCollectionView.Refresh();
+            }
+        }
+        //
+        private string _otherFilter = string.Empty;
+        public string OtherFilter
+        {
+            get
+            {
+                return _otherFilter;
+            }
+            set
+            {
+                _otherFilter = value;
+                OnPropertyChanged(nameof(OtherFilter));
+                WorkersCollectionView.Refresh();
+            }
+        }
+        //
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

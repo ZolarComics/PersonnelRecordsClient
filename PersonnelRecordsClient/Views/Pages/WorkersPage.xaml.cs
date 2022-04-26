@@ -1,4 +1,5 @@
-﻿using PersonnelRecordsClient.ViewModel;
+﻿using ModelApi;
+using PersonnelRecordsClient.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
