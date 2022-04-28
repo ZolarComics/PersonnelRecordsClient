@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonnelRecordsClient.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace PersonnelRecordsClient.Views.Windows.Workers
         public EditWorker()
         {
             InitializeComponent();
+            DataContext = new WorkersEditVM(Dispatcher);
         }
     }
 }

@@ -8,25 +8,49 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CompaniesPage">
     <Grid>
-        <ListView ItemsSource="{Binding Companies}"  SelectedItem="{Binding SelectedCompany}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Owner" DisplayMemberBinding="{Binding Owner}" />
-                    <GridViewColumn Header="Adress" DisplayMemberBinding="{Binding Adress}" />
-                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
-                    <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Description}" />
-                </GridView>
-            </ListView.View>
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
-                    <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
-                    <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
-                    <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCopmany}"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
-        </ListView>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <ListView ItemsSource="{Binding Companies}"  SelectedItem="{Binding SelectedCompany}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Owner" DisplayMemberBinding="{Binding Owner}" />
+                        <GridViewColumn Header="Adress" DisplayMemberBinding="{Binding Adress}" />
+                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+                        <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Description}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
+                        <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
+                        <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
+                        <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCompany}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Назание"/>
+            <TextBox Text="{Binding SelectedCompany.Name}"/>
+            <TextBlock Text="Генеральный директор"/>
+            <TextBox Text="{Binding SelectedCompany.Owner}" />
+
+        </StackPanel>
+        <Button Grid.Row="2" Content="Добавить новую компанию"
+                Command="{Binding AddCompany}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Сохранить"
+                Command="{Binding SaveCompany}"/>
+        <Button Content="Удалить"
+                Command="{Binding RemoveAuto}" Margin="0,380,0,10" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Page>

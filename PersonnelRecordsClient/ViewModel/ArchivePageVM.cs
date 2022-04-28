@@ -43,6 +43,7 @@ namespace PersonnelRecordsClient.ViewModel
             RemoveArchiveMetod = new CustomCommand(() =>
                 {
                     Task.Run(RemoveArchive);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
                 });            
         }
 
@@ -66,7 +67,10 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public async Task RemoveArchive()
         {
-            await Api.DeleteAsync<ArchiveApi>(SelectedArchive, "Archive");
+            var result = await Api.DeleteAsync<ArchiveApi>(SelectedArchive, "Archive");
+            await Task.Run(RemoveArchive);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
+            
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

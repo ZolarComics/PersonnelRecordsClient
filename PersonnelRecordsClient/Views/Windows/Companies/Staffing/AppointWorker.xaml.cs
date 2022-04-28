@@ -17,7 +17,7 @@ namespace PersonnelRecordsClient.Views.Windows.Companies.Staffing
     /// <summary>
     /// Логика взаимодействия для AppointWorker.xaml
     /// </summary>
-    public partial class AppointWorker : Window
+    public partial class AppointWorker : Page
     {
         public AppointWorker()
         {

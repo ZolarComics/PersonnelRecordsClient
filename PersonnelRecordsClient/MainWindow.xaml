@@ -12,9 +12,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Content="Companies" Width="266" Height="30" Command="{Binding GoToCompanies}"/>
-            <Button Content="Workers" Width="268" Command="{Binding GoToWorkers}"/>
-            <Button Content="Archives" Width="266" Command="{Binding GoToArchives}"/>
+            <Button Content="Companies" Command="{Binding GoToCompanies}" Width="163"/>
+            <Button Content="Workers" Command="{Binding GoToWorkers}" Width="206"/>
+            <Button Content="Archives" Command="{Binding GoToArchives}" Width="250"/>
+            <Menu>
+                <MenuItem Header="Справочник" Width="192">
+                <Button Content="Education"  Command="{Binding GoEducation}" />
+                <Button Content="Experience" Command="{Binding GoExperience}" />
+                <Button Content="Passport" Command="{Binding GoPassport}"/>
+                <Button Content="Staffing" Command="{Binding GoStaffing}"/>
+
+            </MenuItem>
+            </Menu>
+
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Frame Name="Frame" NavigationUIVisibility="Hidden"/>

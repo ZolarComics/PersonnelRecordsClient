@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,12 +19,49 @@ namespace PersonnelRecordsClient.ViewModel
     {
         //private readonly Dispatcher dispatcher;
         public CustomCommand GoToStaffingList { get; set; }
-        public CompanyApi SelectedCompany { get; set; }
+        public CustomCommand AddCompany { get; set; }
+        public CustomCommand SaveCompany { get; set; }
+        public CustomCommand RemoveCompany { get; set; }
+        public CompanyApi selectedCompany { get; set; }
+        public CompanyApi SelectedCompany 
+        { 
+            get => selectedCompany;
+            set
+            {
+                selectedCompany = value ;
+                SignalChanged();
+            }
+        }
         //public ObservableCollection<CompanyApi> Companies { get; set; } = new ObservableCollection<CompanyApi>();
         public List<CompanyApi> Companies { get; set; }
 
         public CompaniesPageVM(Dispatcher dispatcher)
         {
+            //AddCompany = new CustomCommand(() =>
+            //{
+            //    var auto = new Auto { Model = "Модель", VIN = "VIN номер", Engine = "Двигатель", Body = "Двигатель", Chassis = "Шасси" };
+            //    entities.Autos.Add(auto);
+            //    // Autos.Add(auto);
+            //    SelectedAuto = auto;
+            //});
+            SaveCompany = new CustomCommand(() =>
+            {
+                try
+                {
+                    Task.Run(Save);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
+            });
+            RemoveCompany = new CustomCommand(()=>
+                {
+                    Task.Run(Delete);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                });
             //this.dispatcher = dispatcher;
             GoToStaffingList = new CustomCommand(() =>
             {
@@ -35,7 +73,18 @@ namespace PersonnelRecordsClient.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public async Task Save()
+        {
+            var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");
+            await GetCompanies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
+        public async Task Delete()
+        {
+            var result = await Api.DeleteAsync<CompanyApi>(SelectedCompany, "Company");
+            await GetCompanies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
         async Task GetCompanies()
         {
             try
@@ -55,6 +104,9 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 MessageBox.Show($"{e}");
             }
+            
         }
+        void SignalChanged([CallerMemberName] string prop = null) =>
+           PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 }

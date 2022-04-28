@@ -9,7 +9,10 @@
       Title="WorkersPage">
 
     <Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" 
+                  SelectedItem="{Binding SelectedWorker}"
+                  Name="list"
+                  SelectionMode="Extended">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
@@ -18,19 +21,21 @@
                     <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Patronymic}" />
                     <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Id Passport" DisplayMemberBinding="{Binding Passport.Id}" />
-                    <GridViewColumn Header="Id Education" DisplayMemberBinding="{Binding Education.Id}" />
-                    <GridViewColumn Header="Id Experience" DisplayMemberBinding="{Binding Experience.Id}" />
+                    <GridViewColumn Header="Id Passport" DisplayMemberBinding="{Binding PassportId}" />
+                    <GridViewColumn Header="Id Education" DisplayMemberBinding="{Binding EducationId}" />
+                    <GridViewColumn Header="Id Experience" DisplayMemberBinding="{Binding ExperienceId}" />
                 </GridView>
             </ListView.View>
+
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="AddWorker" Command="{Binding AddWorker}"/>
+                    <MenuItem Header="CreateWorker" Command="{Binding CreateWorker}"/>
                     <MenuItem Header="EditWorker" Command="{Binding EditWorker}"/>
-                    <MenuItem Header="Passport" Command="{Binding Passport}"/>
+                    <MenuItem Header="Passport" Command="{Binding PassportList}"/>
                     <MenuItem Header="Education" Command="{Binding EducationList}"/>
                     <MenuItem Header="Experience" Command="{Binding ExperienceList}"/>
-                    <MenuItem Header="RemoveWorker" Command="{Binding RemoveWorker}"/>
+                    <MenuItem Header="Test" Command="{Binding TestCommand}" />
+                    <MenuItem Header="RemoveWorker" Command="{Binding RemoveWorker}" />
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

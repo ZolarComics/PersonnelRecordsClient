@@ -1,5 +1,6 @@
 ﻿using PersonnelRecordsClient.MVVM;
 using PersonnelRecordsClient.Views.Pages;
+using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoToCompanies { get; set; }
         public CustomCommand GoToWorkers { get; set; }
         public CustomCommand GoToArchives { get; set; }
+        public CustomCommand GoEducation { get; set; }
 
         public MainVM()
         {
@@ -28,6 +30,10 @@ namespace PersonnelRecordsClient.ViewModel
             {
             MainWindow.MainNavigate(new ArchivePage());
             });
+            GoEducation = new CustomCommand(() =>
+           {
+               MainWindow.MainNavigate(new AppointWorker());
+           });
         }
     }
 }
