@@ -37,13 +37,11 @@ namespace PersonnelRecordsClient.ViewModel
 
         public CompaniesPageVM(Dispatcher dispatcher)
         {
-            //AddCompany = new CustomCommand(() =>
-            //{
-            //    var auto = new Auto { Model = "Модель", VIN = "VIN номер", Engine = "Двигатель", Body = "Двигатель", Chassis = "Шасси" };
-            //    entities.Autos.Add(auto);
-            //    // Autos.Add(auto);
-            //    SelectedAuto = auto;
-            //});
+            AddCompany = new CustomCommand(() =>
+            {
+                Task.Run(Add);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            });
             SaveCompany = new CustomCommand(() =>
             {
                 try
@@ -73,6 +71,13 @@ namespace PersonnelRecordsClient.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public async Task Add()
+        {
+            SelectedCompany = new CompanyApi();            
+            var result = Api.PostAsync<CompanyApi>(SelectedCompany, "Company");
+            await GetCompanies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
         public async Task Save()
         {
             var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");

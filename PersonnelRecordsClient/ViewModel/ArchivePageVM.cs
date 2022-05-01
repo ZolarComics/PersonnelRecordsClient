@@ -53,12 +53,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 var result = await Api.GetListAsync<ArchiveApi[]>("Archive");
                 Archives = new List<ArchiveApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
-                //dispatcher.Invoke(() => {
-                //    Workers.Clear();
-                //    foreach (var r in result)
-                //        Workers.Add(r);
-                //});
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));                
             }
             catch (Exception e)
             {
