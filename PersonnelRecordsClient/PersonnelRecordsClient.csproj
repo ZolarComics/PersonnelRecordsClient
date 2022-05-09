@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.14">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="ModelApi">
-      <HintPath>..\..\PersonnelRecordsServer\ModelApi\bin\Debug\net5.0\ModelApi.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Курсач\PersonnelRecordsServer\ModelApi\obj\Debug\net5.0\ModelApi.dll</HintPath>
     </Reference>
   </ItemGroup>
 
