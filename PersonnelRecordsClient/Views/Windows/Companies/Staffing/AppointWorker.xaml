@@ -7,6 +7,56 @@
         mc:Ignorable="d"
         Title="AppointWorker" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <ListView ItemsSource="{Binding Staffings}"  SelectedItem="{Binding SelectedStaffing}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" />
+                        <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" />
+                        <GridViewColumn Header="Сотрудник" DisplayMemberBinding="{Binding WorkerId}" />
+                        <GridViewColumn Header="Заметка" DisplayMemberBinding="{Binding Note}" />
+                        <GridViewColumn Header="Компания" DisplayMemberBinding="{Binding CompanyId}" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Add" Command="{Binding AddStaffing}"/>
+                        <MenuItem Header="Save" Command="{Binding SaveStaffing}"/>
+                        <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteStaffing}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <ComboBox ItemsSource="{Binding Worker}"
+                      SelectedItem="{Binding SelectedStaffing.Worker}"
+                      DisplayMemberPath="Model"/>
+            <ComboBox ItemsSource="{Binding Company}"
+                      SelectedItem="{Binding SelectedStaffing.Company}"
+                      DisplayMemberPath="Model"/>
+            <TextBlock Text="Должность"/>
+            <TextBox Text="{Binding SelectedStaffing.Position}"/>
+            <TextBlock Text="Зарпалата"/>
+            <TextBox Text="{Binding SelectedStaffing.Salary}" />
+            <TextBlock Text="Заметки"/>
+            <TextBox Text="{Binding SelectedStaffing.Note}" />
+
+        </StackPanel>
+        <Button Grid.Row="2" Content="Добавить новую компанию"
+                Command="{Binding AddCompany}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Сохранить"
+                Command="{Binding SaveCompany}"/>
+        <Button Content="Удалить"
+                Command="{Binding RemoveAuto}" Margin="0,380,0,10" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Page>

@@ -17,7 +17,7 @@ namespace PersonnelRecordsClient.ViewModel
 {
     internal class CompaniesPageVM : INotifyPropertyChanged// BaseViewModel
     {
-        //private readonly Dispatcher dispatcher;
+
         public CustomCommand GoToStaffingList { get; set; }
         public CustomCommand AddCompany { get; set; }
         public CustomCommand SaveCompany { get; set; }
@@ -96,14 +96,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
                 Companies = new List<CompanyApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));
-                //SignalChanged(nameof(Companies));
-                /*dispatcher.Invoke(() => {
-                    Companies.Clear();
-                    foreach (var r in result)
-                        Companies.Add(r);
-                });*/
-
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
             }
             catch (Exception e)
             {

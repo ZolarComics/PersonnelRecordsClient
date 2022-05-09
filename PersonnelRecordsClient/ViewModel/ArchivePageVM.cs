@@ -27,7 +27,8 @@ namespace PersonnelRecordsClient.ViewModel
         private readonly Dispatcher dispatcher;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public CustomCommand RemoveArchiveMetod;
+        public CustomCommand RemoveArchive;
+        public CustomCommand AddArchive;
 
         // public ObservableCollection<WorkerApi> Workers { get; set; } = new ObservableCollection<WorkerApi>();
         public List<ArchiveApi> Archives { get; set; }
@@ -40,9 +41,14 @@ namespace PersonnelRecordsClient.ViewModel
         }
        public ArchivePageVM()
         {
-            RemoveArchiveMetod = new CustomCommand(() =>
+            AddArchive = new CustomCommand(() =>
+            {
+                Task.Run(Add);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
+            });
+            RemoveArchive = new CustomCommand(() =>
                 {
-                    Task.Run(RemoveArchive);
+                    Task.Run(Remove);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
                 });            
         }
@@ -60,12 +66,16 @@ namespace PersonnelRecordsClient.ViewModel
                 MessageBox.Show($"{e}");
             }
         }
-        public async Task RemoveArchive()
+        public async Task Add()
+        {
+           // this.SelectedArchive = ArchivePageVM(dispatcher);
+        }
+        public async Task Remove()
         {
             var result = await Api.DeleteAsync<ArchiveApi>(SelectedArchive, "Archive");
-            await Task.Run(RemoveArchive);
+            await GetArchive();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
-            
+
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

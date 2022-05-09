@@ -9,10 +9,7 @@
       Title="WorkersPage">
 
     <Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" 
-                  SelectedItem="{Binding SelectedWorker}"
-                  Name="list"
-                  SelectionMode="Extended">
+        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
@@ -34,7 +31,7 @@
                     <MenuItem Header="Passport" Command="{Binding PassportList}"/>
                     <MenuItem Header="Education" Command="{Binding EducationList}"/>
                     <MenuItem Header="Experience" Command="{Binding ExperienceList}"/>
-                    <MenuItem Header="Test" Command="{Binding TestCommand}" />
+                    <MenuItem Header="GoStaffing" Command="{Binding GoStaffing}" />
                     <MenuItem Header="RemoveWorker" Command="{Binding RemoveWorker}" />
                 </ContextMenu>
             </ListView.ContextMenu>

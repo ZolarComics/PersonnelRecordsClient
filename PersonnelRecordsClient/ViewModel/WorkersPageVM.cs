@@ -1,5 +1,7 @@
 ﻿using ModelApi;
 using PersonnelRecordsClient.MVVM;
+using PersonnelRecordsClient.ViewModel.WindowsVM;
+using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
 using PersonnelRecordsClient.Views.Windows.Workers;
 using System;
 using System.Collections.Generic;
@@ -16,8 +18,7 @@ namespace PersonnelRecordsClient.ViewModel
 {
    internal class WorkersPageVM : BaseViewModel, INotifyPropertyChanged
     {
-        private  Dispatcher dispatcher;
-
+        private  Dispatcher dispatcher;       
         public event PropertyChangedEventHandler PropertyChanged;
        
         private WorkerApi selectedWorker;
@@ -31,80 +32,59 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
 
-        private List<WorkerApi> workers;
-        public List<WorkerApi> Workers
-        {
-            get => workers;
-            set
-            {
-                workers = value;
-                SignalChanged();
-            }
-        }
-        public CustomCommand CreateWorker { get; set; }
+        // private List<WorkerApi> workers;
+        public List<WorkerApi> Workers { get; set; } 
+
+        public CustomCommand AddWorker { get; set; }
         public CustomCommand EditWorker { get; set; }
+        public CustomCommand SaveWorker { get; set; }
         public CustomCommand RemoveWorker { get; set; }
-        public CustomCommand TestCommand { get; set; }
+        public CustomCommand GoStaffing { get; set; }
 
 
 
 
         public WorkersPageVM(List<WorkerApi> Workers)
         {
-            TestCommand = new CustomCommand(() =>
-            {
-                MessageBoxResult result = MessageBox.Show("Тест", "Комманда работает",
-                MessageBoxButton.YesNo);
-            }
-                );
-            CreateWorker = new CustomCommand(() => {
-                EditWorker editWorker = new EditWorker();
-                editWorker.ShowDialog();
-            });
-
-            EditWorker = new CustomCommand(() => {
-                if (SelectedWorker == null)
-                    return;
-                EditWorker editWorker = new EditWorker();
-                editWorker.ShowDialog();
-            });
+            AddWorker = new CustomCommand(() =>
+           {
+               Task.Run(Add);
+           });
+            SaveWorker = new CustomCommand(() =>
+           {
+               Task.Run(Save);
+               PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+           });           
             RemoveWorker = new CustomCommand(() =>
             {
-
-                Task.Run(DeleteWorkers);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
-                //if (SelectedWorker == null)
-                //{
-                //    System.Windows.MessageBox.Show("Для удаления клиента нужно его выбрать в списке");
-                //    return;
-                //}
-                //MessageBoxResult result = MessageBox.Show("Удалить?", "Да?",
-                //MessageBoxButton.YesNo,
-                //MessageBoxImage.Question);
-
-                //if (result == MessageBoxResult.Yes)
-                //{
-                //    try
-                //    {
-                //        foreach (var worker in Workers)
-                //        {
-                //            DeleteWorkers(worker);
-                //            SignalChanged("Workers");
-                //        }
-                //    }
-                //    catch (Exception e)
-                //    {
-                //        MessageBox.Show(e.Message);
-                //    }
-                //}
+                Task.Run(Delete);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));                
+            });
+            GoStaffing = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new AppointWorker());
             });
         }
         public WorkersPageVM(Dispatcher dispatcher)
         {
             Task.Run(GetWorkers);
         }
+        public async Task Add()
+        {
+            SelectedWorker = new WorkerApi();
+            var result = Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
+            await GetWorkers();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+        }
+        public async Task Save()
+        {
+           var oldWorker = SelectedWorker;
+            var result = await Api.PutAsync<WorkerApi>(SelectedWorker, "Worker");
+            await GetWorkers();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+        }
 
-       public async  Task DeleteWorkers()
+        public async  Task Delete()
         {
             var result = await Api.DeleteAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
