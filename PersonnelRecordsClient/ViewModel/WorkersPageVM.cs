@@ -46,11 +46,11 @@ namespace PersonnelRecordsClient.ViewModel
 
         public WorkersPageVM(List<WorkerApi> Workers)
         {
-            AddWorker = new CustomCommand(() =>
+           AddWorker = new CustomCommand(() =>
            {
                Task.Run(Add);
            });
-            SaveWorker = new CustomCommand(() =>
+           SaveWorker = new CustomCommand(() =>
            {
                Task.Run(Save);
                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
