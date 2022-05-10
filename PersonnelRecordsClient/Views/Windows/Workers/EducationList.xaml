@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="EducationList" Height="450" Width="800">
     <Grid>
-        
+        <ListView ItemsSource="{Binding Educations}"  SelectedItem="{Binding SelectedEducation}" Background="#261D5AEB">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="32" />
+                    <GridViewColumn Header="Место обучения" DisplayMemberBinding="{Binding EducationalPlace}" Width="120" />
+                    <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Speciality}" Width="125" />
+                    <GridViewColumn Header="Дата поступления" DisplayMemberBinding="{Binding ReceiptDate}" Width="125" />
+                    <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding ExpirationDate}" Width="120" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить образование" Command="{Binding AddEducation}"/>
+                    <MenuItem Header="Редактировать" Command="{Binding EditEducation}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveEducation}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
     </Grid>
 </Window>

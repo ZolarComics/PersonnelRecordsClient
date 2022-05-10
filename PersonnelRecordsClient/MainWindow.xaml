@@ -12,14 +12,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Content="Companies" Command="{Binding GoToCompanies}" Width="163"/>
-            <Button Content="Workers" Command="{Binding GoToWorkers}" Width="206"/>
-            <Button Content="Archives" Command="{Binding GoToArchives}" Width="250"/>
+            <Button Content="Компании" Command="{Binding GoToCompanies}" Width="163"/>
+            <Button Content="Рабочие" Command="{Binding GoToWorkers}" Width="206"/>
+            <Button Content="Архив" Command="{Binding GoToArchives}" Width="250"/>
             <Menu>
                 <MenuItem Header="Справочник" Width="192">
-                <Button Content="Education"  Command="{Binding GoEducation}" />
-                <Button Content="Experience" Command="{Binding GoExperience}" />
-                <Button Content="Passport" Command="{Binding GoPassport}"/>
+                <Button Content="Образование"  Command="{Binding GoEducation}" />
+                <Button Content="Опыт" Command="{Binding GoExperience}" />
+                <Button Content="Паспорт" Command="{Binding GoPassport}"/>
                 <Button Content="Staffing" Command="{Binding GoStaffing}"/>
 
             </MenuItem>

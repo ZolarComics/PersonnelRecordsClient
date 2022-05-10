@@ -12,15 +12,15 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Surename" DisplayMemberBinding="{Binding Surname}" />
-                    <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Patronymic}" />
-                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
-                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
-                    <GridViewColumn Header="Id Passport" DisplayMemberBinding="{Binding PassportId}" />
-                    <GridViewColumn Header="Id Education" DisplayMemberBinding="{Binding EducationId}" />
-                    <GridViewColumn Header="Id Experience" DisplayMemberBinding="{Binding ExperienceId}" />
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="60" />
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}" Width="80" />
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" Width="100" />
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="100" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="99" />
+                    <GridViewColumn Header="Id паспорт" DisplayMemberBinding="{Binding PassportId}" Width="89" />
+                    <GridViewColumn Header="Id образование" DisplayMemberBinding="{Binding EducationId}" Width="110" />
+                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
                 </GridView>
             </ListView.View>
 

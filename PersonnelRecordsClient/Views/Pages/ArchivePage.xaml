@@ -12,12 +12,12 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="StaffingID" DisplayMemberBinding="{Binding Staffing.ID}" />
-                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding Staffing.Worker.ID}" />
-                    <GridViewColumn Header="WorkerName" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
-                    <GridViewColumn Header="ImpactType" DisplayMemberBinding="{Binding TypeOfImpact.Type}" />
-                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Staffing.Note}" />
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />
+                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding Staffing.ID}" Width="100" />
+                    <GridViewColumn Header="Id работник" DisplayMemberBinding="{Binding Staffing.Worker.ID}" Width="100" />
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
+                    <GridViewColumn Header="Причина увольнения" DisplayMemberBinding="{Binding TypeOfImpact.Type}" Width="150" />
+                    <GridViewColumn Header="Заметка" DisplayMemberBinding="{Binding Staffing.Note}" Width="150" />
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

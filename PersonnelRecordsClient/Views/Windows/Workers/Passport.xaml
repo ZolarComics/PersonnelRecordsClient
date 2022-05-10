@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="Passport" Height="450" Width="800">
     <Grid>
-        
+        <ListView ItemsSource="{Binding passports}"  SelectedItem="{Binding SelectedPassport}" SelectionChanged="ListView_SelectionChanged" Background="#261D5AEB" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="33" />
+                    <GridViewColumn Header="Серия" DisplayMemberBinding="{Binding Series}" Width="52" />
+                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding Number}" Width="57" />
+                    <GridViewColumn Header="Дата выдачи" DisplayMemberBinding="{Binding DateOfIssue}" Width="85" />
+                    <GridViewColumn Header="Выдан" DisplayMemberBinding="{Binding IssuedBy}" Width="80" />
+                    <GridViewColumn Header="Код подразделения" DisplayMemberBinding="{Binding DivisionСode}" Width="130" />
+                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Sex}" Width="40" />
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding DateOfBirth}" Width="110" />
+                    <GridViewColumn Header="Прописка" DisplayMemberBinding="{Binding Registration}" Width="112" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить пасспорт" Command="{Binding AddPassport}"/>
+                    <MenuItem Header="Редактироовать" Command="{Binding EditPassport}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemovePassport}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
     </Grid>
 </Window>

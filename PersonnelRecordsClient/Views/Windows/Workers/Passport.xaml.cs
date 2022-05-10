@@ -23,5 +23,10 @@ namespace PersonnelRecordsClient.Views.Windows.Workers
         {
             InitializeComponent();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

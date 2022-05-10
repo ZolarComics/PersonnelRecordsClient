@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="ExperienceList" Height="450" Width="800">
     <Grid>
-        
+        <ListView ItemsSource="{Binding Experiences}"  SelectedItem="{Binding SelectedExperience}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="33" />
+                    <GridViewColumn Header="Id работника" DisplayMemberBinding="{Binding WorkerId}" Width="100" />
+                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding PositionName}" Width="96" />
+                    <GridViewColumn Header="Период работы" DisplayMemberBinding="{Binding WorkPeriod}" Width="110" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Создать компанию" Command="{Binding AddExperience}"/>
+                    <MenuItem Header="Редактировать" Command="{Binding EditExperience}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveExperience}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
     </Grid>
 </Window>

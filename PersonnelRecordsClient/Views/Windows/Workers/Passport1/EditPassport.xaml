@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers.Passport1"
         mc:Ignorable="d"
-        Title="EditPassport" Height="450" Width="800">
+        Title="EditPassport" Height="214" Width="530">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Серия:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Series}"/>
+
+        <TextBlock Text="Номер: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Number}"/>
+
+        <TextBlock Text="Дата выдачи: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DateOfIssue}"/>
         
+        <TextBlock Text="Выдан: " Grid.Row="3" Grid.Column="0" Height="35" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding IssuedBy}"/>
+
+        <TextBlock Text="Код подразделения: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DivisionСode}"/>
+
+        <TextBlock Text="Пол: " Grid.Row="5" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Sex}"/>
+
+        <TextBlock Text="Дата рождения: " Grid.Row="6" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DateOfBirth}"/>
+
+        <TextBlock Text="Прописка: " Grid.Row="7" Grid.Column="0" Height="35" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Registration}"/>
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D"/>
+        </StackPanel>
     </Grid>
 </Window>
