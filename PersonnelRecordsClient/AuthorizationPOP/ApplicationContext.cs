@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Data.Entity;
+//using Microsoft.EntityFrameworkCore;
 
 namespace PersonnelRecordsClient.MVVM
 {

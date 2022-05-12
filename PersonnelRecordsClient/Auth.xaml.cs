@@ -25,29 +25,29 @@ namespace PersonnelRecordsClient.AuthorizationPOP
             InitializeComponent();
         }
 
-        private void Button_Auth_Click(object sender, RoutedEventArgs e)
+        private void GoProgram(object sender, RoutedEventArgs e)
         {
-            string login = textBoxLogin.Text.Trim();
-            string pass = passBox.Password.Trim();
+            string login = TextBoxLogin.Text.Trim();
+            string pass = PassBox.Password.Trim();
 
             if (login.Length < 5)
             {
-                textBoxLogin.ToolTip = "В поле логина нужно больше 5 символов";
-                textBoxLogin.Background = Brushes.Red;
+                TextBoxLogin.ToolTip = "В поле логина нужно больше 5 символов";
+                TextBoxLogin.Background = Brushes.Red;
 
             }
             else if (pass.Length < 5)
             {
-                passBox.ToolTip = "В поле пароля нужно больше 5 символов";
-                passBox.Background = Brushes.Red;
+                PassBox.ToolTip = "В поле пароля нужно больше 5 символов";
+                PassBox.Background = Brushes.Red;
             }
 
             else
             {
-                textBoxLogin.ToolTip = "";
-                textBoxLogin.Background = Brushes.Transparent;
-                passBox.ToolTip = "";
-                passBox.Background = Brushes.Transparent;
+                TextBoxLogin.ToolTip = "";
+                TextBoxLogin.Background = Brushes.Transparent;
+                PassBox.ToolTip = "";
+                PassBox.Background = Brushes.Transparent;
             }
 
             User authUser = null;
@@ -66,7 +66,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
                 MessageBox.Show("Неверный логин или пароль!");
         }
 
-        private void Button_Window_Reg_Click(object sender, RoutedEventArgs e)
+        private void GoRegistration(object sender, RoutedEventArgs e)
         {
             Authorization authorization = new Authorization();
             authorization.Show();
