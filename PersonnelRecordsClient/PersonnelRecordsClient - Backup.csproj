@@ -4,7 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <UserSecretsId>f31bf532-24d7-453f-bae6-382bf0865be5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,14 +17,8 @@
 
   <ItemGroup>
     <Reference Include="ModelApi">
-      <HintPath>..\..\PersonnelRecordsServer\ModelApi\bin\Debug\net5.0\ModelApi.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Курсач\PersonnelRecordsServer\ModelApi\obj\Debug\net5.0\ModelApi.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="AuthorizationPOP\Account.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
