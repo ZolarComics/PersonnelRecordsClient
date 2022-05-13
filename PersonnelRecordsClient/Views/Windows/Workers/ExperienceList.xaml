@@ -18,7 +18,7 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Создать компанию" Command="{Binding AddExperience}"/>
+                    <MenuItem Header="Создать" Command="{Binding AddExperience}"/>
                     <MenuItem Header="Редактировать" Command="{Binding EditExperience}"/>
                     <MenuItem Header="Удалить" Command="{Binding RemoveExperience}"/>
                 </ContextMenu>

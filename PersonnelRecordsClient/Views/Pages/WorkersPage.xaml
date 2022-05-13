@@ -20,19 +20,19 @@
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="99" />
                     <GridViewColumn Header="Id паспорт" DisplayMemberBinding="{Binding PassportId}" Width="89" />
                     <GridViewColumn Header="Id образование" DisplayMemberBinding="{Binding EducationId}" Width="110" />
-                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
+                    <GridViewColumn Header="Id опыт работы" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
                 </GridView>
             </ListView.View>
 
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="CreateWorker" Command="{Binding CreateWorker}"/>
-                    <MenuItem Header="EditWorker" Command="{Binding EditWorker}"/>
-                    <MenuItem Header="Passport" Command="{Binding PassportList}"/>
-                    <MenuItem Header="Education" Command="{Binding EducationList}"/>
-                    <MenuItem Header="Experience" Command="{Binding ExperienceList}"/>
-                    <MenuItem Header="GoStaffing" Command="{Binding GoStaffing}" />
-                    <MenuItem Header="RemoveWorker" Command="{Binding RemoveWorker}" />
+                    <MenuItem Header="Создать работника" Command="{Binding CreateWorker}"/>
+                    <MenuItem Header="Редактироовать" Command="{Binding EditWorker}"/>
+                    <MenuItem Header="Пасспорт" Command="{Binding PassportList}"/>
+                    <MenuItem Header="Образование" Command="{Binding EducationList}"/>
+                    <MenuItem Header="Опыт работы" Command="{Binding ExperienceList}"/>
+                    <MenuItem Header="Должность" Command="{Binding GoStaffing}" />
+                    <MenuItem Header="Удалить" Command="{Binding RemoveWorker}" />
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

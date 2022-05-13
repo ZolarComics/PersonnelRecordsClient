@@ -22,9 +22,9 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="AddArchive" Command="{Binding AddArchive}"/>
-                    <MenuItem Header="EditArchive" Command="{Binding EditCopmany}"/>
-                    <MenuItem Header="RemoveArchive" Command="{Binding RemoveArchiveMetod}"/>
+                    <MenuItem Header="Добавить запись" Command="{Binding AddArchive}"/>
+                    <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveArchiveMetod}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
