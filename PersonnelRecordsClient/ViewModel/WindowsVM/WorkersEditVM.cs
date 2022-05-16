@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
-namespace PersonnelRecordsClient.ViewModel
+namespace PersonnelRecordsClient.ViewModel.WindowsVM
 {
     public class WorkersEditVM : INotifyPropertyChanged
     {
@@ -24,12 +24,11 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
 
-
         private Dispatcher dispatcher;
 
         public event PropertyChangedEventHandler PropertyChanged;
         void SignalChanged([CallerMemberName] string prop = null) =>
-          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
         public List<WorkerApi> Workers { get; set; }
         public CustomCommand SaveWorker { get; set; }
