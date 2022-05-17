@@ -49,7 +49,7 @@
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Registration}"/>
 
         <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
-            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D"/>
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D" HorizontalAlignment="Right" Width="150"/>
         </StackPanel>
     </Grid>
 </Window>

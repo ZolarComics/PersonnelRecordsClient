@@ -9,7 +9,7 @@
       Title="ArchivePage">
 
     <Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />

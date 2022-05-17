@@ -21,8 +21,8 @@
                 <Button Content="Опыт" Command="{Binding GoExperience}" />
                 <Button Content="Паспорт" Command="{Binding GoPassport}"/>
                 <Button Content="Staffing" Command="{Binding GoStaffing}"/>
-
-            </MenuItem>
+                <Button Content="Корзина"  Command="{Binding GoBasket}" />
+                </MenuItem>
             </Menu>
 
         </StackPanel>

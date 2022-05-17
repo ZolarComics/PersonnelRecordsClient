@@ -9,7 +9,7 @@
       Title="WorkersPage">
 
     <Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />

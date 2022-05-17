@@ -5,54 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers"
         mc:Ignorable="d"
-        Title="EditWorker" Height="486" Width="834">
-
+        Title="EditWorker" Height="214" Width="530">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TextBlock Text="{Binding FullName}"   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Фамилия:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Surname}"/>
+
+        <TextBlock Text="Имя: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
+
+        <TextBlock Text="Отчество: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Patronymic}"/>
+
+        <TextBlock Text="Телефон: " Grid.Row="3" Grid.Column="0" Height="35" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+
+        <TextBlock Text="Email: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Email}"/>
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D" HorizontalAlignment="Right" Width="150"/>
         </StackPanel>
-
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="Фамилия" FontSize="24"/>
-                <TextBox Text="{Binding Surname}" Height="44" Width="297"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <TextBlock Text="Имя" FontSize="24"/>
-                <TextBox Text="{Binding Name}" Height="44" Width="297"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
-                <TextBlock Text="Отчество" FontSize="24"/>
-                <TextBox Text="{Binding Patronymic}" Height="44" Width="297"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="3" HorizontalAlignment="Center">
-                <TextBlock Text="Контактный телефон" FontSize="24"/>
-                <TextBox Text="{Binding Phone}" Height="44" Width="297"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="4" HorizontalAlignment="Center">
-                <TextBlock Text="Почтовый адрес (email)" FontSize="24"/>
-                <TextBox Text="{Binding Email}" Height="44" Width="297"/>
-            </StackPanel>
-
-        </Grid>
-
     </Grid>
 </Window>
