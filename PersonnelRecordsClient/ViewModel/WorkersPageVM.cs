@@ -1,8 +1,8 @@
 ﻿using ModelApi;
 using PersonnelRecordsClient.MVVM;
 using PersonnelRecordsClient.ViewModel.WindowsVM;
-using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
-using PersonnelRecordsClient.Views.Windows.Workers;
+using PersonnelRecordsClient.Themes.Windows.Companies.Staffing;
+using PersonnelRecordsClient.Themes.Windows.Workers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

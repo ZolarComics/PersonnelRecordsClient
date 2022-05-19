@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Pages
+namespace PersonnelRecordsClient.Themes.Pages
 {
     /// <summary>
     /// Логика взаимодействия для ArchivePage.xaml

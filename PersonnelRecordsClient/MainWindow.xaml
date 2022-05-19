@@ -5,22 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800" Style="{DynamicResource WindowStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <ComboBox x:Name="styleBox"/>
+        </StackPanel>
+
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Content="Companies" Command="{Binding GoToCompanies}" Width="163"/>
-            <Button Content="Workers" Command="{Binding GoToWorkers}" Width="206"/>
-            <Button Content="Archives" Command="{Binding GoToArchives}" Width="250"/>
+            <Button Content="Companies" Command="{Binding GoToCompanies}" Width="163" Style="{DynamicResource ButtonStyle}"/>
+            <Button Content="Workers" Command="{Binding GoToWorkers}" Width="206" Style="{DynamicResource ButtonStyle}"/>
+            <Button Content="Archives" Command="{Binding GoToArchives}" Width="250" Style="{DynamicResource ButtonStyle}"/>
             <Menu>
                 <MenuItem Header="Справочник" Width="192">
-                <Button Content="Education"  Command="{Binding GoEducation}" />
-                <Button Content="Experience" Command="{Binding GoExperience}" />
-                <Button Content="Passport" Command="{Binding GoPassport}"/>
-                <Button Content="Staffing" Command="{Binding GoStaffing}"/>
+                    <Button Content="Education"  Command="{Binding GoEducation}" Style="{DynamicResource ButtonStyle}"/>
+                    <Button Content="Experience" Command="{Binding GoExperience}" Style="{DynamicResource ButtonStyle}"/>
+                    <Button Content="Passport" Command="{Binding GoPassport}" Style="{DynamicResource ButtonStyle}"/>
+                    <Button Content="Staffing" Command="{Binding GoStaffing}" Style="{DynamicResource ButtonStyle}"/>
 
             </MenuItem>
             </Menu>
@@ -29,5 +34,6 @@
         <StackPanel Grid.Row="1">
             <Frame Name="Frame" NavigationUIVisibility="Hidden"/>
         </StackPanel>
+
     </Grid>
 </Window>

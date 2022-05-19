@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Companies.Staffing
+namespace PersonnelRecordsClient.Themes.Windows.Companies.Staffing
 {
     /// <summary>
     /// Логика взаимодействия для EditStaffing.xaml

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Workers.Passport1
+namespace PersonnelRecordsClient.Themes.Windows.Workers.Passport1
 {
     /// <summary>
     /// Логика взаимодействия для EditPassport.xaml

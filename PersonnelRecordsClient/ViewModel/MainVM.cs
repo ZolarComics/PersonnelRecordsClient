@@ -1,6 +1,6 @@
 ﻿using PersonnelRecordsClient.MVVM;
-using PersonnelRecordsClient.Views.Pages;
-using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
+using PersonnelRecordsClient.Themes.Pages;
+using PersonnelRecordsClient.Themes.Windows.Companies.Staffing;
 using System;
 using System.Collections.Generic;
 using System.Linq;

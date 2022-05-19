@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using PersonnelRecordsClient.Views.Pages;
+using PersonnelRecordsClient.Themes.Pages;
 
 namespace PersonnelRecordsClient.MVVM
 {

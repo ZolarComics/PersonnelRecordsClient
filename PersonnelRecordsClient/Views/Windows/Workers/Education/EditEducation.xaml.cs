@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Workers.Education
+namespace PersonnelRecordsClient.Themes.Windows.Workers.Education
 {
     /// <summary>
     /// Логика взаимодействия для EditEducation.xaml

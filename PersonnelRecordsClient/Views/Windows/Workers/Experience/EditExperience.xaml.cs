@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Workers.Experience
+namespace PersonnelRecordsClient.Themes.Windows.Workers.Experience
 {
     /// <summary>
     /// Логика взаимодействия для EditExperience.xaml

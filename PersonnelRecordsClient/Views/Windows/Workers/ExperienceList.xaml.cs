@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Workers
+namespace PersonnelRecordsClient.Themes.Windows.Workers
 {
     /// <summary>
     /// Логика взаимодействия для ExperienceList.xaml

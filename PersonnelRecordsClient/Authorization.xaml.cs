@@ -1,5 +1,5 @@
 ﻿using PersonnelRecordsClient.MVVM;
-using PersonnelRecordsClient.Views.Pages;
+using PersonnelRecordsClient.Themes.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
