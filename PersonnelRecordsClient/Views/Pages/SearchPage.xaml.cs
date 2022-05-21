@@ -1,4 +1,4 @@
-﻿using PersonnelRecordsClient.ViewModel.WindowsVM;
+﻿using PersonnelRecordsClient.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PersonnelRecordsClient.Views.Windows.Companies
+namespace PersonnelRecordsClient.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для StaffingList.xaml
+    /// Логика взаимодействия для SearchPage.xaml
     /// </summary>
-    public partial class StaffingList : Window
+    public partial class SearchPage : Page
     {
-        public StaffingList()
+        public SearchPage()
         {
             InitializeComponent();
-            DataContext = new StaffingListVM();
+            DataContext = new SearchPageVM();
         }
     }
 }
