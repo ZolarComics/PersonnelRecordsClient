@@ -32,7 +32,17 @@ namespace PersonnelRecordsClient
             var result = (T)JsonSerializer.Deserialize(answerText, typeof(T), jsonOptions);
             return result;
         }
-
+        public static async Task<V> PostGetAsync<T, V>(T value, string controller) where V : class
+        {
+            var str = JsonSerializer.Serialize(value, typeof(T));
+            var answer = await client.PostAsync(server + controller, new StringContent(str, Encoding.UTF8, "application/json"));
+            if (answer.StatusCode == System.Net.HttpStatusCode.BadRequest ||
+                answer.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return null;
+            string answerText = await answer.Content.ReadAsStringAsync();
+            var result = (V)JsonSerializer.Deserialize(answerText, typeof(V), jsonOptions);
+            return result;
+        }
         public static async Task<int> PostAsync<T>(T value, string controller) where T : ModelApi.ApiBaseType
         {
             var str = JsonSerializer.Serialize(value, typeof(T));

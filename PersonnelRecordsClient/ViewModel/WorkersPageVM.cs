@@ -97,6 +97,32 @@ namespace PersonnelRecordsClient.ViewModel
             });
             Task.Run(GetWorkers);
         }
+        public CustomCommand GetExperience { get; set; }
+
+        List<ExperienceApi> ExperiencePosition { get; set; }
+
+        public TimeSpan Experience { get; set; }
+        public async Task GetExperienceWorker(WorkerExpGetDates options)
+        {
+            var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
+            var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
+            var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
+            ExperiencePosition = experiencePosition;
+
+            TimeSpan time = new TimeSpan();
+            foreach (var f in resultExp.History)
+            {
+                if (!f.End.HasValue == true)
+                {
+                    Experience = time.Add(f.End.Value.Subtract(f.Start.Value));
+                }
+                else if (!f.End.HasValue == false)
+                {
+                    f.End = DateTime.Now;
+                    Experience = time.Add(f.End.Value.Subtract(f.Start.Value));
+                }
+            }
+        }
         public async Task Add()
         {
             SelectedWorker = new WorkerApi();
@@ -115,7 +141,7 @@ namespace PersonnelRecordsClient.ViewModel
             //string Patronymic = SelectedWorker.Patronymic;
             //string Email = SelectedWorker.Email;
             //string Patronymic = SelectedWorker.Patronymic;
-            var archive = new ArchiveApi { OldStatus = OldSurname, NewStatus = NewSurname };
+            var archive = new ArchiveApi { OldRecord = OldSurname, NewRecord = NewSurname };
             var result = Api.PostAsync<ArchiveApi>(SelectedArchive, "archive");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));

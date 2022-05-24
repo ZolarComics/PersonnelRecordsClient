@@ -44,6 +44,10 @@
             <TextBox Text="{Binding SelectedCompany.Name}"/>
             <TextBlock Text="Генеральный директор"/>
             <TextBox Text="{Binding SelectedCompany.Owner}" />
+            <TextBlock Text="Поиск"/>
+            <TextBox x:Name="searchText"/>
+            <Button Content="Найти"
+                Command="{Binding SearchCompany,  UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" Grid.Column="1"/>
 
         </StackPanel>
         <Button Grid.Row="2" Content="Добавить новую компанию"

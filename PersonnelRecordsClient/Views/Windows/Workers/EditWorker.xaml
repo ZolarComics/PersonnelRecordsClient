@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers"
         mc:Ignorable="d"
-        Title="EditWorker" Height="214" Width="530">
+      Title="EditWorker" Height="214" Width="530">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -39,22 +39,8 @@
         <TextBlock Text="Email: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB"/>
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Email}"/>
 
-            <StackPanel Grid.Row="4" HorizontalAlignment="Center">
-                <TextBlock Text="Почтовый адрес (email)" FontSize="24"/>
-                <TextBox Text="{Binding Email}" Height="44" Width="297"/>
-            </StackPanel>
-            <Menu Margin="0,-68,751,123">
-                <MenuItem Header="Меню" Width="192">
-                    <Button Grid.Row="2" Content="Добавить нового сотрудника"
-                Command="{Binding AddWorker}"/>
-                    <Button Grid.Row="3" Content="Сохранить"
-                Command="{Binding SaveWorker}" Margin="10,75,707,5" Grid.RowSpan="2"/>
-                    <Button Content="Удалить"
-                Command="{Binding RemoveWorker}" Grid.Row="1" Grid.Column="1"/>
-                </MenuItem>
-            </Menu>
-           
-        </Grid>
-
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D" HorizontalAlignment="Right" Width="150"/>
+        </StackPanel>
     </Grid>
 </Window>

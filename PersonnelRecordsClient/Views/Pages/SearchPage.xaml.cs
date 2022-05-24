@@ -1,7 +1,11 @@
-﻿using PersonnelRecordsClient.ViewModel;
+﻿using ModelApi;
+using PersonnelRecordsClient.MVVM;
+using PersonnelRecordsClient.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,10 +25,18 @@ namespace PersonnelRecordsClient.Views.Pages
     /// </summary>
     public partial class SearchPage : Page
     {
+        
+        public CustomCommand SearchCompany { get; set; }
+        public List<CompanyApi> Companies { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public SearchPage()
         {
+           
             InitializeComponent();
             DataContext = new SearchPageVM();
-        }
+                        
+        }         
     }
 }

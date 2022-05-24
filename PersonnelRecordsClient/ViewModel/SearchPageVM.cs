@@ -76,10 +76,10 @@ namespace PersonnelRecordsClient.ViewModel
                 StaffingList staffingList = new StaffingList();
                 staffingList.Show();
             });
-           
+
             //CollectionViews
             #region
-            // staffings page
+             // staffings page
             StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
             StaffingsCollectionView.Filter = FilterStaffings;
             StaffingsCollectionView.SortDescriptions.Add(new SortDescription(nameof(StaffingApi.Id), ListSortDirection.Ascending));
@@ -89,7 +89,7 @@ namespace PersonnelRecordsClient.ViewModel
             CompaniesCollectionView.Filter = FilterCompanies;
             CompaniesCollectionView.SortDescriptions.Add(new SortDescription(nameof(CompanyApi.Name), ListSortDirection.Ascending));
 
-            // archives page
+           // archives page
             ArchiveCollectionView = CollectionViewSource.GetDefaultView(Archives);
             ArchiveCollectionView.Filter = FilterArchive;
             ArchiveCollectionView.SortDescriptions.Add(new SortDescription(nameof(ArchiveApi.Id), ListSortDirection.Ascending));
@@ -98,7 +98,9 @@ namespace PersonnelRecordsClient.ViewModel
             WorkersCollectionView = CollectionViewSource.GetDefaultView(Workers);
             WorkersCollectionView.Filter = FilterWorkers;
             WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(WorkerApi.Name), ListSortDirection.Ascending));
-            //
+
+
+
             #endregion
         }
 
@@ -328,8 +330,8 @@ namespace PersonnelRecordsClient.ViewModel
         {
             if (obj is ArchiveApi archive)
             {
-                return archive.StaffingId.ToString().Contains(ArchiveStaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase)&&
-                archive.WorkerId.ToString().Contains(ArchiveWorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                return archive.StaffingID.ToString().Contains(ArchiveStaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase)&&
+                archive.WorkerID.ToString().Contains(ArchiveWorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 archive.Id.ToString().Contains(ArchiveWorkerNamesFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 archive.Id.ToString().Contains(ArchiveImpactTypesFilter, StringComparison.InvariantCultureIgnoreCase);
 

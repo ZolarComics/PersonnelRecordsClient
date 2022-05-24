@@ -24,6 +24,7 @@
                 <Button Content="Архив" Command="{Binding GoArchive}"/>
                 <Button Content="Корзина" Command="{Binding GoBasket}"/>
                 <Button Content="Изменить рабочего" Command="{Binding GoWorkerEdit}"/>
+                <Button Content="Изменить рабочего" Command="{Binding GoSearch}"/>
 
             </MenuItem>
             </Menu>

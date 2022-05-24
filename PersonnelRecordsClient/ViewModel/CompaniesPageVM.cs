@@ -16,7 +16,8 @@ using System.Windows.Threading;
 namespace PersonnelRecordsClient.ViewModel
 {
     internal class CompaniesPageVM : INotifyPropertyChanged// BaseViewModel
-    {
+    {       
+        public CustomCommand SearchCompany { get; set; }
 
         public CustomCommand GoToStaffingList { get; set; }
         public CustomCommand AddCompany { get; set; }
@@ -36,7 +37,7 @@ namespace PersonnelRecordsClient.ViewModel
         public List<CompanyApi> Companies { get; set; }
 
         public CompaniesPageVM(Dispatcher dispatcher)
-        {
+        {          
             AddCompany = new CustomCommand(() =>
             {
                 Task.Run(Add);
@@ -82,7 +83,7 @@ namespace PersonnelRecordsClient.ViewModel
             var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-        }
+        }      
         public async Task Delete()
         {
             var result = await Api.DeleteAsync<CompanyApi>(SelectedCompany, "Company");
@@ -92,8 +93,9 @@ namespace PersonnelRecordsClient.ViewModel
         async Task GetCompanies()
         {
             try
-            {
+            {                
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                result = result.Where(u => u.IsRemuved = "1").ToList();
                 Companies = new List<CompanyApi>(result);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
             }

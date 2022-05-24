@@ -19,6 +19,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoWorkerEdit { get; set; }
         public CustomCommand GoBasket { get; set; }
         public CustomCommand GoArchive { get; set; }
+        public CustomCommand GoSearch { get; set; }
 
 
         public MainVM()
@@ -54,6 +55,10 @@ namespace PersonnelRecordsClient.ViewModel
            {
                MainWindow.MainNavigate(new AppointWorker());
            });
+            GoSearch = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new SearchPage());
+            });
         }
     }
 }
