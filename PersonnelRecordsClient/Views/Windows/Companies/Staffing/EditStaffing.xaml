@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Companies.Staffing"
         mc:Ignorable="d"
-        Title="EditStaffing" Height="450" Width="800">
+       Title="Штатное расписание" Height="225" Width="490">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Должность:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB" FontSize="18" FontFamily="Candara" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Position}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Зарплата: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Salary}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Сотрудник: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <ComboBox Grid.Row="2" Grid.Column="1"
+                      ItemsSource="{Binding WorkerID}"
+                      SelectedItem="{Binding SelectedStaffing.Company}"
+                      DisplayMemberPath="Model"
+        />
+        <!--Изменить ItemsSource и SelectedItem в ComboBox-->
+
+        <TextBlock Text="Компания: " Grid.Row="3" Grid.Column="0" Height="30" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <ComboBox  Grid.Row="3" Grid.Column="1"
+                      ItemsSource="{Binding CompanyID}"
+                      SelectedItem="{Binding SelectedStaffing.Company}"
+                      DisplayMemberPath="Model"
+        />
+        <!--Изменить ItemsSource и SelectedItem в ComboBox-->
+
+        <TextBlock Text="Заметки: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Note}" BorderBrush="#4C1D5AEB"/>
+
+
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFFFFFF" HorizontalAlignment="Right" Width="150" FontSize="14" FontFamily="Century Gothic" BorderBrush="#FF3FAE1F" Foreground="#FF3FAE1F" Margin="0,8,5,8"/>
+        </StackPanel>
     </Grid>
+
 </Window>

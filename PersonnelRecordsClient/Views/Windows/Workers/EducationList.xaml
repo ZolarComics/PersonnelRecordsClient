@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers"
         mc:Ignorable="d"
-        Title="EducationList" Height="450" Width="800">
+        Title="Образование" Height="450" Width="800">
     <Grid>
         <ListView ItemsSource="{Binding Educations}"  SelectedItem="{Binding SelectedEducation}" Background="#261D5AEB">
             <ListView.View>

@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Companies"
         mc:Ignorable="d"
-        Title="StaffingList" Height="450" Width="800">
+      Title="Штатное расписание" Height="450" Width="800">
     <Grid>
         <ListView ItemsSource="{Binding Staffings}"  SelectedItem="{Binding SelectedStaffing}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" />
-                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" />
-                    <GridViewColumn Header="ID рабочего" DisplayMemberBinding="{Binding WorkerID}" />
-                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" />
-                    <GridViewColumn Header="ID компании" DisplayMemberBinding="{Binding CompanyID}" />
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />
+                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" Width="140" />
+                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" Width="120" />
+                    <GridViewColumn Header="ID сотрудника" DisplayMemberBinding="{Binding WorkerID}" Width="100" />
+                    <GridViewColumn Header="ID компании" DisplayMemberBinding="{Binding CompanyID}" Width="100" />
+                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" Width="200"/>
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

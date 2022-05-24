@@ -5,51 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers.Passport1"
         mc:Ignorable="d"
-        Title="EditPassport" Height="214" Width="530">
+        Title="Пасспорт" Height="242" Width="530">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
-        <TextBlock Text="Серия:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Series}"/>
+        <TextBlock Text="Серия:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Series}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Номер: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Number}"/>
+        <TextBlock Text="Номер: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Number}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Дата выдачи: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DateOfIssue}"/>
-        
-        <TextBlock Text="Выдан: " Grid.Row="3" Grid.Column="0" Height="35" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding IssuedBy}"/>
+        <TextBlock Text="Дата выдачи: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DateOfIssue}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Код подразделения: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DivisionСode}"/>
+        <TextBlock Text="Выдан: " Grid.Row="3" Grid.Column="0" Height="35" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding IssuedBy}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Пол: " Grid.Row="5" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Sex}"/>
+        <TextBlock Text="Код подразделения: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DivisionСode}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Дата рождения: " Grid.Row="6" Grid.Column="0" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DateOfBirth}"/>
+        <TextBlock Text="Пол: " Grid.Row="5" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Sex}" BorderBrush="#4C1D5AEB"/>
 
-        <TextBlock Text="Прописка: " Grid.Row="7" Grid.Column="0" Height="35" Background="#4C1D5AEB"/>
-        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Registration}"/>
+        <TextBlock Text="Дата рождения: " Grid.Row="6" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DateOfBirth}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Прописка: " Grid.Row="7" Grid.Column="0" Height="35" Background="#4C1D5AEB" FontFamily="Candara" FontSize="14"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Registration}" BorderBrush="#4C1D5AEB"/>
 
         <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
-            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFBBC8D" HorizontalAlignment="Right" Width="150"/>
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFFFFFF" HorizontalAlignment="Right" Width="150" FontSize="14" FontFamily="Century Gothic" BorderBrush="#FF3FAE1F" Foreground="#FF3FAE1F" Margin="0,8,5,8"/>
         </StackPanel>
     </Grid>
+
 </Window>

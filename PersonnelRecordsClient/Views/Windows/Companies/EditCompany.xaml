@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Companies"
         mc:Ignorable="d"
-        Title="EditCopmany" Height="450" Width="800">
+        Title="Компания" Height="218" Width="530">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Название:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Владелец: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Owner}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Адрес: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Adress}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Телефон: " Grid.Row="3" Grid.Column="0" Height="35" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Описание: " Grid.Row="4" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18" Height="45"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Description}" BorderBrush="#4C1D5AEB"/>
+
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFFFFFF" HorizontalAlignment="Right" Width="150" FontSize="14" FontFamily="Century Gothic" BorderBrush="#FF3FAE1F" Foreground="#FF3FAE1F" Margin="0,8,5,8"/>
+        </StackPanel>
     </Grid>
 </Window>

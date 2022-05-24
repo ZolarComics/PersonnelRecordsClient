@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers.Education"
         mc:Ignorable="d"
-        Title="EditEducation" Height="450" Width="800">
+        Title="Образование"  Height="173" Width="530">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Место обучения:" Grid.Row="0" Grid.Column="0" Background="#4C1D5AEB" FontSize="18" FontFamily="Candara" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EducationalPlace}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Специальность: " Grid.Row="1" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Speciality}" BorderBrush="#4C1D5AEB"/>
+
+        <TextBlock Text="Дата поступления: " Grid.Row="2" Grid.Column="0" Background="#4C1D5AEB" FontSize="18"/>
+        <DatePicker  Grid.Row="2" Grid.Column="1" Text="{Binding ReceiptDate}"/>
+        <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ReceiptDate}"/>-->
+
+        <TextBlock Text="Дата окончания: " Grid.Row="3" Grid.Column="0" Background="#4C1D5AEB" FontFamily="Candara" FontSize="18"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Text="{Binding ExpirationDate}"/>
+        <!--<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ExpirationDate}"/>-->
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" >
+            <Button Content="Сохранить" Command="{Binding Save}" Background="#7FFFFFFF" HorizontalAlignment="Right" Width="150" FontSize="14" FontFamily="Century Gothic" BorderBrush="#FF3FAE1F" Foreground="#FF3FAE1F" Margin="0,8,5,8"/>
+        </StackPanel>
     </Grid>
 </Window>

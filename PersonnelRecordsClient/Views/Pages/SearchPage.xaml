@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+     d:DesignHeight="450" d:DesignWidth="800"
     Title="Страница поиска">
     <Grid>
         <TabControl>
-            <TabItem>
+            <TabItem BorderBrush="White" Background="#FF9AB6F8">
 
                 <TabItem.Header>
-                    <TextBlock Text="Archive"/>
+                    <TextBlock Text="Архив" FontFamily="Candara" FontSize="13"/>
                 </TabItem.Header>
 
                 <TabItem.Content>
@@ -20,18 +20,18 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="519*"/>
-                            <ColumnDefinition Width="275*"/>
+                            <ColumnDefinition Width="240*"/>
                         </Grid.ColumnDefinitions>
 
                         <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
-                                    <GridViewColumn Header="StaffingID" DisplayMemberBinding="{Binding Staffing.ID}" />
-                                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding Staffing.Worker.ID}" />
-                                    <GridViewColumn Header="WorkerName" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
-                                    <GridViewColumn Header="ImpactType" DisplayMemberBinding="{Binding TypeOfImpact.Type}" />
-                                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Staffing.Note}" />
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />
+                                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding Staffing.ID}" Width="100" />
+                                    <GridViewColumn Header="Id сотрудника" DisplayMemberBinding="{Binding Staffing.Worker.ID}" Width="100" />
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Staffing.Worker.Name}" Width="70" />
+                                    <GridViewColumn Header="Причина увольнения" DisplayMemberBinding="{Binding TypeOfImpact.Type}" Width="140" />
+                                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Staffing.Note}" Width="75" />
                                 </GridView>
                             </ListView.View>
                             <ListView.ContextMenu>
@@ -51,7 +51,7 @@
 
 
 
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Background="#7FFEDEC8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -60,25 +60,25 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Поиск по фильтрам" FontSize="22" HorizontalAlignment="Center" FontFamily="Candara"/>
 
                             <StackPanel Grid.Row="1">
-                                <TextBlock Text="По StaffingId"/>
+                                <TextBlock Text="Id должность:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding ArchiveStaffingIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
-                                <TextBlock Text="По WorkerId"/>
+                                <TextBlock Text="Id сотрудника:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding ArchiveWorkerIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3">
-                                <TextBlock Text="По WorkerName"/>
+                                <TextBlock Text="Имя:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding ArchiveWorkerNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4">
-                                <TextBlock Text="По ImpactType"/>
+                                <TextBlock Text="Причина увольнения:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding ArchiveImpactTypesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
@@ -89,27 +89,26 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem>
+            <TabItem Background="#FF9AB6F8" BorderBrush="White">
                 <TabItem.Header>
-                    <TextBlock Text="Staffing"/>
+                    <TextBlock Text="Штатное расписание" FontSize="13" FontFamily="Candara"/>
                 </TabItem.Header>
 
                 <TabItem.Content>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="515*"/>
-                            <ColumnDefinition Width="279*"/>
+                            <ColumnDefinition Width="240*"/>
                         </Grid.ColumnDefinitions>
 
                         <ListView ItemsSource="{Binding Staffings}" SelectedItem="{Binding SelectedStaffing}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Position}" />
-                                    <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Salary}" />
-                                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding WorkerID}" />
-                                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Note}" />
-                                    <GridViewColumn Header="CompanyID" DisplayMemberBinding="{Binding CompanyID}" />
+                                    <GridViewColumn Header="Id:" DisplayMemberBinding="{Binding Id}" Width="50" />
+                                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" Width="120" />
+                                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" Width="100" />
+                                    <GridViewColumn Header="Id сотрудника" DisplayMemberBinding="{Binding WorkerID}" Width="100" />
+                                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" Width="150" />
                                 </GridView>
                             </ListView.View>
                             <ListView.ContextMenu>
@@ -122,7 +121,7 @@
                             </ListView.ContextMenu>
                         </ListView>
 
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Background="#7FFEDEC8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -132,30 +131,30 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Поиск по фильтрам" FontSize="23" HorizontalAlignment="Center" FontFamily="Candara"/>
 
                             <StackPanel Grid.Row="1">
-                                <TextBlock Text="По id"/>
+                                <TextBlock Text="Id" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
-                                <TextBlock Text="По Position"/>
+                                <TextBlock Text="Должность:" Margin="2,0,0,0" FontSize="14" FontFamily="Candara"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingPositionsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3">
-                                <TextBlock Text="По Salary"/>
+                                <TextBlock Text="Зарплата:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingSalarysFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4">
-                                <TextBlock Text="По WorkerId"/>
+                                <TextBlock Text="Id сотрудника:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingWorkersIdFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="5">
-                                <TextBlock Text="По CompanyId"/>
+                                <TextBlock Text="Заметки:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingCompaniesIdFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </Grid>
@@ -165,29 +164,30 @@
 
             </TabItem>
 
-            <TabItem>
+            <TabItem BorderBrush="White" Background="#FF9AB6F8">
                 <TabItem.Header>
-                    <TextBlock Text="Companies"/>
+                    <TextBlock Text="Компании" FontSize="13" FontFamily="Candara"/>
                 </TabItem.Header>
 
                 <TabItem.Content>
                     <Grid>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="515*"/>
-                            <ColumnDefinition Width="279*"/>
+                            <ColumnDefinition Width="26*"/>
+                            <ColumnDefinition Width="489*"/>
+                            <ColumnDefinition Width="200*"/>
                         </Grid.ColumnDefinitions>
 
 
-                        <ListView ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany}">
+                        <ListView ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany}" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="Owner" DisplayMemberBinding="{Binding Owner}" />
-                                    <GridViewColumn Header="Adress" DisplayMemberBinding="{Binding Adress}" />
-                                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
-                                    <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Description}" />
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="40" />
+                                    <GridViewColumn Header="Назваание" DisplayMemberBinding="{Binding Name}" Width="108" />
+                                    <GridViewColumn Header="Владелец" DisplayMemberBinding="{Binding Owner}" Width="115" />
+                                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Adress}" Width="100" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="100" />
+                                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="100" />
                                 </GridView>
                             </ListView.View>
                             <ListView.ContextMenu>
@@ -199,7 +199,7 @@
                                 </ContextMenu>
                             </ListView.ContextMenu>
                         </ListView>
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="2" Background="#7FFEDEC8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -209,30 +209,30 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Поиск по фильтрам" FontSize="22" HorizontalAlignment="Center" FontFamily="Candara"/>
 
                             <StackPanel Grid.Row="1">
-                                <TextBlock Text="По id"/>
+                                <TextBlock Text="Id:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding CompanyIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
-                                <TextBlock Text="По Name"/>
+                                <TextBlock Text="Название:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding CompanyNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3">
-                                <TextBlock Text="По Adress"/>
+                                <TextBlock Text="Адрес:" Margin="2,0,0,0" FontFamily="Candara"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding CompanyAdressesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4">
-                                <TextBlock Text="По Phone"/>
+                                <TextBlock Text="Телефон:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding CompanyPhonesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="5">
-                                <TextBlock Text="По Description"/>
+                                <TextBlock Text="Описание:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding CompaniesDescriptionsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </Grid>
@@ -241,9 +241,9 @@
 
             </TabItem>
 
-            <TabItem>
+            <TabItem Background="#FF9AB6F8" BorderBrush="White">
                 <TabItem.Header>
-                    <TextBlock Text="Workers"/>
+                    <TextBlock Text="Сотрудники" FontFamily="Candara" FontSize="13"/>
                 </TabItem.Header>
 
                 <TabItem.Content>
@@ -251,21 +251,21 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="274*"/>
-                            <ColumnDefinition Width="123*"/>
+                            <ColumnDefinition Width="90*"/>
                         </Grid.ColumnDefinitions>
 
                         <ListView ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="Surename" DisplayMemberBinding="{Binding Surname}" />
-                                    <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Patronymic}" />
-                                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
-                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
-                                    <GridViewColumn Header="Id Passport" DisplayMemberBinding="{Binding PassportId}" />
-                                    <GridViewColumn Header="Id Education" DisplayMemberBinding="{Binding EducationId}" />
-                                    <GridViewColumn Header="Id Experience" DisplayMemberBinding="{Binding ExperienceId}" />
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="40" />
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="50" />
+                                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}" Width="70" />
+                                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" Width="80" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="80" />
+                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="85" />
+                                    <GridViewColumn Header="Id пасспорт" DisplayMemberBinding="{Binding PassportId}" Width="62" />
+                                    <GridViewColumn Header="Id образование" DisplayMemberBinding="{Binding EducationId}" Width="62" />
+                                    <GridViewColumn Header="Id опыт работы" DisplayMemberBinding="{Binding ExperienceId}" Width="62" />
                                 </GridView>
                             </ListView.View>
 
@@ -282,7 +282,7 @@
                             </ListView.ContextMenu>
                         </ListView>
 
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Background="#7FFEDEC8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -296,50 +296,50 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Поиск по фильтрам" FontSize="22" HorizontalAlignment="Center" FontFamily="Candara"/>
 
                             <StackPanel Grid.Row="1">
-                                <TextBlock Text="По id"/>
+                                <TextBlock Text="Id" Margin="3,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
-                                <TextBlock Text="По Name"/>
+                                <TextBlock Text="Имя:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3">
-                                <TextBlock Text="По SureName"/>
+                                <TextBlock Text="Фамилия:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerSureNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="4">
-                                <TextBlock Text="По Patronymic"/>
+                                <TextBlock Text="Отчество:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerPatronymicsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="5">
-                                <TextBlock Text="По Phone"/>
+                                <TextBlock Text="Телефон:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerPhonesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="6">
-                                <TextBlock Text="По Email"/>
+                                <TextBlock Text="Email:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerEmailsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="7">
-                                <TextBlock Text="По id Passport"/>
+                                <TextBlock Text="Id пасспорт:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerPassportIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="8">
-                                <TextBlock Text="По id Education"/>
+                                <TextBlock Text="Id образование:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerEducationIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="9">
-                                <TextBlock Text="По id Experience "/>
+                                <TextBlock Text="Id опыт работы " Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding WorkerExperienceIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </Grid>
@@ -351,4 +351,5 @@
         </TabControl>
 
     </Grid>
+
 </Page>

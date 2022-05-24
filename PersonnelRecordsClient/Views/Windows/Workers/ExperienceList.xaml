@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Windows.Workers"
         mc:Ignorable="d"
-        Title="ExperienceList" Height="450" Width="800">
+        Title="Опыт работы" Height="450" Width="800">
     <Grid>
         <ListView ItemsSource="{Binding Experiences}"  SelectedItem="{Binding SelectedExperience}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="33" />
-                    <GridViewColumn Header="Id работника" DisplayMemberBinding="{Binding WorkerId}" Width="100" />
+                    <GridViewColumn Header="Id сотрудника" DisplayMemberBinding="{Binding WorkerId}" Width="100" />
                     <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding PositionName}" Width="96" />
                     <GridViewColumn Header="Период работы" DisplayMemberBinding="{Binding WorkPeriod}" Width="110" />
                 </GridView>

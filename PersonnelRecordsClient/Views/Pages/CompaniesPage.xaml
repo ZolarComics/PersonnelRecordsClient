@@ -8,6 +8,32 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CompaniesPage">
     <Grid>
+        <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}" Background="#261D5AEB">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="140" />
+                    <GridViewColumn Header="Владелец" DisplayMemberBinding="{Binding Owner}" Width="150" />
+                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Adress}" Width="140" />
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="160" />
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="150" />
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить компанию" Command="{Binding AddCompany}"/>
+                    <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveCompany}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+    </Grid>
+
+
+
+    <!--d:DesignHeight="450" d:DesignWidth="800"
+      Title="CompaniesPage">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -56,5 +82,5 @@
                 Command="{Binding SaveCompany}"/>
         <Button Content="Удалить"
                 Command="{Binding RemoveAuto}" Margin="0,380,0,10" Grid.Row="1" Grid.Column="1"/>
-    </Grid>
+    </Grid>-->
 </Page>
