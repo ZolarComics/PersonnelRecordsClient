@@ -23,6 +23,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand AddCompany { get; set; }
         public CustomCommand SaveCompany { get; set; }
         public CustomCommand RemoveCompany { get; set; }
+        public CustomCommand TagCompany { get; set; }
         public CompanyApi selectedCompany { get; set; }
         public CompanyApi SelectedCompany 
         { 
@@ -56,6 +57,11 @@ namespace PersonnelRecordsClient.ViewModel
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             });
+            TagCompany = new CustomCommand(() =>
+            {
+                Task.Run(TagDelete);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            });
             RemoveCompany = new CustomCommand(()=>
                 {
                     Task.Run(Delete);
@@ -83,21 +89,35 @@ namespace PersonnelRecordsClient.ViewModel
             var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-        }      
+        }
         public async Task Delete()
         {
             var result = await Api.DeleteAsync<CompanyApi>(SelectedCompany, "Company");
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
         }
+        public async Task TagDelete()
+        {
+            SelectedCompany.IsRemuved = 1;
+            //var result = await Api.DeleteAsync<CompanyApi>(SelectedCompany, "Company");
+            await GetCompanies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
         async Task GetCompanies()
         {
             try
-            {                
+            {
+                string sort = SelectedCompany.IsRemuved.ToString();
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                result = result.Where(u => u.IsRemuved = "1").ToList();
-                Companies = new List<CompanyApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
+                if (sort != "1")
+                {
+                    result = result.ToList().ToArray();
+                    Companies = new List<CompanyApi>(result);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                }
+                //result = result.ToList().Where(u => u.Sort != "1");
+                //Companies = new List<CompanyApi>(result);
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
             }
             catch (Exception e)
             {

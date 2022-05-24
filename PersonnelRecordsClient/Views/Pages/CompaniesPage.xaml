@@ -34,7 +34,7 @@
                         <MenuItem Header="Добавить компанию" Command="{Binding AddCopmany}"/>
                         <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
                         <MenuItem Header="Должность" Command="{Binding GoToStaffingList}"/>
-                        <MenuItem Header="Удалить компанию" Command="{Binding RemoveCompany}"/>
+                        <MenuItem Header="Удалить компанию" Command="{Binding TagDelete}"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>
