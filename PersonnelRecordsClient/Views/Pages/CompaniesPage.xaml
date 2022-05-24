@@ -31,10 +31,10 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
-                        <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
-                        <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
-                        <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCompany}"/>
+                        <MenuItem Header="Добавить компанию" Command="{Binding AddCopmany}"/>
+                        <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
+                        <MenuItem Header="Должность" Command="{Binding GoToStaffingList}"/>
+                        <MenuItem Header="Удалить компанию" Command="{Binding RemoveCompany}"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

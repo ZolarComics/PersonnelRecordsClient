@@ -2,6 +2,7 @@
 using PersonnelRecordsClient.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -27,10 +28,10 @@ namespace PersonnelRecordsClient.ViewModel
         private readonly Dispatcher dispatcher;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public CustomCommand RemoveArchive;
-        public CustomCommand AddArchive;
+        public CustomCommand RemoveArchive { get; set; }
+        public CustomCommand AddArchive { get; set; }
 
-        // public ObservableCollection<WorkerApi> Workers { get; set; } = new ObservableCollection<WorkerApi>();
+         public ObservableCollection<WorkerApi> Workers { get; set; } = new ObservableCollection<WorkerApi>();
         public List<ArchiveApi> Archives { get; set; }
 
         public ArchivePageVM(Dispatcher dispatcher)

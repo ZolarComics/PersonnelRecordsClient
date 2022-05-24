@@ -1,0 +1,354 @@
+﻿<Page x:Class="PersonnelRecordsClient.Views.Pages.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+    Title="Страница поиска">
+    <Grid>
+        <TabControl>
+            <TabItem>
+
+                <TabItem.Header>
+                    <TextBlock Text="Archive"/>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="519*"/>
+                            <ColumnDefinition Width="275*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView Grid.Row="1" ItemsSource="{Binding Archives}" SelectedItem="{Binding SelectedArchive}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="StaffingID" DisplayMemberBinding="{Binding Staffing.ID}" />
+                                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding Staffing.Worker.ID}" />
+                                    <GridViewColumn Header="WorkerName" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
+                                    <GridViewColumn Header="ImpactType" DisplayMemberBinding="{Binding TypeOfImpact.Type}" />
+                                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Staffing.Note}" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="AddArchive" Command="{Binding AddArchive}"/>
+                                    <MenuItem Header="EditArchive" Command="{Binding EditCopmany}"/>
+                                    <MenuItem Header="RemoveArchive" Command="{Binding RemoveArchiveMetod}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="IsSelected" Value="{Binding SomeItemSelected, Mode=TwoWay}" />
+                                </Style>
+                            </ListView.Resources>
+                        </ListView>
+
+
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="По StaffingId"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding ArchiveStaffingIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="По WorkerId"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding ArchiveWorkerIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Text="По WorkerName"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding ArchiveWorkerNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="По ImpactType"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding ArchiveImpactTypesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Staffing"/>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="515*"/>
+                            <ColumnDefinition Width="279*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView ItemsSource="{Binding Staffings}" SelectedItem="{Binding SelectedStaffing}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Position}" />
+                                    <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Salary}" />
+                                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding WorkerID}" />
+                                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Note}" />
+                                    <GridViewColumn Header="CompanyID" DisplayMemberBinding="{Binding CompanyID}" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="AddCopmany" Command="{Binding AddStaffing}"/>
+                                    <MenuItem Header="EditCompany" Command="{Binding EditStaffing}"/>
+                                    <MenuItem Header="RemoveCopmany" Command="{Binding RemoveStaffing}"/>
+                                    <MenuItem Header="AppointWorker" Command="{Binding GoToAppointWorker}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="По id"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding StaffingIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="По Position"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding StaffingPositionsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Text="По Salary"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding StaffingSalarysFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="По WorkerId"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding StaffingWorkersIdFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5">
+                                <TextBlock Text="По CompanyId"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding StaffingCompaniesIdFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                </TabItem.Content>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Companies"/>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="515*"/>
+                            <ColumnDefinition Width="279*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <ListView ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="Owner" DisplayMemberBinding="{Binding Owner}" />
+                                    <GridViewColumn Header="Adress" DisplayMemberBinding="{Binding Adress}" />
+                                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+                                    <GridViewColumn Header="Descreption" DisplayMemberBinding="{Binding Description}" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="AddCopmany" Command="{Binding AddCopmany}"/>
+                                    <MenuItem Header="EditCompany" Command="{Binding EditCopmany}"/>
+                                    <MenuItem Header="Staffing" Command="{Binding GoToStaffingList}"/>
+                                    <MenuItem Header="RemoveCopmany" Command="{Binding RemoveCompany}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="По id"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding CompanyIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="По Name"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding CompanyNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Text="По Adress"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding CompanyAdressesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="По Phone"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding CompanyPhonesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5">
+                                <TextBlock Text="По Description"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding CompaniesDescriptionsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Workers"/>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="274*"/>
+                            <ColumnDefinition Width="123*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Идентификатор" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="Surename" DisplayMemberBinding="{Binding Surname}" />
+                                    <GridViewColumn Header="Patronymic" DisplayMemberBinding="{Binding Patronymic}" />
+                                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                                    <GridViewColumn Header="Id Passport" DisplayMemberBinding="{Binding PassportId}" />
+                                    <GridViewColumn Header="Id Education" DisplayMemberBinding="{Binding EducationId}" />
+                                    <GridViewColumn Header="Id Experience" DisplayMemberBinding="{Binding ExperienceId}" />
+                                </GridView>
+                            </ListView.View>
+
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="CreateWorker" Command="{Binding CreateWorker}"/>
+                                    <MenuItem Header="EditWorker" Command="{Binding EditWorker}"/>
+                                    <MenuItem Header="Passport" Command="{Binding PassportList}"/>
+                                    <MenuItem Header="Education" Command="{Binding EducationList}"/>
+                                    <MenuItem Header="Experience" Command="{Binding ExperienceList}"/>
+                                    <MenuItem Header="GoStaffing" Command="{Binding GoStaffing}" />
+                                    <MenuItem Header="RemoveWorker" Command="{Binding RemoveWorker}" />
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Поиск по фильтрам" FontSize="20" HorizontalAlignment="Center"/>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="По id"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="По Name"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Text="По SureName"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerSureNamesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                                <TextBlock Text="По Patronymic"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerPatronymicsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5">
+                                <TextBlock Text="По Phone"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerPhonesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="6">
+                                <TextBlock Text="По Email"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerEmailsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="7">
+                                <TextBlock Text="По id Passport"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerPassportIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="8">
+                                <TextBlock Text="По id Education"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerEducationIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="9">
+                                <TextBlock Text="По id Experience "/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding WorkerExperienceIdsFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Page>

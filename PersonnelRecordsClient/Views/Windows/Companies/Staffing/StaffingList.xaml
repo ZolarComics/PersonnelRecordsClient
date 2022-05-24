@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="StaffingList" Height="450" Width="800">
     <Grid>
-        <ListView ItemsSource="{Binding Staffings}"  SelectedItem="{Binding SelectedStaffing}">
+        <ListView ItemsSource="{Binding Staffings}"  SelectedItem="{Binding SelectedStaffing}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Position}" />
-                    <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Salary}" />
-                    <GridViewColumn Header="WorkerID" DisplayMemberBinding="{Binding WorkerID}" />
-                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Note}" />
-                    <GridViewColumn Header="CompanyID" DisplayMemberBinding="{Binding CompanyID}" />
+                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" />
+                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" />
+                    <GridViewColumn Header="ID рабочего" DisplayMemberBinding="{Binding WorkerID}" />
+                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" />
+                    <GridViewColumn Header="ID компании" DisplayMemberBinding="{Binding CompanyID}" />
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

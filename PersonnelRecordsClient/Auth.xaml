@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PersonnelRecordsClient"
         mc:Ignorable="d"
         Title="Auth" Height="450" Width="800">
-    <Grid Background="#ffdadada">
+    <Grid  Background="#7FFBBC8D">
         <StackPanel>
             <TextBlock Text="Авторизация" FontSize="30" FontWeight="Bold" Margin="300 20 0 20"/>
-            <Button HorizontalAlignment="Left" FontSize="15" Margin="10 0"  Click="GoRegistration" Content="Регистрация" />
+            <Button HorizontalAlignment="Left" FontSize="15" Margin="10 0"  Click="GoRegistration" Content="Регистрация" Background="#7F1D5AEB" />
             <TextBox x:Name="TextBoxLogin" Height="25" Margin="150 0 150 10"/>
             <PasswordBox x:Name="PassBox" Margin="150 0 150 10" Height="25"/>
-            <Button Content="Войти" FontSize="20" Margin="250 10"  Click="GoProgram"/>
+            <Button Content="Войти" FontSize="20" Margin="250 10"  Click="GoProgram" Background="#7F1D5AEB"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,190 @@
+﻿<Page x:Class="PersonnelRecordsClient.Views.Pages.Basket"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PersonnelRecordsClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BasketPage">
+
+    <Grid>
+        <TabControl Margin="2">
+            <TabItem Header="Рабочие" Background="#FF9AB6F8" BorderBrush="White">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420" SelectionChanged="ListView_SelectionChanged" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="60" />
+                                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}" Width="80" />
+                                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" Width="100" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="100" />
+                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="99" />
+                                    <GridViewColumn Header="Id паспорт" DisplayMemberBinding="{Binding PassportId}" Width="89" />
+                                    <GridViewColumn Header="Id образование" DisplayMemberBinding="{Binding EducationId}" Width="110" />
+                                    <GridViewColumn Header="Id опыт работы" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveWorkers}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Компании" Background="#FF9AB6F8" BorderBrush="White">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420" BorderBrush="White">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Service.ServiceName}"/>
+                                    <GridViewColumn Header="Длительность" DisplayMemberBinding="{Binding Service.Duration}"/>
+                                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Service.Price}"/>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveCompanies}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Архив" Background="#FF9AB6F8" BorderBrush="White">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />
+                                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding Staffing.ID}" Width="100" />
+                                    <GridViewColumn Header="Id работник" DisplayMemberBinding="{Binding Staffing.Worker.ID}" Width="100" />
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
+                                    <GridViewColumn Header="Причина увольнения" DisplayMemberBinding="{Binding TypeOfImpact.Type}" Width="150" />
+                                    <GridViewColumn Header="Заметка" DisplayMemberBinding="{Binding Staffing.Note}" Width="150" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveArchive}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Вакансии" Background="#FFFEDEC8">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" />
+                                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" />
+                                    <GridViewColumn Header="ID рабочего" DisplayMemberBinding="{Binding WorkerID}" />
+                                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" />
+                                    <GridViewColumn Header="ID компании" DisplayMemberBinding="{Binding CompanyID}" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveStaffing}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Опыт работы" Background="#FFFEDEC8">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="33" />
+                                    <GridViewColumn Header="Id работника" DisplayMemberBinding="{Binding WorkerId}" Width="100" />
+                                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding PositionName}" Width="96" />
+                                    <GridViewColumn Header="Период работы" DisplayMemberBinding="{Binding WorkPeriod}" Width="110" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveExperience}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Образование" Background="#FFFEDEC8">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="32" />
+                                    <GridViewColumn Header="Место обучения" DisplayMemberBinding="{Binding EducationalPlace}" Width="120" />
+                                    <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Speciality}" Width="125" />
+                                    <GridViewColumn Header="Дата поступления" DisplayMemberBinding="{Binding ReceiptDate}" Width="125" />
+                                    <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding ExpirationDate}" Width="120" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemoveEducation}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Header="Паспорт" Background="#FFFEDEC8">
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding SelectedClientOrders}" SelectedItem="{Binding SelectedOrder}" 
+                                          Height="420">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="33" />
+                                    <GridViewColumn Header="Серия" DisplayMemberBinding="{Binding Series}" Width="52" />
+                                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding Number}" Width="57" />
+                                    <GridViewColumn Header="Дата выдачи" DisplayMemberBinding="{Binding DateOfIssue}" Width="85" />
+                                    <GridViewColumn Header="Выдан" DisplayMemberBinding="{Binding IssuedBy}" Width="80" />
+                                    <GridViewColumn Header="Код подразделения" DisplayMemberBinding="{Binding DivisionСode}" Width="130" />
+                                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Sex}" Width="40" />
+                                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding DateOfBirth}" Width="110" />
+                                    <GridViewColumn Header="Прописка" DisplayMemberBinding="{Binding Registration}" Width="112" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Удалить" Command="{Binding RemovePassport}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

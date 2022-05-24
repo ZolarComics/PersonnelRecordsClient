@@ -29,7 +29,7 @@
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="99" />
                     <GridViewColumn Header="Id паспорт" DisplayMemberBinding="{Binding PassportId}" Width="89" />
                     <GridViewColumn Header="Id образование" DisplayMemberBinding="{Binding EducationId}" Width="110" />
-                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
+                    <GridViewColumn Header="Id опыт работы" DisplayMemberBinding="{Binding ExperienceId}" Width="120" />
                 </GridView>
             </ListView.View>
 

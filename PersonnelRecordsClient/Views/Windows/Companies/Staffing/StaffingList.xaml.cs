@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonnelRecordsClient.ViewModel.WindowsVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace PersonnelRecordsClient.Views.Windows.Companies
         public StaffingList()
         {
             InitializeComponent();
-            DataContext = new StaffingList();
+            DataContext = new StaffingListVM();
         }
     }
 }
