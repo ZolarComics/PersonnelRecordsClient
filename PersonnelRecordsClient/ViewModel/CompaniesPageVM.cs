@@ -59,8 +59,7 @@ namespace PersonnelRecordsClient.ViewModel
                 {
                     Task.Run(Delete);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                });
-            //this.dispatcher = dispatcher;
+                });           
             GoToStaffingList = new CustomCommand(() =>
             {
                 StaffingList staffingList = new StaffingList();
@@ -101,8 +100,7 @@ namespace PersonnelRecordsClient.ViewModel
             catch (Exception e)
             {
                 MessageBox.Show($"{e}");
-            }
-            
+            }            
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

@@ -1,6 +1,7 @@
 ﻿using PersonnelRecordsClient.MVVM;
 using PersonnelRecordsClient.Views.Pages;
 using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
+using PersonnelRecordsClient.Views.Windows.Workers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,28 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoToWorkers { get; set; }
         public CustomCommand GoToArchives { get; set; }
         public CustomCommand GoEducation { get; set; }
+        public CustomCommand GoWorkerEdit { get; set; }
+        public CustomCommand GoBasket { get; set; }
+        public CustomCommand GoArchive { get; set; }
+
 
         public MainVM()
         {
+            GoWorkerEdit = new CustomCommand(() =>
+            {
+                EditWorker EditWorker = new EditWorker();
+                EditWorker.Show();
+                //EditWorker = new EditWorker.Show();
+                //MainWindow.MainNavigate(new EditWorker());
+            });
+            GoBasket = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new CompaniesPage());
+            });
+            GoArchive = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new ArchivePage());
+            });
             GoToCompanies = new CustomCommand (() => 
             {
                 MainWindow.MainNavigate(new CompaniesPage());

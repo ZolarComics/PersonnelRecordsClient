@@ -12,7 +12,7 @@ using System.Windows.Threading;
 
 namespace PersonnelRecordsClient.ViewModel
 {
-    class ArchivePageVM : INotifyPropertyChanged
+    class ArchivePageVM : BaseViewModel, INotifyPropertyChanged
     {
         private ArchiveApi selectedArchive;
         public ArchiveApi SelectedArchive
@@ -36,7 +36,6 @@ namespace PersonnelRecordsClient.ViewModel
         public ArchivePageVM(Dispatcher dispatcher)
         {
             //this.dispatcher = dispatcher;
-
             Task.Run(GetArchive);
         }
        public ArchivePageVM()
@@ -75,7 +74,6 @@ namespace PersonnelRecordsClient.ViewModel
             var result = await Api.DeleteAsync<ArchiveApi>(SelectedArchive, "Archive");
             await GetArchive();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
-
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

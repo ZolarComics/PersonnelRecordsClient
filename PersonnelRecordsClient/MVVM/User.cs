@@ -10,7 +10,7 @@ namespace PersonnelRecordsClient.MVVM
     {
         public int id { get; set; }
 
-        public string login, email, pass;
+        public string login, email, pass, typeUser;
 
         public string Login
         {
@@ -23,13 +23,26 @@ namespace PersonnelRecordsClient.MVVM
             get { return pass; }
             set { pass = value; }
         }
-        public User() { }
+        public string TypeUser
+        {
+            get { return typeUser; }
+            set { typeUser = value; }
+        }
+        public User(){}
 
 
-        public User(string login, string pass)
+        public User(string login, string pass, string typeUser)
         {
             this.login = login;
             this.pass = pass;
+            this.typeUser = typeUser;
         }
+
     }
+    public enum TypeUsers
+    {
+        SimpleUser,
+        AdmiUser
+    }
+
 }

@@ -9,6 +9,15 @@
       Title="WorkersPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <ListView Grid.Row="1" ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}">
             <ListView.View>
                 <GridView>
@@ -26,7 +35,7 @@
 
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="CreateWorker" Command="{Binding CreateWorker}"/>
+                    <MenuItem Header="GoEditWorker" Command="{Binding GoEditWorker}"/>
                     <MenuItem Header="EditWorker" Command="{Binding EditWorker}"/>
                     <MenuItem Header="Passport" Command="{Binding PassportList}"/>
                     <MenuItem Header="Education" Command="{Binding EducationList}"/>
@@ -36,5 +45,21 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Имя"/>
+            <TextBox Text="{Binding SelectedWorker.Name}"/>
+            <TextBlock Text="Фамилия"/>
+            <TextBox Text="{Binding SelectedWorker.Surname}" />
+            <TextBlock Text="Назание"/>
+            <TextBox Text="{Binding SelectedWorker.Patronymic}"/>
+            <TextBlock Text="Генеральный директор"/>
+            <TextBox Text="{Binding SelectedWorker.Owner}" />
+        </StackPanel>
+        <Button Grid.Row="2" Content="Добавить нового рабочего"
+                Command="{Binding AddWorker}"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="Сохранить"
+                Command="{Binding SaveWorker}" Margin="205,430,0,0" Grid.RowSpan="2"/>
+        <Button Content="Удалить"  Grid.Row="1" Grid.Column="1"
+                Command="{Binding RemoveWorker}" Margin="0,430,200,0" Grid.RowSpan="2"/>
     </Grid>
 </Page>

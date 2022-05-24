@@ -13,11 +13,12 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50" />
-                    <GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding Staffing.ID}" Width="100" />
-                    <GridViewColumn Header="Id работник" DisplayMemberBinding="{Binding Staffing.Worker.ID}" Width="100" />
-                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Staffing.Worker.Name}" />
-                    <GridViewColumn Header="Причина увольнения" DisplayMemberBinding="{Binding TypeOfImpact.Type}" Width="150" />
-                    <GridViewColumn Header="Заметка" DisplayMemberBinding="{Binding Staffing.Note}" Width="150" />
+                    <!--<GridViewColumn Header="Id должность" DisplayMemberBinding="{Binding Staffing.ID}" Width="100" />
+                    <GridViewColumn Header="Id работник" DisplayMemberBinding="{Binding Staffing.Worker.ID}" Width="100" />-->
+                    <GridViewColumn Header="OldRecord" DisplayMemberBinding="{Binding OldRecord}" />
+                    <GridViewColumn Header="NewRecord" DisplayMemberBinding="{Binding NewRecord}" />
+                    <!--<GridViewColumn Header="Причина увольнения" DisplayMemberBinding="{Binding TypeOfImpact.Type}" Width="150" />
+                    <GridViewColumn Header="Заметка" DisplayMemberBinding="{Binding Staffing.Note}" Width="150" />-->
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

@@ -51,7 +51,17 @@
                 <TextBlock Text="Почтовый адрес (email)" FontSize="24"/>
                 <TextBox Text="{Binding Email}" Height="44" Width="297"/>
             </StackPanel>
-
+            <Menu Margin="0,-68,751,123">
+                <MenuItem Header="Меню" Width="192">
+                    <Button Grid.Row="2" Content="Добавить нового сотрудника"
+                Command="{Binding AddWorker}"/>
+                    <Button Grid.Row="3" Content="Сохранить"
+                Command="{Binding SaveWorker}" Margin="10,75,707,5" Grid.RowSpan="2"/>
+                    <Button Content="Удалить"
+                Command="{Binding RemoveWorker}" Grid.Row="1" Grid.Column="1"/>
+                </MenuItem>
+            </Menu>
+           
         </Grid>
 
     </Grid>

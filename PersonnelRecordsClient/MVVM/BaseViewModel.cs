@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PersonnelRecordsClient.MVVM
 {
-    internal class BaseViewModel
+    public class BaseViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

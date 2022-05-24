@@ -2,7 +2,9 @@
 using PersonnelRecordsClient.Views.Pages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,22 @@ namespace PersonnelRecordsClient.AuthorizationPOP
     /// </summary>
     public partial class Authorization : Window
     {
+        private User selectedUser;
+
+        //public List<User> UsersEnam = new List<User>();
+        public User SelectedUser
+        {
+            get => selectedUser;
+            set
+            {
+                selectedUser = value;
+                SignalChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void SignalChanged([CallerMemberName] string prop = null) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         ApplicationContext db;
         public Authorization()
         {
@@ -34,12 +52,12 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         {
             string login = textBoxLogin.Text.Trim();
             string pass = passBox.Password.Trim();
+            string typeUser = TypeUserComboBox.Text.Trim();
 
             if (login.Length < 5)
             {
                 textBoxLogin.ToolTip = "Нужно более 5 симоволов в поле логина!";
                 textBoxLogin.Background = Brushes.Red;
-
             }
             else if (pass.Length < 5)
             {
@@ -53,15 +71,10 @@ namespace PersonnelRecordsClient.AuthorizationPOP
                 textBoxLogin.Background = Brushes.Transparent;
                 passBox.ToolTip = "";
                 passBox.Background = Brushes.Transparent;
-
-
                 MessageBox.Show("Всё хорошо!");
-
-                User user = new User(login, pass);
-
+                User user = new User(login, pass, typeUser);
                 db.Users.Add(user);
                 db.SaveChanges();
-
                 Auth auth = new Auth();
                 auth.Show();
                 this.Close();
@@ -73,6 +86,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
             auth.Show();
             this.Close();
         }
+
     }
 }
 

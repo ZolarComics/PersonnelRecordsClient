@@ -13,6 +13,10 @@
             <Button HorizontalAlignment="Right" FontSize="15" Margin="5 0" x:Name="joinButton" Click="Button_Auth_Click" Content="Войти"/>
             <TextBox x:Name="textBoxLogin" Margin="150 0 150 10" Height="25"/>
             <PasswordBox x:Name="passBox" Margin="150 0 150 10" Height="25"/>
+            <ComboBox x:Name="TypeUserComboBox" ItemsSource="{Binding TypeUser}"
+                      SelectedItem="{Binding SelectedUser.TypeUser}"
+                      DisplayMemberPath="Model"
+                      Margin="150 0 150 10" Height="25"/>
             <Button Content="Зарегистрироваться" x:Name="regButton" FontSize="20" Margin="250 10" Click="Button_Reg_Click" />
         </StackPanel>
     </Grid>
