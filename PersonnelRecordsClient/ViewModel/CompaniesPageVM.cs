@@ -24,6 +24,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand SaveCompany { get; set; }
         public CustomCommand RemoveCompany { get; set; }
         public CustomCommand TagCompany { get; set; }
+        public CustomCommand SortCompany { get; set; }
         public CompanyApi selectedCompany { get; set; }
         public CompanyApi SelectedCompany 
         { 
@@ -42,6 +43,11 @@ namespace PersonnelRecordsClient.ViewModel
             AddCompany = new CustomCommand(() =>
             {
                 Task.Run(Add);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            });
+            SortCompany = new CustomCommand(() =>
+            {
+               // Task.Run(SortGetCompanies);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             });
             SaveCompany = new CustomCommand(() =>
@@ -106,8 +112,51 @@ namespace PersonnelRecordsClient.ViewModel
         async Task GetCompanies()
         {
             try
+            {               
+                //new RelayCommand(obj => DisplayDouble
+                async Task SortGetCompanies(CompanyApi Company)
+                {
+                    try
+                    {
+
+
+                        string sort = Company.IsRemuved.ToString();
+                        var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                        if (sort != "1")
+                        {
+                            result = result.ToList().ToArray();
+                            Companies = new List<CompanyApi>(result);
+                            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                        }
+                        //result = result.ToList().Where(u => u.Sort != "1");
+                        //Companies = new List<CompanyApi>(result);
+                        //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show($"{e}");
+                    }
+                }
+                //Companies = List<CompanyApi>(result);
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+
+                //  var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                //Companies = new List<CompanyApi>();
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                //SignalChanged("Workers");
+            }
+            catch (Exception e)
             {
-                string sort = SelectedCompany.IsRemuved.ToString();
+                MessageBox.Show($"{e}");
+            }            
+        }
+        public async Task SortGetCompanies(CompanyApi Company)
+        {
+            try
+            {
+
+
+                string sort = Company.IsRemuved.ToString();
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
                 if (sort != "1")
                 {
@@ -122,7 +171,7 @@ namespace PersonnelRecordsClient.ViewModel
             catch (Exception e)
             {
                 MessageBox.Show($"{e}");
-            }            
+            }
         }
         void SignalChanged([CallerMemberName] string prop = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

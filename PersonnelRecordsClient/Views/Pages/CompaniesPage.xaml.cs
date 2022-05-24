@@ -33,7 +33,6 @@ namespace PersonnelRecordsClient.Views.Pages
         public CompaniesPage()
         {
             InitializeComponent();
-
             SearchText = searchText.Text.Trim();
             DataContext = new CompaniesPageVM(Dispatcher);
             SearchCompany = new CustomCommand(() =>
