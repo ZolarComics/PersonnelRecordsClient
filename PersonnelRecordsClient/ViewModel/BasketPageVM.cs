@@ -16,7 +16,7 @@ namespace PersonnelRecordsClient.ViewModel
     {
         public List<CompanyApi> Companies { get; set; }
         private readonly Dispatcher dispatcher;
-        public CompanyIsRemuvedApi selectedIsRemuved { get; set; }
+       /* public CompanyIsRemuvedApi selectedIsRemuved { get; set; }
         public CompanyIsRemuvedApi SelectedIsRemuved
         {
             get => selectedIsRemuved;
@@ -25,7 +25,8 @@ namespace PersonnelRecordsClient.ViewModel
                 selectedIsRemuved = value;
                 SignalChanged();
             }
-        }
+        }*/
+
         //CustomCommand  GetCompaniesIsRemuvedList { get;set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,7 +34,6 @@ namespace PersonnelRecordsClient.ViewModel
         {
             Task.Run(GetCompaniesIsRemuved);
         }        
-
 
         async Task GetCompaniesIsRemuved()
         {
