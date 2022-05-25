@@ -81,7 +81,7 @@ namespace PersonnelRecordsClient.ViewModel
             #region
 
              // staffings page
-            StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
+           /* StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
             StaffingsCollectionView.Filter = FilterStaffings;
             StaffingsCollectionView.SortDescriptions.Add(new SortDescription(nameof(StaffingApi.Id), ListSortDirection.Ascending));
 
@@ -89,6 +89,7 @@ namespace PersonnelRecordsClient.ViewModel
             ArchiveCollectionView = CollectionViewSource.GetDefaultView(Archives);
             ArchiveCollectionView.Filter = FilterArchive;
             ArchiveCollectionView.SortDescriptions.Add(new SortDescription(nameof(ArchiveApi.Id), ListSortDirection.Ascending));
+           */
 
             // workers page
             WorkersCollectionView = CollectionViewSource.GetDefaultView(Workers);
@@ -124,10 +125,14 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 staffings = value;
                 SignalChanged();
+
             }
         }
         public ObservableCollection<StaffingApi> StaffingsCollection { get; set; }
+
+
         public ICollectionView StaffingsCollectionView { get; set; }
+       
 
         private string _staffingIdFilter = string.Empty;
         public string StaffingIdsFilter
@@ -445,8 +450,9 @@ namespace PersonnelRecordsClient.ViewModel
             set
             {
                 _workerPhonesFilter = value;
-                OnPropertyChanged(nameof(WorkerPhonesFilter));
+                
                 WorkersCollectionView.Refresh();
+                OnPropertyChanged(nameof(WorkerPhonesFilter));
             }
         }
 
@@ -554,6 +560,8 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 var result = await Api.GetListAsync<WorkerApi[]>("Worker");
                 Workers = new List<WorkerApi>(result);
+                //
+                WorkersCollectionView = (ICollectionView)Workers;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
                 SignalChanged("Workers");
             }

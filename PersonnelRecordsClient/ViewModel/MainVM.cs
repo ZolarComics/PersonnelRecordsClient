@@ -20,7 +20,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoBasket { get; set; }
         public CustomCommand GoArchive { get; set; }
         public CustomCommand GoSearch { get; set; }
-
+        public CustomCommand GoBasketPage { get; set; }
 
         public MainVM()
         {
@@ -59,6 +59,24 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 MainWindow.MainNavigate(new SearchPage());
             });
+            GoBasketPage = new CustomCommand(() =>
+            {
+            //    if (authUser != null)
+            //    {
+            //        GoBasketPage = new CustomCommand(() =>
+            //        {
+            //            MainWindow.MainNavigate(new BasketPage());
+            //            this.Close();
+            //        });
+            //        //MainWindow.MainNavigate(new BasketPage());                
+            //        //MainWindow mainWindow = new MainWindow();
+            //        //mainWindow.Show();
+            //        this.Close();
+            //    }
+            //    else
+            //        MessageBox.Show("Неверный логин или пароль!");
+            });
+
         }
     }
 }

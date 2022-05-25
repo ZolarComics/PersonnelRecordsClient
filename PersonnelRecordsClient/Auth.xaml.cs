@@ -1,4 +1,6 @@
 ﻿using PersonnelRecordsClient.MVVM;
+using PersonnelRecordsClient.Views.Pages;
+using PersonnelRecordsClient.AuthorizationPOP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PersonnelRecordsClient.ViewModel;
 
 namespace PersonnelRecordsClient.AuthorizationPOP
 {
@@ -23,7 +26,9 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         public Auth()
         {
             InitializeComponent();
+            DataContext = new MainVM();
         }
+        public CustomCommand GoBasketPage { get; set; }
 
         private void GoProgram(object sender, RoutedEventArgs e)
         {
@@ -58,8 +63,14 @@ namespace PersonnelRecordsClient.AuthorizationPOP
 
             if (authUser != null)
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                GoBasketPage = new CustomCommand(() =>
+                    {
+                       // MainWindow.MainNavigate(new BasketPage());
+                        this.Close();
+                    });
+                  //MainWindow.MainNavigate(new BasketPage());                
+                //MainWindow mainWindow = new MainWindow();
+                //mainWindow.Show();
                 this.Close();
             }
             else

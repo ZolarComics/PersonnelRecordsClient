@@ -24,6 +24,13 @@ namespace PersonnelRecordsClient
             var result = (T)JsonSerializer.Deserialize(answerText, typeof(T), jsonOptions);
             return result;
         }
+        public static async Task<T> GetListSort<T>(string controller)
+        {
+            var answer = await client.GetAsync(server + controller);
+            string answerText = await answer.Content.ReadAsStringAsync();
+            var result = (T)JsonSerializer.Deserialize(answerText, typeof(T), jsonOptions);
+            return result;
+        }
 
         public static async Task<T> GetAsync<T>(int id, string controller) where T : ModelApi.ApiBaseType
         {
