@@ -28,10 +28,26 @@ namespace PersonnelRecordsClient
             InitializeComponent();
             window = this;
             DataContext = new MainVM();
+
+            List<string> styles = new List<string> { "light", "dark" };
+            styleBox.SelectionChanged += ThemeChange;
+            styleBox.ItemsSource = styles;
+            styleBox.SelectedItem = "dark";
+
             //MainNavigate();
 
             //Test();
         }
+
+        private void ThemeChange(object sender, SelectionChangedEventArgs e)
+        {
+            string style = styleBox.SelectedItem as string;
+            var uri = new Uri(style + ".xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+
 
         public static void MainNavigate(Page page)
         {

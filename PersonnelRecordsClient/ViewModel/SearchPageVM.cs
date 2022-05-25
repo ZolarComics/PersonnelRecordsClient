@@ -69,6 +69,7 @@ namespace PersonnelRecordsClient.ViewModel
                 Task.Run(DeleteCompanies);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             });
+
             GoToStaffingList = new CustomCommand(() =>
             {
                 StaffingList staffingList = new StaffingList();
@@ -78,11 +79,15 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public SearchPageVM()
         {
-           
+
+            StaffingsCollection = new ObservableCollection<StaffingApi>(Staffings);
+            ArchivesCollection = new ObservableCollection<ArchiveApi>(Archives);
+            WorkersCollection = new ObservableCollection<WorkerApi>(Workers);
+            CompaniesCollection = new ObservableCollection<CompanyApi>(Companies);
             //CollectionViews
             #region
 
-             // staffings page
+            // staffings page
             StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
             StaffingsCollectionView.Filter = FilterStaffings;
             StaffingsCollectionView.SortDescriptions.Add(new SortDescription(nameof(StaffingApi.Id), ListSortDirection.Ascending));

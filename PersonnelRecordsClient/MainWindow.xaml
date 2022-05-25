@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonnelRecordsClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Style="{DynamicResource WindowStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,8 +16,8 @@
             <Button Content="Рабочие" Command="{Binding GoToWorkers}" Width="206" FontFamily="Candara" FontSize="18" Background="#7FFEDEC8" BorderBrush="White"/>
             <Button Content="Архив" Command="{Binding GoToArchives}" Width="250" FontFamily="Candara" FontSize="18" Background="#661D5AEB"/>
             <Menu FontSize="16" FontFamily="Century Gothic">
-                <MenuItem Header="Справочник" Width="192">
-                <Button Content="Образование"  Command="{Binding GoEducation}" FontFamily="Candara" FontSize="13" />
+                <MenuItem Header="Справочник" Width="192" FontFamily="Candara" FontSize="18">
+                    <Button Content="Образование"  Command="{Binding GoEducation}" FontFamily="Candara" FontSize="13" />
                 <Button Content="Опыт" Command="{Binding GoExperience}" FontFamily="Candara" FontSize="13" />
                 <Button Content="Паспорт" Command="{Binding GoPassport}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Должность" Command="{Binding GoStaffing}" FontSize="13" FontFamily="Candara"/>
@@ -31,6 +31,7 @@
 
         </StackPanel>
         <StackPanel Grid.Row="1">
+            <ComboBox x:Name="styleBox" Width="150" HorizontalAlignment="Left"/>
             <Frame Name="Frame" NavigationUIVisibility="Hidden"/>
         </StackPanel>
     </Grid>
