@@ -42,7 +42,7 @@ namespace PersonnelRecordsClient.MVVM
     public enum TypeUsers
     {
         SimpleUser,
-        AdmiUser
+        Admin
     }
 
 }

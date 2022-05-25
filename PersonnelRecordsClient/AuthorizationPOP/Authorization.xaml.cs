@@ -43,8 +43,10 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         public Authorization()
         {
             InitializeComponent();
-
             db = new ApplicationContext();
+            DataContext = new UserClassTypes();
+
+            
 
         }
 
