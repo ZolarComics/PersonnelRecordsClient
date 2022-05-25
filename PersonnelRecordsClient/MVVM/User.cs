@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace PersonnelRecordsClient.MVVM
 {
-    public class User
-    {
+    public class User : INotifyPropertyChanged
+    { 
         public int id { get; set; }
 
-        public string login, email, pass, typeUser;
-
+        public string login, pass, typeUser;
+        
         public string Login
         {
             get { return login; }
@@ -23,26 +21,72 @@ namespace PersonnelRecordsClient.MVVM
             get { return pass; }
             set { pass = value; }
         }
+
         public string TypeUser
         {
             get { return typeUser; }
             set { typeUser = value; }
         }
-        public User(){}
+        const TypeUsers typeUserAdmin = TypeUsers.Admin;
+        const TypeUsers typeSimpleUser = TypeUsers.Admin;
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public User(string login, string pass, string typeUser)
+        private ComboBoxItem selectedTag;
+
+        public ComboBoxItem SelectedTag
+        {
+            get => selectedTag;
+            set
+            {
+                selectedTag = value;
+                ChangeText(selectedTag.Tag as string);
+
+            }
+        }
+
+        private void ChangeText(string index)
+        {
+            switch (index) 
+            {
+                case "0":
+                    EnterSimpleUserTypeUser(typeSimpleUser);
+                    break;
+
+                case "1":
+                    EnterAdminTypeUser(typeUserAdmin);
+                    break;
+            }
+        }
+
+        public User()
+        {
+           
+        }
+
+        public User(string login, string pass, string typeUser) //
         {
             this.login = login;
             this.pass = pass;
-            this.typeUser = typeUser;
+           this.typeUser = typeUser;
         }
 
+        private void EnterSimpleUserTypeUser(TypeUsers typeSimpleUser)
+        {
+
+        }
+
+        private void EnterAdminTypeUser(TypeUsers typeUserAdmin)
+        {
+
+        }
+       
     }
+
     public enum TypeUsers
     {
         SimpleUser,
-        AdmiUser
+        Admin
     }
 
 }

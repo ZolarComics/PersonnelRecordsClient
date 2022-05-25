@@ -13,10 +13,17 @@
             
             <TextBox x:Name="textBoxLogin" Margin="150 0 150 10" Height="25"/>
             <PasswordBox x:Name="passBox" Margin="150 0 150 10" Height="25"/>
+            
             <ComboBox x:Name="TypeUserComboBox" ItemsSource="{Binding TypeUser}"
-                      SelectedItem="{Binding SelectedUser.TypeUser}"
+                      SelectedItem="{Binding SelectedTag}"
                       DisplayMemberPath="Model"
-                      Margin="150 0 150 10" Height="25"/>
+                      Margin="150 0 150 10" Height="25">
+
+                <ComboBoxItem  Content="Обычный пользователь" Tag="0" />
+                <ComboBoxItem  Content="Админ" Tag="1"/>
+                
+            </ComboBox>
+            
             <Button Content="Зарегистрироваться" x:Name="regButton" FontSize="20" Margin="250 10" Click="Button_Reg_Click" Background="#661D5AEB" FontFamily="Century Gothic" HorizontalAlignment="Stretch" />
             <Button HorizontalAlignment="Right" FontSize="15" Margin="10,0,10,0" x:Name="joinButton" Click="Button_Auth_Click" Content="Войти" Background="#7FFEDEC8" FontFamily="Century Gothic" VerticalAlignment="Stretch"/>
         </StackPanel>

@@ -21,8 +21,8 @@ namespace PersonnelRecordsClient.ViewModel
         private  Dispatcher dispatcher;       
         public event PropertyChangedEventHandler PropertyChanged;
        
-        private WorkerApi selectedWorker;
-        public WorkerApi SelectedWorker
+        private List<WorkerApi> selectedWorker;
+        public List<WorkerApi> SelectedWorker
         {
             get => selectedWorker;
             set
@@ -53,6 +53,8 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand RemoveWorker { get; set; }
         public CustomCommand GoStaffing { get; set; }
 
+        public CustomCommand RemoveManyWorker { get; set; }
+
 
         public WorkersPageVM()
         {
@@ -63,6 +65,12 @@ namespace PersonnelRecordsClient.ViewModel
                 //EditWorker = new EditWorker.Show();
                 //MainWindow.MainNavigate(new EditWorker());
             });
+
+            RemoveManyWorker = new CustomCommand(() =>
+            {
+                Task.Run(Delete);
+            });
+ 
         }
 
 
@@ -80,9 +88,9 @@ namespace PersonnelRecordsClient.ViewModel
             });
             SaveWorker = new CustomCommand(() =>
             { 
-                string x = SelectedWorker.Surname;
+                string x = SelectedWorker[0].Surname;
                 Task.Run(Save);
-                string y = SelectedWorker.Surname;
+                string y = SelectedWorker[0].Surname;
                 //Task.Run(AddArchive(y, x));
                 Task.Run(AddArchive);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
@@ -105,7 +113,7 @@ namespace PersonnelRecordsClient.ViewModel
         public TimeSpan Experience { get; set; }
         public async Task GetExperienceWorker(WorkerExpGetDates options)
         {
-            var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
+            var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker[0], "Worker");
             var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
             var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
             ExperiencePosition = experiencePosition;
@@ -126,16 +134,16 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public async Task Add()
         {
-            SelectedWorker = new WorkerApi();
-            var result = Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
+            SelectedWorker = new List<WorkerApi>();
+            var result = Api.PostAsync<WorkerApi>(SelectedWorker[0], "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
         //public async Task AddArchive(string y, string x)
         public async Task AddArchive()
         {
-            string OldSurname = SelectedWorker.Surname;
-            string NewSurname = SelectedWorker.Surname;
+            string OldSurname = SelectedWorker[0].Surname;
+            string NewSurname = SelectedWorker[0].Surname;
             //string OldSurname = SelectedWorker.Surname;
             //string Name = SelectedWorker.Name;
             //string Phone = SelectedWorker.Phone;
@@ -150,16 +158,19 @@ namespace PersonnelRecordsClient.ViewModel
 
         public async Task Save()
         {
-            string OldSurname = SelectedWorker.Surname;
+            string OldSurname = SelectedWorker[0].Surname;
             var oldWorker = SelectedWorker;
-            var result = await Api.PutAsync<WorkerApi>(SelectedWorker, "Worker");
+            var result = await Api.PutAsync<WorkerApi>(SelectedWorker[0], "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
 
-        public async  Task Delete()
+        public async Task Delete()
         {
-            var result = await Api.DeleteAsync<WorkerApi>(SelectedWorker, "Worker");
+            foreach (var worker in SelectedWorker)
+            {
+                var result = await Api.DeleteAsync<WorkerApi>(worker, "Worker");
+            }
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
