@@ -284,7 +284,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _archiveStaffingIdFilter = value;
                 OnPropertyChanged(nameof(ArchiveStaffingIdsFilter));
-                StaffingsCollectionView.Refresh();
+                ArchiveCollectionView.Refresh();
             }
         }
 
@@ -299,7 +299,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _archiveWorkerIdFilter = value;
                 OnPropertyChanged(nameof(ArchiveWorkerIdsFilter));
-                StaffingsCollectionView.Refresh();
+                ArchiveCollectionView.Refresh();
             }
         }
 
@@ -314,7 +314,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _archiveWorkerNameFilter = value;
                 OnPropertyChanged(nameof(ArchiveWorkerNamesFilter));
-                StaffingsCollectionView.Refresh();
+                ArchiveCollectionView.Refresh();
             }
         }
         private string _archiveImpactTypeFilter = string.Empty;
@@ -328,7 +328,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _archiveImpactTypeFilter = value;
                 OnPropertyChanged(nameof(ArchiveImpactTypesFilter));
-                StaffingsCollectionView.Refresh();
+                ArchiveCollectionView.Refresh();
             }
         }
         private bool FilterArchive(object obj)
@@ -613,7 +613,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _companyIdFilter = value;
                 OnPropertyChanged(nameof(CompanyIdsFilter));
-                WorkersCollectionView.Refresh();
+                CompaniesCollectionView.Refresh();
             }
         }
 
@@ -628,7 +628,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _companyNameFilter = value;
                 OnPropertyChanged(nameof(CompanyNamesFilter));
-                WorkersCollectionView.Refresh();
+                CompaniesCollectionView.Refresh();
             }
         }
 
@@ -643,7 +643,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _companyAdressFilter = value;
                 OnPropertyChanged(nameof(CompanyAdressesFilter));
-                WorkersCollectionView.Refresh();
+                CompaniesCollectionView.Refresh();
             }
         }
 
@@ -659,7 +659,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _companyPhoneFilter = value;
                 OnPropertyChanged(nameof(CompanyPhonesFilter));
-                WorkersCollectionView.Refresh();
+                CompaniesCollectionView.Refresh();
             }
         }
 
@@ -674,7 +674,7 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 _companyDescriptionFilter = value;
                 OnPropertyChanged(nameof(CompaniesDescriptionsFilter));
-                WorkersCollectionView.Refresh();
+                CompaniesCollectionView.Refresh();
             }
         }
 
