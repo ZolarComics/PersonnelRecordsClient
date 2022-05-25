@@ -25,7 +25,8 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             }
         }
         public List<StaffingApi> Staffings { get; set; }       
-        public List<WorkerApi> Workers;                
+        public List<WorkerApi> Workers;    
+        
         public CustomCommand AddStaffing { get; set; }        
         public CustomCommand SaveStaffing { get; set; }
         public CustomCommand RemoveStaffing { get; set; }

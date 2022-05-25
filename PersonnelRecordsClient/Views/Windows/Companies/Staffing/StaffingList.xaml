@@ -7,17 +7,24 @@
         mc:Ignorable="d"
       Title="Штатное расписание" Height="450" Width="800">
     <Grid>
-        <ListView ItemsSource="{Binding Staffings}"  SelectedItem="{Binding SelectedStaffing}" Background="#261D5AEB">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView ItemsSource="{Binding Staffings}"    x:Name="ListViewStaffings"
+                  SelectedItem="{Binding SelectedStaffing}" Background="#261D5AEB">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />
-                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" Width="140" />
-                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" Width="120" />
+                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Position}" Width="100" />
+                    <GridViewColumn Header="Зарплата" DisplayMemberBinding="{Binding Salary}" Width="100" />
                     <GridViewColumn Header="ID сотрудника" DisplayMemberBinding="{Binding WorkerID}" Width="100" />
                     <GridViewColumn Header="ID компании" DisplayMemberBinding="{Binding CompanyID}" Width="100" />
-                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" Width="200"/>
+                    <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" Width="100"/>
                 </GridView>
             </ListView.View>
+            
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="AddCopmany" Command="{Binding AddStaffing}"/>
@@ -27,5 +34,60 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" Grid.Row="0"  FontSize="24" 
+                       Text="Штатное расписание" Margin="0,0,0,15" Grid.RowSpan="1"/>
+
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="id"/>
+                <TextBox Text="{Binding SelectedStaffing.Id}"/>
+                
+                <TextBlock Text="Должность"/>
+                <TextBox Text="{Binding SelectedStaffing.Position}"/>
+
+                <TextBlock Text="Зарплата"/>
+                <TextBox Text="{Binding SelectedStaffing.Salary}" />
+
+                <TextBlock Text="id сотрудника"/>
+                <TextBox Text="{Binding SelectedStaffing.WorkerId}"/>
+
+                <TextBlock Text="id компании"/>
+                <TextBox Text="{Binding SelectedStaffing.CompanyId}" />
+
+                <TextBlock Text="Заметки"/>
+                <TextBox Text="{Binding SelectedStaffing.Note}" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3">
+                <Button Content="Добавить новую запись"
+                      Command="{Binding AddStaffing}"/>
+
+                <Button Grid.Column="1" Content="Сохранить"
+                        Command="{Binding SaveStaffing}"  Grid.RowSpan="2"/>
+
+                <Button Content="Удалить" Grid.Column="1"
+                      Command="{Binding RemoveStaffing}"  Grid.RowSpan="2"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4">
+                <TextBlock HorizontalAlignment="Center" Text="------------------------------------------------"/>
+                <TextBlock HorizontalAlignment="Center" Text="Количество записей:"/>
+                <TextBox x:Name="TextBlock1" Text="{Binding block}"
+                             Width="221" IsReadOnly="True" />
+                <Button Content="Сколько всего записей?" 
+                      Click="Button_Click" Grid.RowSpan="1"/>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </Window>

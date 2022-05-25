@@ -25,5 +25,10 @@ namespace PersonnelRecordsClient.Views.Windows.Companies
             InitializeComponent();
             DataContext = new StaffingListVM();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlock1.Text = ListViewStaffings.Items.Count.ToString();
+            string block = TextBlock1.Text;
+        }
     }
 }
