@@ -79,17 +79,13 @@ namespace PersonnelRecordsClient.ViewModel
 
             //CollectionViews
             #region
+
              // staffings page
             StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
             StaffingsCollectionView.Filter = FilterStaffings;
             StaffingsCollectionView.SortDescriptions.Add(new SortDescription(nameof(StaffingApi.Id), ListSortDirection.Ascending));
 
-            // companies page
-            CompaniesCollectionView = CollectionViewSource.GetDefaultView(Workers);
-            CompaniesCollectionView.Filter = FilterCompanies;
-            CompaniesCollectionView.SortDescriptions.Add(new SortDescription(nameof(CompanyApi.Name), ListSortDirection.Ascending));
-
-           // archives page
+            // archives page
             ArchiveCollectionView = CollectionViewSource.GetDefaultView(Archives);
             ArchiveCollectionView.Filter = FilterArchive;
             ArchiveCollectionView.SortDescriptions.Add(new SortDescription(nameof(ArchiveApi.Id), ListSortDirection.Ascending));
@@ -99,7 +95,10 @@ namespace PersonnelRecordsClient.ViewModel
             WorkersCollectionView.Filter = FilterWorkers;
             WorkersCollectionView.SortDescriptions.Add(new SortDescription(nameof(WorkerApi.Name), ListSortDirection.Ascending));
 
-
+            // companies page
+            CompaniesCollectionView = CollectionViewSource.GetDefaultView(Workers);
+            CompaniesCollectionView.Filter = FilterCompanies;
+            CompaniesCollectionView.SortDescriptions.Add(new SortDescription(nameof(CompanyApi.Name), ListSortDirection.Ascending));
 
             #endregion
         }
@@ -706,7 +705,10 @@ namespace PersonnelRecordsClient.ViewModel
 
         public async Task LoadEntities()
         {
-            var result = await Api.GetListAsync<WorkerApi>("Worker");
+            var resultWorker = await Api.GetListAsync<WorkerApi>("Worker");
+            var resultArchive = await Api.GetListAsync<ArchiveApi>("Archive");
+            var resultCompany = await Api.GetListAsync<CompanyApi>("Company");
+            var resultStaffing = await Api.GetListAsync<StaffingApi>("Staffing");
         }
         protected void OnPropertyChanged(string propertyName)
         {

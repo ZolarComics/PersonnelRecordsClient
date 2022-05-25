@@ -25,6 +25,13 @@ namespace PersonnelRecordsClient.Views.Pages
         {
             InitializeComponent();
             DataContext = new WorkersPageVM(Dispatcher);
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlock1.Text = listViewWorkers.Items.Count.ToString();
+            string block = TextBlock1.Text;
         }
     }
 }

@@ -112,14 +112,16 @@ namespace PersonnelRecordsClient.ViewModel
         async Task GetCompanies()
         {
             try
-            {               
-                //new RelayCommand(obj => DisplayDouble
+            {        
+                var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                Companies = new List<CompanyApi>();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                SignalChanged("Workers");
+            }       
+                /*//new RelayCommand(obj => DisplayDouble
                 async Task SortGetCompanies(CompanyApi Company)
                 {
-                    try
-                    {
-
-
+                    try { 
                         string sort = Company.IsRemuved.ToString();
                         var result = await Api.GetListAsync<CompanyApi[]>("Company");
                         if (sort != "1")
@@ -136,15 +138,10 @@ namespace PersonnelRecordsClient.ViewModel
                     {
                         MessageBox.Show($"{e}");
                     }
-                }
+                }*/
                 //Companies = List<CompanyApi>(result);
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
 
-                //  var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                //Companies = new List<CompanyApi>();
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                //SignalChanged("Workers");
-            }
             catch (Exception e)
             {
                 MessageBox.Show($"{e}");
@@ -154,8 +151,6 @@ namespace PersonnelRecordsClient.ViewModel
         {
             try
             {
-
-
                 string sort = Company.IsRemuved.ToString();
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
                 if (sort != "1")
