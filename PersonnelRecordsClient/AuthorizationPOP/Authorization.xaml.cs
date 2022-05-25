@@ -47,7 +47,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         {
             string login = textBoxLogin.Text.Trim();
             string pass = passBox.Password.Trim();
-           // string typeUser = TypeUserComboBox.Text.Trim();
+            string typeUser = TypeUserComboBox.Text.Trim();
 
             if (login.Length < 5)
             {
@@ -67,7 +67,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
                 passBox.ToolTip = "";
                 passBox.Background = Brushes.Transparent;
                 MessageBox.Show("Всё хорошо!");
-                User user = new User(login, pass);
+                User user = new User(login, pass, typeUser);
                 db.Users.Add(user);
                 db.SaveChanges();
                 Auth auth = new Auth();
