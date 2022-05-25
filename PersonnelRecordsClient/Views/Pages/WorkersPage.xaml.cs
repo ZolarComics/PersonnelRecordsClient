@@ -21,6 +21,7 @@ namespace PersonnelRecordsClient.Views.Pages
     /// </summary>
     public partial class WorkersPage : Page
     {
+
         public WorkersPage()
         {
             InitializeComponent();

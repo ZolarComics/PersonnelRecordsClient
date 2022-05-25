@@ -15,8 +15,11 @@
         </Grid.ColumnDefinitions>
 
         <ListView ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}"
-                  Background="#261D5AEB" x:Name="listViewWorkers">
+                  Background="#261D5AEB" x:Name="listViewWorkers"
+                  SelectionMode="Extended">
+           
             <ListView.View>
+                
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="35" />
                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="60" />

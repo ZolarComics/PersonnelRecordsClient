@@ -81,7 +81,7 @@ namespace PersonnelRecordsClient.ViewModel
             #region
 
              // staffings page
-           /* StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
+            StaffingsCollectionView = CollectionViewSource.GetDefaultView(Staffings);
             StaffingsCollectionView.Filter = FilterStaffings;
             StaffingsCollectionView.SortDescriptions.Add(new SortDescription(nameof(StaffingApi.Id), ListSortDirection.Ascending));
 
@@ -89,8 +89,7 @@ namespace PersonnelRecordsClient.ViewModel
             ArchiveCollectionView = CollectionViewSource.GetDefaultView(Archives);
             ArchiveCollectionView.Filter = FilterArchive;
             ArchiveCollectionView.SortDescriptions.Add(new SortDescription(nameof(ArchiveApi.Id), ListSortDirection.Ascending));
-           */
-
+           
             // workers page
             WorkersCollectionView = CollectionViewSource.GetDefaultView(Workers);
             WorkersCollectionView.Filter = FilterWorkers;
@@ -544,6 +543,7 @@ namespace PersonnelRecordsClient.ViewModel
                 worker.Email.Contains(WorkerEmailsFilter, StringComparison.InvariantCultureIgnoreCase);
                 //worker.ExperienceId.ToString().Contains(WorkerExperienceIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 //worker.SureName.Contains(WorkerSureNamesFilter, StringComparison.InvariantCultureIgnoreCase);
+
             }
             return false;
         }
@@ -560,7 +560,6 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 var result = await Api.GetListAsync<WorkerApi[]>("Worker");
                 Workers = new List<WorkerApi>(result);
-                //
                 WorkersCollectionView = (ICollectionView)Workers;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
                 SignalChanged("Workers");
