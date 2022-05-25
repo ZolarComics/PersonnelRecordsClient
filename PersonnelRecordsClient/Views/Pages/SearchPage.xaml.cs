@@ -33,10 +33,30 @@ namespace PersonnelRecordsClient.Views.Pages
 
         public SearchPage()
         {
-           
             InitializeComponent();
-            DataContext = new SearchPageVM();
-                        
-        }         
+            DataContext = new SearchPageVM(Dispatcher);
+        }
+
+        private void Button_ClickWorkers(object sender, RoutedEventArgs e)
+        {
+            TextBlockWorkers.Text = listViewWorkers.Items.Count.ToString();
+            string block = TextBlockWorkers.Text;
+        }
+        private void Button_ClickArchives(object sender, RoutedEventArgs e)
+        {
+            TextBlockArchives.Text = listViewArchives.Items.Count.ToString();
+            string block = TextBlockArchives.Text;
+        }
+        private void Button_ClickCompanies(object sender, RoutedEventArgs e)
+        {
+            TextBlockCompanies.Text = listViewCompanies.Items.Count.ToString();
+            string block = TextBlockCompanies.Text;
+        }
+        private void Button_ClickStaffings(object sender, RoutedEventArgs e)
+        {
+            TextBlockStaffings.Text = listViewWorkers.Items.Count.ToString();
+            string block = TextBlockStaffings.Text;
+        }
+
     }
 }

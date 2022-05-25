@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Reference Include="ModelApi">
-      <HintPath>..\..\PersonnelRecordsServer\ModelApi\bin\Debug\ModelApi.dll</HintPath>
+      <HintPath>..\..\PersonnelRecordsServer25052022_2\ModelApi\bin\Debug\ModelApi.dll</HintPath>
     </Reference>
   </ItemGroup>
 

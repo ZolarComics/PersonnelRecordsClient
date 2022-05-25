@@ -40,9 +40,7 @@ namespace PersonnelRecordsClient.ViewModel
             Task.Run(GetWorkers);
             Task.Run(GetCompanies);
             Task.Run(GetStaffings);
-        }
-        public SearchPageVM()
-        {
+
             //commands
             DeleteWorker = new CustomCommand(() =>
             {
@@ -76,6 +74,11 @@ namespace PersonnelRecordsClient.ViewModel
                 StaffingList staffingList = new StaffingList();
                 staffingList.Show();
             });
+
+        }
+        public SearchPageVM()
+        {
+           
 
             //CollectionViews
             #region
