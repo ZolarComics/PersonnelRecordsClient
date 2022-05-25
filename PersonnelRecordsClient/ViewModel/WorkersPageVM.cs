@@ -21,8 +21,8 @@ namespace PersonnelRecordsClient.ViewModel
         private  Dispatcher dispatcher;       
         public event PropertyChangedEventHandler PropertyChanged;
        
-        private List<WorkerApi> selectedWorker;
-        public List<WorkerApi> SelectedWorker
+        private WorkerApi selectedWorker;
+        public WorkerApi SelectedWorker
         {
             get => selectedWorker;
             set
@@ -31,7 +31,11 @@ namespace PersonnelRecordsClient.ViewModel
                 SignalChanged();
             }
         }
-        // 2 свойства - в одном выбранная запись из коллекции, во втором - копия выбранной записи. По сохранению - первое свойство через post в архив, второе через put обратно в контроллер воркера
+
+        // 2 свойства - в одном выбранная запись из коллекции,
+        // во втором - копия выбранной записи. По сохранению - первое свойство через post в архив,
+        // второе через put обратно в контроллер воркера
+
         private ArchiveApi selectedArchive;
         public ArchiveApi SelectedArchive
         {
@@ -43,18 +47,16 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
 
-        // private List<WorkerApi> workers;
         public List<WorkerApi> Workers { get; set; }
-        public List<WorkerApi> Archives { get; set; }
+        public List<ArchiveApi> Archives { get; set; }
+
         public CustomCommand GoEditWorker { get; set; }
         public CustomCommand AddWorker { get; set; }
         public CustomCommand EditWorker { get; set; }
         public CustomCommand SaveWorker { get; set; }
         public CustomCommand RemoveWorker { get; set; }
         public CustomCommand GoStaffing { get; set; }
-
-        public CustomCommand RemoveManyWorker { get; set; }
-
+       // public CustomCommand RemoveManyWorker { get; set; }
 
         public WorkersPageVM()
         {
@@ -62,35 +64,26 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 EditWorker EditWorker = new EditWorker();
                 EditWorker.Show();
-                //EditWorker = new EditWorker.Show();
-                //MainWindow.MainNavigate(new EditWorker());
             });
 
-            RemoveManyWorker = new CustomCommand(() =>
+           /* RemoveManyWorker = new CustomCommand(() =>
             {
                 Task.Run(Delete);
             });
- 
+            */
         }
-
-
-        //public WorkersPageVM(List<WorkerApi> Workers)
-        //{
-            
-            
-        //}
         public WorkersPageVM(Dispatcher dispatcher)
         {
-            //string Old = SelectedWorker.Surname;
             AddWorker = new CustomCommand(() =>
             {
                 Task.Run(Add);
             });
+
             SaveWorker = new CustomCommand(() =>
             { 
-                string x = SelectedWorker[0].Surname;
+                string x = SelectedWorker.Surname;
                 Task.Run(Save);
-                string y = SelectedWorker[0].Surname;
+                string y = SelectedWorker.Surname;
                 //Task.Run(AddArchive(y, x));
                 Task.Run(AddArchive);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
@@ -113,7 +106,7 @@ namespace PersonnelRecordsClient.ViewModel
         public TimeSpan Experience { get; set; }
         public async Task GetExperienceWorker(WorkerExpGetDates options)
         {
-            var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker[0], "Worker");
+            var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
             var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
             var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
             ExperiencePosition = experiencePosition;
@@ -134,16 +127,16 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public async Task Add()
         {
-            SelectedWorker = new List<WorkerApi>();
-            var result = Api.PostAsync<WorkerApi>(SelectedWorker[0], "Worker");
+            SelectedWorker = new WorkerApi();
+            var result = Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
         //public async Task AddArchive(string y, string x)
         public async Task AddArchive()
         {
-            string OldSurname = SelectedWorker[0].Surname;
-            string NewSurname = SelectedWorker[0].Surname;
+            string OldSurname = SelectedWorker.Surname;
+            string NewSurname = SelectedWorker.Surname;
             //string OldSurname = SelectedWorker.Surname;
             //string Name = SelectedWorker.Name;
             //string Phone = SelectedWorker.Phone;
@@ -158,19 +151,18 @@ namespace PersonnelRecordsClient.ViewModel
 
         public async Task Save()
         {
-            string OldSurname = SelectedWorker[0].Surname;
+            string OldSurname = SelectedWorker.Surname;
             var oldWorker = SelectedWorker;
-            var result = await Api.PutAsync<WorkerApi>(SelectedWorker[0], "Worker");
+            var result = await Api.PutAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
 
         public async Task Delete()
         {
-            foreach (var worker in SelectedWorker)
-            {
-                var result = await Api.DeleteAsync<WorkerApi>(worker, "Worker");
-            }
+            //foreach (var worker in SelectedWorker)
+            var result = await Api.DeleteAsync<WorkerApi>(SelectedWorker, "Worker");
+            
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }

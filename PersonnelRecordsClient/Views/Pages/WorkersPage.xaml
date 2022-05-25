@@ -16,7 +16,7 @@
 
         <ListView ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}"
                   Background="#261D5AEB" x:Name="listViewWorkers"
-                  SelectionMode="Extended">
+                  <!--SelectionMode="Extended"-->>
            
             <ListView.View>
                 
