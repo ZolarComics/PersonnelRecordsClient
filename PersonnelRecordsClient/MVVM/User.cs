@@ -28,7 +28,10 @@ namespace PersonnelRecordsClient.MVVM
             get { return typeUser; }
             set { typeUser = value; }
         }
-        public User(){}
+        public User()
+        {
+        
+        }
 
 
         public User(string login, string pass, string typeUser)
@@ -39,6 +42,7 @@ namespace PersonnelRecordsClient.MVVM
         }
 
     }
+    
     public enum TypeUsers
     {
         SimpleUser,

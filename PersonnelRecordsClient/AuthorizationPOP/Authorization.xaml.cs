@@ -44,10 +44,6 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         {
             InitializeComponent();
             db = new ApplicationContext();
-            DataContext = new UserClassTypes();
-
-            
-
         }
 
         private void Button_Reg_Click(object sender, RoutedEventArgs e)

@@ -3,7 +3,7 @@
 
 namespace PersonnelRecordsClient.MVVM
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
 
         public DbSet<User> Users { get; set; }
