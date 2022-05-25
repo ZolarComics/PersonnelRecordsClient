@@ -35,6 +35,16 @@ namespace PersonnelRecordsClient.ViewModel
                 SignalChanged();
             }
         }
+        private ArchiveApi selectedArchive;
+        public ArchiveApi SelectedArchive
+        {
+            get => selectedArchive;
+            set
+            {
+                selectedArchive = value;
+                SignalChanged();
+            }
+        }
         //public ObservableCollection<CompanyApi> Companies { get; set; } = new ObservableCollection<CompanyApi>();
         public List<CompanyApi> Companies { get; set; }
 
@@ -93,6 +103,14 @@ namespace PersonnelRecordsClient.ViewModel
         public async Task Save()
         {
             var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");
+            await GetCompanies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
+        public async Task AddArchive()
+        {
+            SelectedCompany = new CompanyApi();
+            var archive = new ArchiveApi { };
+            var result = Api.PostAsync<ArchiveApi>(SelectedArchive, "Company");
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
         }
