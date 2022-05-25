@@ -13,13 +13,14 @@
             
             <TextBox x:Name="textBoxLogin" Margin="150 0 150 10" Height="25"/>
             <PasswordBox x:Name="passBox" Margin="150 0 150 10" Height="25"/>
+            
             <ComboBox x:Name="TypeUserComboBox" ItemsSource="{Binding TypeUser}"
-                      SelectedItem="{Binding SelectedUser.TypeUser}"
+                      SelectedItem="{Binding SelectedTag}"
                       DisplayMemberPath="Model"
                       Margin="150 0 150 10" Height="25">
-                
-                <ComboBoxItem Tag="0" />
-                <ComboBoxItem Tag="1"/>
+
+                <ComboBoxItem  Content="Обычный пользователь" Tag="0" />
+                <ComboBoxItem  Content="Админ" Tag="1"/>
                 
             </ComboBox>
             

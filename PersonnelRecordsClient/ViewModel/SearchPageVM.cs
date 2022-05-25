@@ -79,7 +79,6 @@ namespace PersonnelRecordsClient.ViewModel
         public SearchPageVM()
         {
            
-
             //CollectionViews
             #region
 
@@ -214,11 +213,16 @@ namespace PersonnelRecordsClient.ViewModel
         {
             if (obj is StaffingApi staffing)
             {
+                string pWorkerId = staffing.WorkerId?.ToString() ?? "";
+                string pCompanyId = staffing.CompanyId?.ToString() ?? "";
+
                 return staffing.Id.ToString().Contains(StaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    staffing.Id.ToString().Contains(StaffingPositionsFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    staffing.Id.ToString().Contains(StaffingSalarysFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    staffing.Id.ToString().Contains(StaffingWorkersIdFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    staffing.Id.ToString().Contains(StaffingCompaniesIdFilter, StringComparison.InvariantCultureIgnoreCase);
+                    staffing.Position.ToString().Contains(StaffingPositionsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                    staffing.Salary.ToString().Contains(StaffingSalarysFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                    pWorkerId.Contains(StaffingWorkersIdFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                    pCompanyId.Contains(StaffingCompaniesIdFilter, StringComparison.InvariantCultureIgnoreCase);
+                // staffing.Id.ToString().Contains(StaffingWorkersIdFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                // staffing.C.ToString().Contains(StaffingCompaniesIdFilter, StringComparison.InvariantCultureIgnoreCase);
             }
             return false;
         }
@@ -273,6 +277,21 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
         public ObservableCollection<ArchiveApi> ArchivesCollection { get; set; }
+
+        private string _archiveIdFilter = string.Empty;
+        public string ArchiveIdsFilter
+        {
+            get
+            {
+                return _archiveIdFilter;
+            }
+            set
+            {
+                _archiveIdFilter = value;
+                OnPropertyChanged(nameof(ArchiveIdsFilter));
+                ArchiveCollectionView.Refresh();
+            }
+        }
 
         private string _archiveStaffingIdFilter = string.Empty;
         public string ArchiveStaffingIdsFilter
@@ -332,15 +351,35 @@ namespace PersonnelRecordsClient.ViewModel
                 ArchiveCollectionView.Refresh();
             }
         }
+
+        private string _archiveNoteFilter = string.Empty;
+        public string ArchiveNotesFilter
+        {
+            get
+            {
+                return _archiveNoteFilter;
+            }
+            set
+            {
+                _archiveNoteFilter = value;
+                OnPropertyChanged(nameof(_archiveNoteFilter));
+                ArchiveCollectionView.Refresh();
+            }
+        }
         private bool FilterArchive(object obj)
         {
             if (obj is ArchiveApi archive)
             {
-                return archive.StaffingID.ToString().Contains(ArchiveStaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase)&&
-                archive.WorkerID.ToString().Contains(ArchiveWorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                archive.Id.ToString().Contains(ArchiveWorkerNamesFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                archive.Id.ToString().Contains(ArchiveImpactTypesFilter, StringComparison.InvariantCultureIgnoreCase);
+                string pImpactTypeId = archive.ImpactTypeID?.ToString() ?? "";
+                string pStaffingId = archive.StaffingID?.ToString() ?? "";
+                string pWorkerId = archive.WorkerID?.ToString() ?? "";
 
+                return pWorkerId.Contains(ArchiveWorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                archive.Id.ToString().Contains(ArchiveIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                archive.Note.Contains(ArchiveNotesFilter, StringComparison.InvariantCultureIgnoreCase)&&
+                pStaffingId.Contains(ArchiveStaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                pImpactTypeId.Contains(ArchiveImpactTypesFilter, StringComparison.InvariantCultureIgnoreCase);
+                // archive.WorkerID.ToString().Contains(ArchiveWorkerNamesFilter, StringComparison.InvariantCultureIgnoreCase) &&
             }
             return false;
         }
@@ -537,12 +576,15 @@ namespace PersonnelRecordsClient.ViewModel
         {
             if (obj is WorkerApi worker)
             {
+                string pPassportId = worker.PassportId?.ToString() ?? "";
+                string pEducationId = worker.EducationId?.ToString() ?? "";
+
                 return worker.Id.ToString().Contains(WorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 worker.Name.Contains(WorkerNamesFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                worker.PassportId.ToString().Contains(WorkerPassportIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                pPassportId.Contains(WorkerPassportIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 worker.Patronymic.Contains(WorkerPatronymicsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 worker.Phone.Contains(WorkerPhonesFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                worker.EducationId.ToString().Contains(WorkerEducationIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                pEducationId.Contains(WorkerEducationIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 worker.Email.Contains(WorkerEmailsFilter, StringComparison.InvariantCultureIgnoreCase);
                 //worker.ExperienceId.ToString().Contains(WorkerExperienceIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 //worker.SureName.Contains(WorkerSureNamesFilter, StringComparison.InvariantCultureIgnoreCase);
@@ -647,7 +689,6 @@ namespace PersonnelRecordsClient.ViewModel
                 CompaniesCollectionView.Refresh();
             }
         }
-
 
         private string _companyPhoneFilter = string.Empty;
         public string CompanyPhonesFilter

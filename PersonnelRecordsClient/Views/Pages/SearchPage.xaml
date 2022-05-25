@@ -58,6 +58,8 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Text="Поиск по фильтрам" FontSize="22" HorizontalAlignment="Center" FontFamily="Candara"/>
@@ -78,16 +80,26 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="4">
-                                <TextBlock Text="Причина увольнения:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
+                                <TextBlock Text="ImpactType" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding ArchiveImpactTypesFilter, UpdateSourceTrigger=PropertyChanged}"/>
                                
+                             
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5">
+                                <TextBlock Text="Notes" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
+                                <TextBox Margin="0,0,0,10" Text="{Binding ArchiveNotesFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="6">
                                 <TextBlock HorizontalAlignment="Center" Text="--------------------------------------------------"/>
                                 <TextBox x:Name="TextBlockArchives" Text="{Binding block}"
                                                Width="221" IsReadOnly="True" />
                                 <Button Content="Сколько всего записей?" 
                                   Click="Button_ClickArchives" Grid.RowSpan="1"/>
                             </StackPanel>
-
                         </Grid>
                     </Grid>
 
@@ -162,7 +174,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="5">
-                                <TextBlock Text="Заметки:" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
+                                <TextBlock Text="CompanyId" Margin="2,0,0,0" FontFamily="Candara" FontSize="14"/>
                                 <TextBox Margin="0,0,0,10" Text="{Binding StaffingCompaniesIdFilter, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 

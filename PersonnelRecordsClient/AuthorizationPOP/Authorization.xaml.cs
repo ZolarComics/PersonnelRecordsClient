@@ -23,9 +23,10 @@ namespace PersonnelRecordsClient.AuthorizationPOP
     /// </summary>
     public partial class Authorization : Window
     {
-        private User selectedUser;
+        ApplicationContext db;
 
         //public List<User> UsersEnam = new List<User>();
+        private User selectedUser;
         public User SelectedUser
         {
             get => selectedUser;
@@ -36,10 +37,6 @@ namespace PersonnelRecordsClient.AuthorizationPOP
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        void SignalChanged([CallerMemberName] string prop = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        ApplicationContext db;
         public Authorization()
         {
             InitializeComponent();
@@ -50,7 +47,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
         {
             string login = textBoxLogin.Text.Trim();
             string pass = passBox.Password.Trim();
-            string typeUser = TypeUserComboBox.Text.Trim();
+           // string typeUser = TypeUserComboBox.Text.Trim();
 
             if (login.Length < 5)
             {
@@ -70,7 +67,7 @@ namespace PersonnelRecordsClient.AuthorizationPOP
                 passBox.ToolTip = "";
                 passBox.Background = Brushes.Transparent;
                 MessageBox.Show("Всё хорошо!");
-                User user = new User(login, pass, typeUser);
+                User user = new User(login, pass);
                 db.Users.Add(user);
                 db.SaveChanges();
                 Auth auth = new Auth();
@@ -84,6 +81,10 @@ namespace PersonnelRecordsClient.AuthorizationPOP
             auth.Show();
             this.Close();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void SignalChanged([CallerMemberName] string prop = null) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
     }
 }
