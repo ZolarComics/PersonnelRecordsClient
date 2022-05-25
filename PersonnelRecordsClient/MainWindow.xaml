@@ -16,14 +16,15 @@
             <Button Content="Рабочие" Command="{Binding GoToWorkers}" Width="206" FontFamily="Candara" FontSize="18" Background="#7FFEDEC8" BorderBrush="White"/>
             <Button Content="Архив" Command="{Binding GoToArchives}" Width="250" FontFamily="Candara" FontSize="18" Background="#661D5AEB"/>
             <Menu FontSize="16" FontFamily="Century Gothic">
-                <MenuItem Header="Справочник" Width="192" FontFamily="Candara" FontSize="18">
-                    <Button Content="Образование"  Command="{Binding GoEducation}" FontFamily="Candara" FontSize="13" />
+             <MenuItem Header="Справочник" Width="192" FontFamily="Candara" FontSize="18">
+                <Button Content="Образование"  Command="{Binding GoEducation}" FontFamily="Candara" FontSize="13" />
                 <Button Content="Опыт" Command="{Binding GoExperience}" FontFamily="Candara" FontSize="13" />
                 <Button Content="Паспорт" Command="{Binding GoPassport}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Должность" Command="{Binding GoStaffing}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Архив" Command="{Binding GoArchive}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Корзина" Command="{Binding GoBasketPage}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Изменить рабочего" Command="{Binding GoWorkerEdit}" FontFamily="Candara" FontSize="13"/>
+                <Button Content="Настройки" Command="{Binding GoSetting}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Страница поиска" Command="{Binding GoSearch}" FontFamily="Candara" FontSize="13"/>
 
             </MenuItem>

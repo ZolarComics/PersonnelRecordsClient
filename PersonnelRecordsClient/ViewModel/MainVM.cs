@@ -1,4 +1,5 @@
-﻿using PersonnelRecordsClient.MVVM;
+﻿using PersonnelRecordsClient.AuthorizationPOP;
+using PersonnelRecordsClient.MVVM;
 using PersonnelRecordsClient.Views.Pages;
 using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
 using PersonnelRecordsClient.Views.Windows.Workers;
@@ -22,6 +23,8 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoArchive { get; set; }
         public CustomCommand GoSearch { get; set; }
         public CustomCommand GoBasketPage { get; set; }
+        public CustomCommand GoSetting { get; set; }
+        
 
         public MainVM()
         {
@@ -60,6 +63,11 @@ namespace PersonnelRecordsClient.ViewModel
            {
                MainWindow.MainNavigate(new AppointWorker());
            });
+            GoSetting = new CustomCommand(() =>
+            {
+                Auth AutWin = new Auth();
+                AutWin.Show();
+            });
             GoSearch = new CustomCommand(() =>
             {
                 MainWindow.MainNavigate(new SearchPage());
