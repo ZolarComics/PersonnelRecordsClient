@@ -82,7 +82,12 @@ namespace PersonnelRecordsClient.ViewModel
                 {
                     Task.Run(Delete);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                });           
+                });
+            //SearchCompany = new CustomCommand(() =>
+            //{
+            //    Task.Run(Search);
+            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            //});
             GoToStaffingList = new CustomCommand(() =>
             {
                 StaffingList staffingList = new StaffingList();
@@ -124,6 +129,8 @@ namespace PersonnelRecordsClient.ViewModel
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
         }
+        
+
         async Task GetCompanies()
         {
             try

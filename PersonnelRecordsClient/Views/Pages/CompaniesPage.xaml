@@ -32,7 +32,8 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
-        <TextBox x:Name="searchText" Text="{Binding SearchCompany, UpdateSourceTrigger=PropertyChanged}" Margin="631,0,4,428"  Width="auto"/>
+        <TextBox x:Name="searchText" Margin="559,4,76,428"  Width="auto"/>
+        <Button Content="Поиск"  Command="{Binding SearchCompany}" Margin="734,4,0,428"  Width="auto"/>
     </Grid>
 
 

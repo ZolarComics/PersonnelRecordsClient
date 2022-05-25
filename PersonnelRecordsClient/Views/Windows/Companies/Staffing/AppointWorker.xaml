@@ -38,8 +38,8 @@
             </ListView>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <ComboBox ItemsSource="{Binding Worker}"
-                      SelectedItem="{Binding SelectedStaffing.Worker}"
+            <ComboBox ItemsSource="{Binding Workers}"
+                      SelectedItem="{Binding SelectedStaffing.Workers}"
                       DisplayMemberPath="Model"/>
             <ComboBox ItemsSource="{Binding Company}"
                       SelectedItem="{Binding SelectedStaffing.Company}"

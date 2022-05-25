@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace PersonnelRecordsClient.ViewModel
 {
-    internal class EducationPageVM
+    internal class EducationPageVM : INotifyPropertyChanged
     { 
     public CustomCommand SearchEducation { get; set; }   
     public CustomCommand AddEducation { get; set; }
