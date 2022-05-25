@@ -31,6 +31,7 @@ namespace PersonnelRecordsClient.ViewModel
                 SignalChanged();
             }
         }
+        // 2 свойства - в одном выбранная запись из коллекции, во втором - копия выбранной записи. По сохранению - первое свойство через post в архив, второе через put обратно в контроллер воркера
         private ArchiveApi selectedArchive;
         public ArchiveApi SelectedArchive
         {

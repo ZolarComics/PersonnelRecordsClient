@@ -114,13 +114,13 @@ namespace PersonnelRecordsClient.ViewModel
             try
             {               
                 //new RelayCommand(obj => DisplayDouble
-                async Task SortGetCompanies(CompanyApi Company)
+                async Task SortGetCompanies()
                 {
                     try
                     {
 
 
-                        string sort = Company.IsRemuved.ToString();
+                        
                         var result = await Api.GetListAsync<CompanyApi[]>("Company");
                         if (sort != "1")
                         {
