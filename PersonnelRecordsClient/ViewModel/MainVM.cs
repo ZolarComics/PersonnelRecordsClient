@@ -16,6 +16,7 @@ namespace PersonnelRecordsClient.ViewModel
     {
         public CustomCommand GoToCompanies { get; set; }
         public CustomCommand GoToWorkers { get; set; }
+        public CustomCommand GoPassports { get; set; }
         public CustomCommand GoToArchives { get; set; }
         public CustomCommand GoEducation { get; set; }
         public CustomCommand GoStaffing { get; set; }
@@ -45,6 +46,10 @@ namespace PersonnelRecordsClient.ViewModel
             GoBasket = new CustomCommand(() =>
             {
                 MainWindow.MainNavigate(new CompaniesPage());
+            });
+            GoPassports = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new PassportList());
             });
             GoArchive = new CustomCommand(() =>
             {

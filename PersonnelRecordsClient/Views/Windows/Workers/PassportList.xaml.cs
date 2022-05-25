@@ -17,9 +17,9 @@ namespace PersonnelRecordsClient.Views.Windows.Workers
     /// <summary>
     /// Логика взаимодействия для Passport.xaml
     /// </summary>
-    public partial class Passport : Window
+    public partial class PassportList : Page
     {
-        public Passport()
+        public PassportList()
         {
             InitializeComponent();
         }
