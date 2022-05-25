@@ -25,7 +25,7 @@
                 <ContextMenu>
                     <MenuItem Header="Добавить запись" Command="{Binding AddArchive}"/>
                     <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
-                    <MenuItem Header="Удалить" Command="{Binding RemoveArchiveMetod}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveArchive}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

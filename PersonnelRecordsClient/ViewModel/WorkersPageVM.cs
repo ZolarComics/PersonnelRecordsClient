@@ -72,8 +72,7 @@ namespace PersonnelRecordsClient.ViewModel
             SaveWorker = new CustomCommand(() =>
             {
                 Task.Run(AddArchive);
-                Task.Run(Save);                         
-                Task.Run(AddArchive);
+                Task.Run(Save);               
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
             });
             RemoveWorker = new CustomCommand(() =>
@@ -120,21 +119,16 @@ namespace PersonnelRecordsClient.ViewModel
             var result = Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
-        }
-        //public async Task AddArchive(string y, string x)
+        }        
         public async Task AddArchive()
-        {
-            SelectedWorker = new WorkerApi();                      
-            var archive = new ArchiveApi {};
-            var result = Api.PostAsync<ArchiveApi>(SelectedArchive, "Worker");
-            await GetWorkers();
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
+        {                     
+            SelectedArchive = new ArchiveApi { OldRecord = SelectedWorker.Name, NewRecord = SelectedWorker.Surname };
+            var result = Api.PostAsync(SelectedArchive, "Archive");
+           
         }
 
         public async Task Save()
-        {
-            string OldSurname = SelectedWorker.Surname;
-            var oldWorker = SelectedWorker;
+        {           
             var result = await Api.PutAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));

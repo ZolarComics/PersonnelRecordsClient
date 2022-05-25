@@ -13,7 +13,7 @@ using System.Windows.Threading;
 
 namespace PersonnelRecordsClient.ViewModel
 {
-    class ArchivePageVM : BaseViewModel, INotifyPropertyChanged
+    class ArchivePageVM :  INotifyPropertyChanged
     {
         private ArchiveApi selectedArchive;
         public ArchiveApi SelectedArchive
@@ -24,33 +24,25 @@ namespace PersonnelRecordsClient.ViewModel
                 selectedArchive = value;
                 SignalChanged();
             }
-        }
-        private readonly Dispatcher dispatcher;
+        }       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public CustomCommand RemoveArchive { get; set; }
-        public CustomCommand AddArchive { get; set; }
-
-         public ObservableCollection<WorkerApi> Workers { get; set; } = new ObservableCollection<WorkerApi>();
+        public CustomCommand AddArchive { get; set; }       
         public List<ArchiveApi> Archives { get; set; }
 
-        public ArchivePageVM(Dispatcher dispatcher)
-        {
-            //this.dispatcher = dispatcher;
-            Task.Run(GetArchive);
-        }
+       
+                   
+            
        public ArchivePageVM()
-        {
-            AddArchive = new CustomCommand(() =>
-            {
-                Task.Run(Add);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
-            });
+        {            
             RemoveArchive = new CustomCommand(() =>
                 {
-                    Task.Run(Remove);
+                    Task.Run(Delete);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
-                });            
+                });
+
+            Task.Run(GetArchive);
         }
 
         async Task GetArchive()
@@ -65,13 +57,9 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 MessageBox.Show($"{e}");
             }
-        }
-        public async Task Add()
-        {
-           // this.SelectedArchive = ArchivePageVM(dispatcher);
-        }
-        public async Task Remove()
-        {
+        }        
+        public async Task Delete()
+        {            
             var result = await Api.DeleteAsync<ArchiveApi>(SelectedArchive, "Archive");
             await GetArchive();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));

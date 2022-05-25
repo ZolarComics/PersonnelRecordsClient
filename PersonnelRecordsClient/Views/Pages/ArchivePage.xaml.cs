@@ -24,7 +24,7 @@ namespace PersonnelRecordsClient.Views.Pages
         public ArchivePage()
         {
             InitializeComponent();
-            DataContext = new ArchivePageVM(Dispatcher);
+            DataContext = new ArchivePageVM();
         }
     }
 }
