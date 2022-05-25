@@ -16,6 +16,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoToWorkers { get; set; }
         public CustomCommand GoToArchives { get; set; }
         public CustomCommand GoEducation { get; set; }
+        public CustomCommand GoStaffing { get; set; }
         public CustomCommand GoWorkerEdit { get; set; }
         public CustomCommand GoBasket { get; set; }
         public CustomCommand GoArchive { get; set; }
@@ -30,6 +31,10 @@ namespace PersonnelRecordsClient.ViewModel
                 EditWorker.Show();
                 //EditWorker = new EditWorker.Show();
                 //MainWindow.MainNavigate(new EditWorker());
+            });
+            GoStaffing = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new AppointWorker());
             });
             GoBasket = new CustomCommand(() =>
             {

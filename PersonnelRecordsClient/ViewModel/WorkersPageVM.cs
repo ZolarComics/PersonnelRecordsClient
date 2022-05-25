@@ -76,14 +76,15 @@ namespace PersonnelRecordsClient.ViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
             });
             RemoveWorker = new CustomCommand(() =>
-            {
-                Task.Run(Delete);
+            {                
+                Task.Run(TagDelete);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
             });
             GoEdit = new CustomCommand(() =>
             {
                 //MainWindow.MainNavigate(new EditWorker());
             });
+
             Task.Run(GetWorkers);
         }
         public CustomCommand GetExperience { get; set; }
@@ -112,6 +113,13 @@ namespace PersonnelRecordsClient.ViewModel
                 }
             }
         }
+        public async Task TagDelete()
+        {
+            SelectedWorker.IsRemuved = 1;
+            var result = await Api.PutAsync<WorkerApi>(SelectedWorker, "Worker");
+            await GetWorkers();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+        }
         public async Task Add()
         {
             SelectedWorker = new WorkerApi();
@@ -122,7 +130,7 @@ namespace PersonnelRecordsClient.ViewModel
         }        
         public async Task AddArchive()
         {                     
-            SelectedArchive = new ArchiveApi { OldRecord = SelectedWorker.Name, NewRecord = SelectedWorker.Surname };
+            SelectedArchive = new ArchiveApi { OneRecord = SelectedWorker.Name, TwoRecord = SelectedWorker.Surname, ThreeRecord = SelectedWorker.Patronymic, FourRecord = SelectedWorker.Phone };
             var result = Api.PostAsync(SelectedArchive, "Archive");
            
         }

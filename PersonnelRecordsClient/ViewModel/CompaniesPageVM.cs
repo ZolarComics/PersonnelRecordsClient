@@ -108,11 +108,8 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public async Task AddArchive()
         {
-            SelectedCompany = new CompanyApi();
-            var archive = new ArchiveApi { };
-            var result = Api.PostAsync<ArchiveApi>(SelectedArchive, "Company");
-            await GetCompanies();
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            SelectedArchive = new ArchiveApi { OneRecord = SelectedCompany.Name, TwoRecord = SelectedCompany.Owner};
+                var result = Api.PostAsync(SelectedCompany, "Company");            
         }
         public async Task Delete()
         {

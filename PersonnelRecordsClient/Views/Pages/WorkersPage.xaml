@@ -84,12 +84,12 @@
                     
                     <TextBlock Text="Фамилия"/>
                     <TextBox Text="{Binding SelectedWorker.Surname}" />
-                    
-                    <TextBlock Text="Назание"/>
+
+                    <TextBlock Text="Отчество"/>
                     <TextBox Text="{Binding SelectedWorker.Patronymic}"/>
                     
-                    <TextBlock Text="Генеральный директор"/>
-                    <TextBox Text="{Binding SelectedWorker.Owner}" />
+                    <TextBlock Text="Телефон"/>
+                    <TextBox Text="{Binding SelectedWorker.Phone}" />
 
                     <Button Grid.Row="2" Content="Добавить нового рабочего"
                       Command="{Binding AddWorker}"/>

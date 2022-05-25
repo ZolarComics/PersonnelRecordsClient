@@ -370,13 +370,13 @@ namespace PersonnelRecordsClient.ViewModel
         {
             if (obj is ArchiveApi archive)
             {
-                string pImpactTypeId = archive.ImpactTypeID?.ToString() ?? "";
-                string pStaffingId = archive.StaffingID?.ToString() ?? "";
-                string pWorkerId = archive.WorkerID?.ToString() ?? "";
+                string pImpactTypeId = archive.OneRecord?.ToString() ?? "";
+                string pStaffingId = archive.TwoRecord?.ToString() ?? "";
+                string pWorkerId = archive.ThreeRecord?.ToString() ?? "";
 
                 return pWorkerId.Contains(ArchiveWorkerIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 archive.Id.ToString().Contains(ArchiveIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                archive.Note.Contains(ArchiveNotesFilter, StringComparison.InvariantCultureIgnoreCase)&&
+                archive.FourRecord.Contains(ArchiveNotesFilter, StringComparison.InvariantCultureIgnoreCase)&&
                 pStaffingId.Contains(ArchiveStaffingIdsFilter, StringComparison.InvariantCultureIgnoreCase) &&
                 pImpactTypeId.Contains(ArchiveImpactTypesFilter, StringComparison.InvariantCultureIgnoreCase);
                 // archive.WorkerID.ToString().Contains(ArchiveWorkerNamesFilter, StringComparison.InvariantCultureIgnoreCase) &&

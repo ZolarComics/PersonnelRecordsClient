@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PersonnelRecordsClient.ViewModel.WindowsVM;
 
 namespace PersonnelRecordsClient.Views.Windows.Companies.Staffing
 {
@@ -22,6 +23,7 @@ namespace PersonnelRecordsClient.Views.Windows.Companies.Staffing
         public AppointWorker()
         {
             InitializeComponent();
+            DataContext = new StaffingListVM();
         }
     }
 }
