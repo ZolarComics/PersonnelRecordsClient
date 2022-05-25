@@ -63,7 +63,7 @@ namespace PersonnelRecordsClient.ViewModel
            {
                EducationList EducationList = new EducationList();
                EducationList.Show();
-               //MainWindow.MainNavigate(new EducationList());
+               // MainWindow.MainNavigate(new EducationList());
            });
             GoSetting = new CustomCommand(() =>
             {

@@ -25,7 +25,7 @@ namespace PersonnelRecordsClient.ViewModel
         get => selectedEducation;
         set
         {
-                selectedEducation = value;
+            selectedEducation = value;
             SignalChanged();
         }
     }
@@ -41,7 +41,7 @@ namespace PersonnelRecordsClient.ViewModel
         }
 
         public List<EducationApi> Educations { get; set; }
-    public List<WorkerApi> Archives { get; set; }
+        public List<WorkerApi> Archives { get; set; }
 
         public EducationPageVM()
     {

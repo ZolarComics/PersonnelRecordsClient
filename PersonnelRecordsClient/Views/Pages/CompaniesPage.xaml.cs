@@ -35,7 +35,7 @@ namespace PersonnelRecordsClient.Views.Pages
         {
             InitializeComponent();
             SearchText = searchText.Text.Trim();
-            DataContext = new CompaniesPageVM(Dispatcher);
+            DataContext = new CompaniesPageVM();
             SearchCompany = new CustomCommand(() =>
             {
                 Task.Run(Search);

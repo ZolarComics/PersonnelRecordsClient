@@ -11,7 +11,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="32" />
-                    <GridViewColumn Header="Место обучения" DisplayMemberBinding="{Binding EducationalPlace}" Width="120" />
+                    <GridViewColumn Header="Место обучения" DisplayMemberBinding="{Binding educationalPlace}" Width="120" />
                     <GridViewColumn Header="Специальность" DisplayMemberBinding="{Binding Speciality}" Width="125" />
                     <GridViewColumn Header="Дата поступления" DisplayMemberBinding="{Binding ReceiptDate}" Width="125" />
                     <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding ExpirationDate}" Width="120" />

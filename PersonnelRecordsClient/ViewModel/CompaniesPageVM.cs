@@ -48,7 +48,7 @@ namespace PersonnelRecordsClient.ViewModel
         //public ObservableCollection<CompanyApi> Companies { get; set; } = new ObservableCollection<CompanyApi>();
         public List<CompanyApi> Companies { get; set; }
 
-        public CompaniesPageVM(Dispatcher dispatcher)
+        public CompaniesPageVM()
         {          
             AddCompany = new CustomCommand(() =>
             {
