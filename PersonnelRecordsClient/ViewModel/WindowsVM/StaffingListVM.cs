@@ -31,7 +31,7 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
         public CustomCommand SaveStaffing { get; set; }
         public CustomCommand RemoveStaffing { get; set; }
 
-        public StaffingListVM(List<StaffingApi> Workers)
+        public StaffingListVM()
         {
             AddStaffing = new CustomCommand(() =>
             {
@@ -46,13 +46,11 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             {
                 Task.Run(Delete);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
+               
             });
-        }
-        public StaffingListVM()
-        {
-          Task.Run(GetStaffings);
-          Task.Run(GetWorkers);
-        }
+            Task.Run(GetStaffings);
+            Task.Run(GetWorkers);
+        }     
         async Task Delete()
         {
             var result = Api.DeleteAsync<StaffingApi>(SelectedStaffing, "Staffing");
@@ -79,8 +77,12 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             {
                 var result = await Api.GetListAsync<WorkerApi[]>("Worker");
                 Workers = new List<WorkerApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
-                SignalChanged("Workers");
+                var workers = new List<WorkerApi>(Workers);
+                foreach (var worker in workers)
+                    if (worker.IsRemuved == 1)
+                        workers.Remove(worker);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
+                SignalChanged("Staffings");
             }
             catch (Exception e)
             {
@@ -93,7 +95,12 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             {
                 var result = await Api.GetListAsync<StaffingApi[]>("Staffing");
                 Staffings = new List<StaffingApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));                
+                var staffings = new List<StaffingApi>(Staffings);
+                foreach (var staffing in staffings)
+                    if (staffing.IsRemuved == 1)
+                        Staffings.Remove(staffing);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
+                SignalChanged("Staffings");
             }
             catch (Exception e)
             {

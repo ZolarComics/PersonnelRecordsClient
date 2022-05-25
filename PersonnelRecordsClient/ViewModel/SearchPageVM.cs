@@ -646,11 +646,13 @@ namespace PersonnelRecordsClient.ViewModel
                 SignalChanged();
             }
         }
+       
+       
         public ObservableCollection<CompanyApi> CompaniesCollection { get; set; }
         public List<CompanyApi> CompaniesList { get; set; }
-        public ICollectionView CompaniesCollectionView { get; set; }
+        public ICollectionView CompaniesCollectionView  { get; set; }
 
-        private string _companyIdFilter = string.Empty;
+        private string _companyIdFilter { get; set; }
         public string CompanyIdsFilter
         {
             get
@@ -659,13 +661,14 @@ namespace PersonnelRecordsClient.ViewModel
             }
             set
             {
-                _companyIdFilter = value;
-                OnPropertyChanged(nameof(CompanyIdsFilter));
-                CompaniesCollectionView.Refresh();
+                var result =  Api.GetListAsync<CompanyApi>("Company");
+                _companyIdFilter = result.ToString();
+                OnPropertyChanged(nameof(result));
+               
             }
         }
 
-        private string _companyNameFilter = string.Empty;
+        private string _companyNameFilter { get; set; }
         public string CompanyNamesFilter
         {
             get
@@ -674,9 +677,9 @@ namespace PersonnelRecordsClient.ViewModel
             }
             set
             {
-                _companyNameFilter = value;
-                OnPropertyChanged(nameof(CompanyNamesFilter));
-                CompaniesCollectionView.Refresh();
+                var result = Api.GetListAsync<CompanyApi>("Company");
+                _companyIdFilter = result.ToString();
+                OnPropertyChanged(nameof(result));
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using PersonnelRecordsClient.AuthorizationPOP;
 using PersonnelRecordsClient.MVVM;
 using PersonnelRecordsClient.Views.Pages;
+using PersonnelRecordsClient.Views.Windows.Companies;
 using PersonnelRecordsClient.Views.Windows.Companies.Staffing;
 using PersonnelRecordsClient.Views.Windows.Workers;
 using System;
@@ -15,6 +16,7 @@ namespace PersonnelRecordsClient.ViewModel
     {
         public CustomCommand GoToCompanies { get; set; }
         public CustomCommand GoToWorkers { get; set; }
+        public CustomCommand GoPassports { get; set; }
         public CustomCommand GoToArchives { get; set; }
         public CustomCommand GoEducation { get; set; }
         public CustomCommand GoStaffing { get; set; }
@@ -37,11 +39,17 @@ namespace PersonnelRecordsClient.ViewModel
             });
             GoStaffing = new CustomCommand(() =>
             {
-                MainWindow.MainNavigate(new AppointWorker());
+                //MainWindow.MainNavigate(new EditStaffing());
+                StaffingList StaffingList = new StaffingList();
+                StaffingList.Show();
             });
             GoBasket = new CustomCommand(() =>
             {
                 MainWindow.MainNavigate(new CompaniesPage());
+            });
+            GoPassports = new CustomCommand(() =>
+            {
+                MainWindow.MainNavigate(new PassportList());
             });
             GoArchive = new CustomCommand(() =>
             {
