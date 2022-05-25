@@ -112,38 +112,16 @@ namespace PersonnelRecordsClient.ViewModel
         async Task GetCompanies()
         {
             try
-            {               
+            {
                 //new RelayCommand(obj => DisplayDouble
-                async Task SortGetCompanies()
-                {
-                    try
-                    {
 
-
-                        
-                        var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                        if (sort != "1")
-                        {
-                            result = result.ToList().ToArray();
-                            Companies = new List<CompanyApi>(result);
-                            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                        }
-                        //result = result.ToList().Where(u => u.Sort != "1");
-                        //Companies = new List<CompanyApi>(result);
-                        //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show($"{e}");
-                    }
-                }
                 //Companies = List<CompanyApi>(result);
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
 
-                //  var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                //Companies = new List<CompanyApi>();
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                //SignalChanged("Workers");
+                var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                Companies = new List<CompanyApi>(result);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                SignalChanged("Companies");
             }
             catch (Exception e)
             {
