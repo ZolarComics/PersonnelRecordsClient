@@ -15,26 +15,50 @@ namespace PersonnelRecordsClient.ViewModel
     public class BasketPageVM : INotifyPropertyChanged
     {
         public List<CompanyApi> Companies { get; set; }
+        public List<WorkerApi> Workers { get; set; }
+        CustomCommand DeleteBasket { get; set; }
         private readonly Dispatcher dispatcher;
-       /* public CompanyIsRemuvedApi selectedIsRemuved { get; set; }
-        public CompanyIsRemuvedApi SelectedIsRemuved
+        private WorkerApi selectedWorker;
+        public WorkerApi SelectedWorker
         {
-            get => selectedIsRemuved;
+            get => selectedWorker;
             set
             {
-                selectedIsRemuved = value;
+                selectedWorker = value;
                 SignalChanged();
             }
-        }*/
+        }
+        public CompanyApi selectedCompany { get; set; }
+        public CompanyApi SelectedCompany
+        {
+            get => selectedCompany;
+            set
+            {
+                selectedCompany = value;
+                SignalChanged();
+            }
+        }
 
         //CustomCommand  GetCompaniesIsRemuvedList { get;set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public BasketPageVM(Dispatcher dispatcher)
         {
+            DeleteBasket = new CustomCommand(() =>
+            {
+                Task.Run(Delete);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            });
             Task.Run(GetCompaniesIsRemuved);
+            Task.Run(GetWorkersIsRemuved);
         }        
 
+        async Task Delete()
+        {
+            var result = await Api.DeleteAsync<WorkerApi>(SelectedWorker, "Worker");
+            await GetWorkersIsRemuved();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+        }
         async Task GetCompaniesIsRemuved()
         {
             try
@@ -47,6 +71,24 @@ namespace PersonnelRecordsClient.ViewModel
                         Companies.Remove(company);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
                 SignalChanged("Companies");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e}");
+            }
+        }
+        async Task GetWorkersIsRemuved()
+        {
+            try
+            {
+                var result = await Api.GetListAsync<WorkerApi[]>("Worker");
+                Workers = new List<WorkerApi>(result);
+                var workers = new List<WorkerApi>(Workers);
+                foreach (var worker in workers)
+                    if (worker.IsRemuved != 1)
+                        Workers.Remove(worker);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+                SignalChanged("Workers");
             }
             catch (Exception e)
             {

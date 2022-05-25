@@ -21,7 +21,7 @@
                 <ContextMenu>
                     <MenuItem Header="Добавить образование" Command="{Binding AddEducation}"/>
                     <MenuItem Header="Редактировать" Command="{Binding EditEducation}"/>
-                    <MenuItem Header="Удалить" Command="{Binding RemoveEducation}"/>
+                    <MenuItem Header="Удалить" Command="{Binding DeleteEducation}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

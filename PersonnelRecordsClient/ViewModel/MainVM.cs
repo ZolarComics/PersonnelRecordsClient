@@ -61,7 +61,9 @@ namespace PersonnelRecordsClient.ViewModel
             });
             GoEducation = new CustomCommand(() =>
            {
-               MainWindow.MainNavigate(new AppointWorker());
+               EducationList EducationList = new EducationList();
+               EducationList.Show();
+               //MainWindow.MainNavigate(new EducationList());
            });
             GoSetting = new CustomCommand(() =>
             {
