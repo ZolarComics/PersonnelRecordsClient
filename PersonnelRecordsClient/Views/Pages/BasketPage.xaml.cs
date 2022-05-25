@@ -12,22 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PersonnelRecordsClient.ViewModel;
 
 namespace PersonnelRecordsClient.Views.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Basket.xaml
     /// </summary>
-    public partial class Basket : Page
+    public partial class BasketPage : Page
     {
-        public Basket()
+        public BasketPage()
         {
             InitializeComponent();
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+            DataContext = new BasketPageVM(Dispatcher);
+        }       
     }
 }

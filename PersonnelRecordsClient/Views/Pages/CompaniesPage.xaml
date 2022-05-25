@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CompaniesPage">
+
     <Grid>
 
 
@@ -27,11 +28,11 @@
                 <ContextMenu>
                     <MenuItem Header="Добавить компанию" Command="{Binding AddCompany}"/>
                     <MenuItem Header="Редактировать" Command="{Binding EditCopmany}"/>
-                    <MenuItem Header="Удалить" Command="{Binding RemoveCompany}"/>
+                    <MenuItem Header="Удалить" Command="{Binding TagCompany}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
-        <TextBox x:Name="searchText" Text="Поиск" Margin="631,0,4,428"  Width="auto"/>
+        <TextBox x:Name="searchText" Text="{Binding SearchCompany, UpdateSourceTrigger=PropertyChanged}" Margin="631,0,4,428"  Width="auto"/>
     </Grid>
 
 

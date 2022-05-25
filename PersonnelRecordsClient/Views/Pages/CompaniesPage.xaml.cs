@@ -27,6 +27,7 @@ namespace PersonnelRecordsClient.Views.Pages
     {
         public CustomCommand SearchCompany { get; set; }
         public List<CompanyApi> Companies { get; set; }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         string SearchText;
 
@@ -61,7 +62,7 @@ namespace PersonnelRecordsClient.Views.Pages
             {
                 MessageBox.Show($"{e}");
             }
-        }
+        }        
         public void LoadCompany(List<CompanyApi> companies)
         {
             Companies.Clear(); // очищаем лист с элементами

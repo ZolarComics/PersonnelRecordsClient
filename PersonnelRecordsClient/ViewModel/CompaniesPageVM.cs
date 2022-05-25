@@ -45,11 +45,11 @@ namespace PersonnelRecordsClient.ViewModel
                 Task.Run(Add);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             });
-            SortCompany = new CustomCommand(() =>
-            {
-               // Task.Run(SortGetCompanies);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-            });
+            //SortCompany = new CustomCommand(() =>
+            //{
+            //    Task.Run(SortGetCompanies);
+            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            //});
             SaveCompany = new CustomCommand(() =>
             {
                 try
@@ -105,50 +105,45 @@ namespace PersonnelRecordsClient.ViewModel
         public async Task TagDelete()
         {
             SelectedCompany.IsRemuved = 1;
-            //var result = await Api.DeleteAsync<CompanyApi>(SelectedCompany, "Company");
+            var result = await Api.PutAsync<CompanyApi>(SelectedCompany, "Company");
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
         }
         async Task GetCompanies()
         {
             try
-            {
-                //new RelayCommand(obj => DisplayDouble
-
-                //Companies = List<CompanyApi>(result);
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-
+            {                
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
                 Companies = new List<CompanyApi>(result);
+                var companies = new List<CompanyApi>(Companies);
+                foreach (var company in companies)
+                    if(company.IsRemuved==1)
+                        Companies.Remove(company);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                SignalChanged("Companies");
+                 SignalChanged("Companies");
+                
+               
             }
             catch (Exception e)
             {
                 MessageBox.Show($"{e}");
             }            
         }
-        public async Task SortGetCompanies(CompanyApi Company)
-        {
-            try
-            {
-                string sort = Company.IsRemuved.ToString();
-                var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                if (sort != "1")
-                {
-                    result = result.ToList().ToArray();
-                    Companies = new List<CompanyApi>(result);
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                }
-                //result = result.ToList().Where(u => u.Sort != "1");
-                //Companies = new List<CompanyApi>(result);
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof(Companies)));                
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}");
-            }
-        }
+        //public async Task SortGetCompanies()
+        //{
+        //    try
+        //    {
+        //        //string sort = Company.IsRemuved.ToString();
+        //        var resultCompany = await Api.GetListAsync<CompanyApi[]>("Company");                
+        //        var result = resultCompany.ToList().Where(u => u.Sort == searchText);
+        //        Companies = new List<CompanyApi>(result);
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show($"{e}");
+        //    }
+        //}
         void SignalChanged([CallerMemberName] string prop = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }

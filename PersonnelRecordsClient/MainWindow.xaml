@@ -22,7 +22,7 @@
                 <Button Content="Паспорт" Command="{Binding GoPassport}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Должность" Command="{Binding GoStaffing}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Архив" Command="{Binding GoArchive}" FontFamily="Candara" FontSize="13"/>
-                <Button Content="Корзина" Command="{Binding GoBasket}" FontFamily="Candara" FontSize="13"/>
+                <Button Content="Корзина" Command="{Binding GoBasketPage}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Изменить рабочего" Command="{Binding GoWorkerEdit}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Изменить рабочего" Command="{Binding GoSearch}" FontFamily="Candara" FontSize="13"/>
 

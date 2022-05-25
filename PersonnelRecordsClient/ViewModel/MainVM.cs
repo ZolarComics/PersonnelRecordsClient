@@ -61,20 +61,7 @@ namespace PersonnelRecordsClient.ViewModel
             });
             GoBasketPage = new CustomCommand(() =>
             {
-            //    if (authUser != null)
-            //    {
-            //        GoBasketPage = new CustomCommand(() =>
-            //        {
-            //            MainWindow.MainNavigate(new BasketPage());
-            //            this.Close();
-            //        });
-            //        //MainWindow.MainNavigate(new BasketPage());                
-            //        //MainWindow mainWindow = new MainWindow();
-            //        //mainWindow.Show();
-            //        this.Close();
-            //    }
-            //    else
-            //        MessageBox.Show("Неверный логин или пароль!");
+                MainWindow.MainNavigate(new BasketPage());
             });
 
         }
