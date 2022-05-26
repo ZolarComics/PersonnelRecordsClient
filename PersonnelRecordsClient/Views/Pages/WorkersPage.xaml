@@ -89,7 +89,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" Text="----------------------------------------------"/>
+                    <TextBlock HorizontalAlignment="Center" Text="=----------------------------------------------="/>
                     <TextBlock Text="Имя"/>
                     <TextBox Text="{Binding SelectedWorker.Name}"/>
                     

@@ -19,7 +19,7 @@
              <MenuItem Header="Справочник" Width="192" FontFamily="Candara" FontSize="18">
                 <Button Content="Образование"  Command="{Binding GoEducation}" FontFamily="Candara" FontSize="13" />
                 <Button Content="Опыт" Command="{Binding GoExperience}" FontFamily="Candara" FontSize="13" />
-                <Button Content="Паспорт" Command="{Binding GoPassport}" FontSize="13" FontFamily="Candara"/>
+                    <Button Content="Паспорт" Command="{Binding GoPassports}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Должность" Command="{Binding GoStaffing}" FontSize="13" FontFamily="Candara"/>
                 <Button Content="Архив" Command="{Binding GoArchive}" FontFamily="Candara" FontSize="13"/>
                 <Button Content="Корзина" Command="{Binding GoBasketPage}" FontFamily="Candara" FontSize="13"/>

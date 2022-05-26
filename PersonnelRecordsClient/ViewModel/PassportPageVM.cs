@@ -85,7 +85,7 @@ namespace PersonnelRecordsClient.ViewModel
     public event PropertyChangedEventHandler PropertyChanged;
     public async Task Add()
     {
-            SelectedPassport = new PassportApi();
+        SelectedPassport = new PassportApi();
         var result = Api.PostAsync<PassportApi>(SelectedPassport, "Passport");
         await GetPassports();
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Passports)));
@@ -126,8 +126,6 @@ namespace PersonnelRecordsClient.ViewModel
                         Passports.Remove(education);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Passports)));
             SignalChanged("Passports");
-
-
         }
         catch (Exception e)
         {

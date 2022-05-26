@@ -29,8 +29,7 @@ namespace PersonnelRecordsClient.ViewModel
                 selectedWorker = value;
                 SignalChanged();
             }
-        }
-        // 2 свойства - в одном выбранная запись из коллекции, во втором - копия выбранной записи. По сохранению - первое свойство через post в архив, второе через put обратно в контроллер воркера
+        }       
         private ArchiveApi selectedArchive;
         public ArchiveApi SelectedArchive
         {
@@ -89,10 +88,9 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 //MainWindow.MainNavigate(new EditWorker());
             });
-            Task.Run(GetExperienceMethod);
+            //Task.Run(GetExperienceMethod);
             //Task.Run(GetArchive);
-            Task.Run(GetExperienceMethod);
-            Task.Run(Delete);
+            //Task.Run(GetExperienceMethod);            
             Task.Run(GetWorkers);
         }
         public CustomCommand GetExperience { get; set; }
@@ -102,46 +100,46 @@ namespace PersonnelRecordsClient.ViewModel
         public TimeSpan ExperienceTimeSpan { get; set; }
 
 
-        public async Task GetExperienceWorker(WorkerExpGetDates options)
-        {
-            var resultArchive = await Api.PostAsync<ArchiveApi>(SelectedArchive, "Archive");
-            var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
-            var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
-           // int Exp = SelectedArchive.DateRecord.In;
+        //public async Task GetExperienceWorker(WorkerExpGetDates options)
+        //{
+        //    var resultArchive = await Api.PostAsync<ArchiveApi>(SelectedArchive, "Archive");
+        //    var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
+        //    var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
+        //   // int Exp = SelectedArchive.DateRecord.In;
 
-            TimeSpan time = new TimeSpan();
-            foreach (var f in resultExp.History)
-            {
-                if (!f.End.HasValue == true)
-                {
-                    ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
-                }
-                else if (!f.End.HasValue == false)
-                {
-                    f.End = DateTime.Now;
-                    ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
-                }
-            }
+        //    TimeSpan time = new TimeSpan();
+        //    foreach (var f in resultExp.History)
+        //    {
+        //        if (!f.End.HasValue == true)
+        //        {
+        //            ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
+        //        }
+        //        else if (!f.End.HasValue == false)
+        //        {
+        //            f.End = DateTime.Now;
+        //            ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
+        //        }
+        //    }
 
-            DateTime date1 = new DateTime(1996, 6, 3, 22, 15, 0);
-            DateTime date2 = new DateTime(1996, 12, 6, 13, 2, 0);
-            DateTime date3 = new DateTime(1996, 10, 12, 8, 42, 0);
+        //    DateTime date1 = new DateTime(1996, 6, 3, 22, 15, 0);
+        //    DateTime date2 = new DateTime(1996, 12, 6, 13, 2, 0);
+        //    DateTime date3 = new DateTime(1996, 10, 12, 8, 42, 0);
 
-            // diff1 gets 185 days, 14 hours, and 47 minutes.
-            TimeSpan diff1 = date2.Subtract(date1);
+        //    // diff1 gets 185 days, 14 hours, and 47 minutes.
+        //    TimeSpan diff1 = date2.Subtract(date1);
 
-            // date4 gets 4/9/1996 5:55:00 PM.
-            DateTime date4 = date3.Subtract(diff1);
+        //    // date4 gets 4/9/1996 5:55:00 PM.
+        //    DateTime date4 = date3.Subtract(diff1);
 
-            // diff2 gets 55 days 4 hours and 20 minutes.
-            TimeSpan diff2 = date2 - date3;
+        //    // diff2 gets 55 days 4 hours and 20 minutes.
+        //    TimeSpan diff2 = date2 - date3;
 
-            // date5 gets 4/9/1996 5:55:00 PM.
-            DateTime date5 = date1 - diff2;
+        //    // date5 gets 4/9/1996 5:55:00 PM.
+        //    DateTime date5 = date1 - diff2;
 
 
 
-        }
+        //}
 
 
 
@@ -171,7 +169,7 @@ namespace PersonnelRecordsClient.ViewModel
         }
 
 
-        DateTime TodayTime = DateTime.Now;
+        //DateTime TodayTime = DateTime.Now;
 
         public async Task AddArchive()
         {
@@ -180,7 +178,7 @@ namespace PersonnelRecordsClient.ViewModel
                 TwoRecord = SelectedWorker.Surname, 
                 ThreeRecord = SelectedWorker.Patronymic, 
                 FourRecord = SelectedWorker.Phone,
-                DateRecord = TodayTime
+                //DateRecord = TodayTime
             };
             var result = Api.PostAsync(SelectedArchive, "Archive");
            
@@ -215,35 +213,35 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
 
-        async Task GetCompanies()
-        {
-            try
-            {
-                var resultCompanies = await Api.GetListAsync<CompanyApi[]>("Company");
-                Companies = new List<CompanyApi>(resultCompanies);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                SignalChanged("Companies");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}");
-            }
-        }
+        //async Task GetCompanies()
+        //{
+        //    try
+        //    {
+        //        var resultCompanies = await Api.GetListAsync<CompanyApi[]>("Company");
+        //        Companies = new List<CompanyApi>(resultCompanies);
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        //        SignalChanged("Companies");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show($"{e}");
+        //    }
+        //}
 
-        async Task GetExperienceMethod()
-        {
-            try
-            {
-                var result = await Api.GetListAsync<ExperienceApi[]>("Experience");
-                ExperienceList = new List<ExperienceApi>(result);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ExperienceList)));
-                SignalChanged("Experience");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}");
-            }
-        }
+        //async Task GetExperienceMethod()
+        //{
+        //    try
+        //    {
+        //        var result = await Api.GetListAsync<ExperienceApi[]>("Experience");
+        //        ExperienceList = new List<ExperienceApi>(result);
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ExperienceList)));
+        //        SignalChanged("Experience");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show($"{e}");
+        //    }
+        //}
 
         void SignalChanged([CallerMemberName] string prop = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

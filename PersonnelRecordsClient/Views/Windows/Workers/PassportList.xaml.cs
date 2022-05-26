@@ -22,6 +22,7 @@ namespace PersonnelRecordsClient.Views.Windows.Workers
         public PassportList()
         {
             InitializeComponent();
+            DataContext = new PassportList();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
