@@ -27,7 +27,7 @@ namespace PersonnelRecordsClient.MVVM
             get { return typeUser; }
             set { typeUser = value; }
         }
-        const TypeUsers typeUserAdmin = TypeUsers.Admin;
+        const TypeUsers typeUserAdmin = TypeUsers.SimpleUser;
         const TypeUsers typeSimpleUser = TypeUsers.Admin;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,11 +49,11 @@ namespace PersonnelRecordsClient.MVVM
         {
             switch (index) 
             {
-                case "0":
+                case "1":
                     EnterSimpleUserTypeUser(typeSimpleUser);
                     break;
 
-                case "1":
+                case "2":
                     EnterAdminTypeUser(typeUserAdmin);
                     break;
             }
@@ -85,8 +85,8 @@ namespace PersonnelRecordsClient.MVVM
 
     public enum TypeUsers
     {
-        SimpleUser,
-        Admin
+        SimpleUser = 1,
+        Admin = 2,
     }
 
 }
