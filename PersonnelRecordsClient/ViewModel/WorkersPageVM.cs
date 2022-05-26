@@ -44,6 +44,9 @@ namespace PersonnelRecordsClient.ViewModel
         
         public List<WorkerApi> Workers { get; set; }
         public List<WorkerApi> Archives { get; set; }
+        public List<ExperienceApi> ExperienceList { get; set; }
+        public List<CompanyApi> Companies { get; set; }
+
         public CustomCommand GoEditWorker { get; set; }
         public CustomCommand AddWorker { get; set; }
         public CustomCommand EditWorker { get; set; }
@@ -65,10 +68,12 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 Task.Run(Delete);
             });
+
             AddWorker = new CustomCommand(() =>
             {
                 Task.Run(Add);
             });
+
             SaveWorker = new CustomCommand(() =>
             {
                 Task.Run(AddArchive);
@@ -84,35 +89,70 @@ namespace PersonnelRecordsClient.ViewModel
             {
                 //MainWindow.MainNavigate(new EditWorker());
             });
-
+            Task.Run(GetExperienceMethod);
+            //Task.Run(GetArchive);
+            Task.Run(GetExperienceMethod);
+            Task.Run(Delete);
             Task.Run(GetWorkers);
         }
         public CustomCommand GetExperience { get; set; }
 
         List<ExperienceApi> ExperiencePosition { get; set; }
 
-        public TimeSpan Experience { get; set; }
+        public TimeSpan ExperienceTimeSpan { get; set; }
+
+
         public async Task GetExperienceWorker(WorkerExpGetDates options)
         {
-            //var resultWorker = await Api.PostAsync<WorkerApi>(SelectedWorker[0], "Worker");
+            var resultArchive = await Api.PostAsync<ArchiveApi>(SelectedArchive, "Archive");
             var resultExp = await Api.PostGetAsync<WorkerExpGetDates, WorkerExp>(options, "/ArchiveGet");
             var experiencePosition = await Api.GetListAsync<List<ExperienceApi>>("Experience");
-            ExperiencePosition = experiencePosition;
+           // int Exp = SelectedArchive.DateRecord.In;
 
             TimeSpan time = new TimeSpan();
             foreach (var f in resultExp.History)
             {
                 if (!f.End.HasValue == true)
                 {
-                    Experience = time.Add(f.End.Value.Subtract(f.Start.Value));
+                    ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
                 }
                 else if (!f.End.HasValue == false)
                 {
                     f.End = DateTime.Now;
-                    Experience = time.Add(f.End.Value.Subtract(f.Start.Value));
+                    ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
                 }
             }
+
+            DateTime date1 = new DateTime(1996, 6, 3, 22, 15, 0);
+            DateTime date2 = new DateTime(1996, 12, 6, 13, 2, 0);
+            DateTime date3 = new DateTime(1996, 10, 12, 8, 42, 0);
+
+            // diff1 gets 185 days, 14 hours, and 47 minutes.
+            TimeSpan diff1 = date2.Subtract(date1);
+
+            // date4 gets 4/9/1996 5:55:00 PM.
+            DateTime date4 = date3.Subtract(diff1);
+
+            // diff2 gets 55 days 4 hours and 20 minutes.
+            TimeSpan diff2 = date2 - date3;
+
+            // date5 gets 4/9/1996 5:55:00 PM.
+            DateTime date5 = date1 - diff2;
+
+
+
         }
+
+
+
+      /*  public async Task AddArchive()
+        {
+              DateTime TodayTime = DateTime.Now();
+             SelectedArchive = new ArchiveApi { OneRecord = SelectedWorker.Name, DateRecord = TodayTime };
+            var result = Api.PostAsync(SelectedWorker, "Worker");
+        }
+      */
+
         public async Task TagDelete()
         {
             SelectedWorker.IsRemuved = 1;
@@ -120,6 +160,7 @@ namespace PersonnelRecordsClient.ViewModel
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
         }
+
         public async Task Add()
         {
             SelectedWorker = new WorkerApi();
@@ -127,10 +168,20 @@ namespace PersonnelRecordsClient.ViewModel
             var result = Api.PostAsync<WorkerApi>(SelectedWorker, "Worker");
             await GetWorkers();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
-        }        
+        }
+
+
+        DateTime TodayTime = DateTime.Now;
+
         public async Task AddArchive()
-        {                     
-            SelectedArchive = new ArchiveApi { OneRecord = SelectedWorker.Name, TwoRecord = SelectedWorker.Surname, ThreeRecord = SelectedWorker.Patronymic, FourRecord = SelectedWorker.Phone };
+        {
+            SelectedArchive = new ArchiveApi 
+            { OneRecord = SelectedWorker.Name, 
+                TwoRecord = SelectedWorker.Surname, 
+                ThreeRecord = SelectedWorker.Patronymic, 
+                FourRecord = SelectedWorker.Phone,
+                DateRecord = TodayTime
+            };
             var result = Api.PostAsync(SelectedArchive, "Archive");
            
         }
@@ -163,7 +214,37 @@ namespace PersonnelRecordsClient.ViewModel
                 MessageBox.Show($"{e}");
             }
         }
-       
+
+        async Task GetCompanies()
+        {
+            try
+            {
+                var resultCompanies = await Api.GetListAsync<CompanyApi[]>("Company");
+                Companies = new List<CompanyApi>(resultCompanies);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+                SignalChanged("Companies");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e}");
+            }
+        }
+
+        async Task GetExperienceMethod()
+        {
+            try
+            {
+                var result = await Api.GetListAsync<ExperienceApi[]>("Experience");
+                ExperienceList = new List<ExperienceApi>(result);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ExperienceList)));
+                SignalChanged("Experience");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e}");
+            }
+        }
+
         void SignalChanged([CallerMemberName] string prop = null) =>
            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 

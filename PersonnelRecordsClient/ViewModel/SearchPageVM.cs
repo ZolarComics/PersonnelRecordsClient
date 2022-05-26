@@ -375,7 +375,7 @@ namespace PersonnelRecordsClient.ViewModel
         {
             if (obj is ArchiveApi archive)
             {
-                string pImpactTypeId = archive.OneRecord?.ToString() ?? "";
+                string pImpactTypeId = archive.OneRecord.ToString() ?? "";
                 string pStaffingId = archive.TwoRecord?.ToString() ?? "";
                 string pWorkerId = archive.ThreeRecord?.ToString() ?? "";
 
