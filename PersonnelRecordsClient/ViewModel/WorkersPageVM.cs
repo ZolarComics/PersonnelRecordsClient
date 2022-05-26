@@ -54,7 +54,12 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoEdit { get; set; }
 
         public CustomCommand RemoveManyWorker { get; set; }
-              
+
+        public WorkersPageVM(Dispatcher dispatcher)
+        {
+
+        }
+
         public WorkersPageVM()
         {
             GoEditWorker = new CustomCommand(() =>

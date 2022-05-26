@@ -79,11 +79,13 @@ namespace PersonnelRecordsClient.ViewModel
         }
         public SearchPageVM()
         {
+            /*
+            StaffingsCollection = new ObservableCollection<StaffingApi>();
+            ArchivesCollection = new ObservableCollection<ArchiveApi>();
+            WorkersCollection = new ObservableCollection<WorkerApi>();
+            CompaniesCollection = new ObservableCollection<CompanyApi>();
 
-            StaffingsCollection = new ObservableCollection<StaffingApi>(Staffings);
-            ArchivesCollection = new ObservableCollection<ArchiveApi>(Archives);
-            WorkersCollection = new ObservableCollection<WorkerApi>(Workers);
-            CompaniesCollection = new ObservableCollection<CompanyApi>(Companies);
+            */
             //CollectionViews
             #region
 
@@ -135,8 +137,6 @@ namespace PersonnelRecordsClient.ViewModel
             }
         }
         public ObservableCollection<StaffingApi> StaffingsCollection { get; set; }
-
-
         public ICollectionView StaffingsCollectionView { get; set; }
        
 
@@ -244,7 +244,8 @@ namespace PersonnelRecordsClient.ViewModel
             try
             {
                 var result = await Api.GetListAsync<StaffingApi[]>("Staffing");
-                Staffings = new List<StaffingApi>(result);
+                StaffingsCollection = new ObservableCollection<StaffingApi>(result);
+                StaffingsCollectionView = (ICollectionView)StaffingsCollection;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
                 SignalChanged("Staffings");
             }
@@ -394,7 +395,8 @@ namespace PersonnelRecordsClient.ViewModel
             try
             {
                 var result = await Api.GetListAsync<ArchiveApi[]>("Archive");
-                Archives = new List<ArchiveApi>(result);
+                ArchivesCollection = new ObservableCollection<ArchiveApi>(result);
+                ArchiveCollectionView = (ICollectionView)ArchivesCollection;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Archives)));
             }
             catch (Exception e)
@@ -609,8 +611,8 @@ namespace PersonnelRecordsClient.ViewModel
             try
             {
                 var result = await Api.GetListAsync<WorkerApi[]>("Worker");
-                Workers = new List<WorkerApi>(result);
-                WorkersCollectionView = (ICollectionView)Workers;
+                WorkersCollection = new ObservableCollection<WorkerApi>(result);
+                WorkersCollectionView = (ICollectionView)WorkersCollection;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
                 SignalChanged("Workers");
             }
@@ -751,7 +753,8 @@ namespace PersonnelRecordsClient.ViewModel
             try
             {
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
-                Companies = new List<CompanyApi>(result);
+                CompaniesCollection = new ObservableCollection<CompanyApi>(result);
+                CompaniesCollectionView = (ICollectionView)CompaniesCollection;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             }
             catch (Exception e)
@@ -762,13 +765,6 @@ namespace PersonnelRecordsClient.ViewModel
         }
         #endregion
 
-        public async Task LoadEntities()
-        {
-            var resultWorker = await Api.GetListAsync<WorkerApi>("Worker");
-            var resultArchive = await Api.GetListAsync<ArchiveApi>("Archive");
-            var resultCompany = await Api.GetListAsync<CompanyApi>("Company");
-            var resultStaffing = await Api.GetListAsync<StaffingApi>("Staffing");
-        }
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

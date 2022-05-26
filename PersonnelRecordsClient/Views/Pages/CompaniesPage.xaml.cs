@@ -52,6 +52,13 @@ namespace PersonnelRecordsClient.Views.Pages
                // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             });
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlock1.Text = ListViewCompanies.Items.Count.ToString();
+            string block = TextBlock1.Text;
+        }
+
         public async Task Search()
         {
             //if (SelectedCompany.Name == SearchText)
@@ -85,6 +92,7 @@ namespace PersonnelRecordsClient.Views.Pages
                 MessageBox.Show($"{e}");
             }
         }        
+
         //public void LoadCompany(List<CompanyApi> companies)
         //{
         //    Companies.Clear(); // очищаем лист с элементами

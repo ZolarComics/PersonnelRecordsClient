@@ -40,6 +40,7 @@
                     <MenuItem Header="Опыт работы" Command="{Binding ExperienceList}"/>
                     <MenuItem Header="Должность" Command="{Binding GoStaffing}" />
                     <MenuItem Header="Удалить" Command="{Binding RemoveWorker}" />
+                    <MenuItem Header="Удалить" Command="{Binding GoToPassportWorker}" />
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
