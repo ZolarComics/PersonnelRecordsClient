@@ -17,17 +17,30 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
         public event PropertyChangedEventHandler PropertyChanged;
         public StaffingApi selectedStaffing { get; set; }
         public StaffingApi SelectedStaffing
-        { get => selectedStaffing;
+        {
+            get => selectedStaffing;
             set
             {
                 selectedStaffing = value;
                 SignalChanged();
             }
         }
-        public List<StaffingApi> Staffings { get; set; }       
-        public List<WorkerApi> Workers;    
-        
-        public CustomCommand AddStaffing { get; set; }        
+        private WorkerApi selectedWorker;
+        public WorkerApi SelectedWorker
+        {
+            get => selectedWorker;
+            set
+            {
+                selectedWorker = value;
+                SignalChanged();
+            }
+        }
+        public List<StaffingApi> Staffings { get; set; }
+        public List<WorkerApi> Workers { get; set; }
+        public List<CompanyApi> Companies { get; set; }
+
+
+        public CustomCommand AddStaffing { get; set; }
         public CustomCommand SaveStaffing { get; set; }
         public CustomCommand RemoveStaffing { get; set; }
 
@@ -46,11 +59,12 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             {
                 Task.Run(Delete);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
-               
+
             });
             Task.Run(GetStaffings);
             Task.Run(GetWorkers);
-        }     
+            Task.Run(GetCompanies);
+        }
         async Task Delete()
         {
             var result = Api.DeleteAsync<StaffingApi>(SelectedStaffing, "Staffing");
@@ -80,9 +94,9 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
                 var workers = new List<WorkerApi>(Workers);
                 foreach (var worker in workers)
                     if (worker.IsRemuved == 1)
-                        workers.Remove(worker);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
-                SignalChanged("Staffings");
+                        Workers.Remove(worker);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
+                SignalChanged("Workers");
             }
             catch (Exception e)
             {
@@ -100,6 +114,25 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
                     if (staffing.IsRemuved == 1)
                         Staffings.Remove(staffing);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Staffings)));
+                SignalChanged("Companies");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e}");
+            }
+
+        }
+        async Task GetCompanies()
+        {
+            try
+            {
+                var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                Companies = new List<CompanyApi>(result);
+                var companies = new List<CompanyApi>(Companies);
+                foreach (var company in companies)
+                    if (company.IsRemuved == 1)
+                        Companies.Remove(company);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
                 SignalChanged("Staffings");
             }
             catch (Exception e)
@@ -108,6 +141,7 @@ namespace PersonnelRecordsClient.ViewModel.WindowsVM
             }
 
         }
+
         void SignalChanged([CallerMemberName] string prop = null) =>
     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
