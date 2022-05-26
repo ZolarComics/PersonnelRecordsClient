@@ -25,7 +25,7 @@ namespace PersonnelRecordsClient.Views.Pages
 
         {
             InitializeComponent();
-            DataContext = new WorkersPageVM(Dispatcher);
+            DataContext = new WorkersPageVM();
             
         }
 

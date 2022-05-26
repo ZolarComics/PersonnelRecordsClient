@@ -25,11 +25,14 @@ namespace PersonnelRecordsClient.Views.Pages
     /// </summary>
     public partial class CompaniesPage : Page
     {
+        
+
+        
         public CustomCommand SearchCompany { get; set; }
         public List<CompanyApi> Companies { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-        string SearchText;
+        
         public CompanyApi selectedCompany { get; set; }
         public CompanyApi SelectedCompany
         {
@@ -43,14 +46,9 @@ namespace PersonnelRecordsClient.Views.Pages
 
         public CompaniesPage()
         {
-            InitializeComponent();
-           SearchText = searchText.Text.Trim();
+            InitializeComponent();          
             DataContext = new CompaniesPageVM();
-            SearchCompany = new CustomCommand(() =>
-            {
-                Task.Run(Search);
-               // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-            });
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,21 +57,22 @@ namespace PersonnelRecordsClient.Views.Pages
             string block = TextBlock1.Text;
         }
 
-        public async Task Search()
-        {
-            //if (SelectedCompany.Name == SearchText)
-            //    Companies = Companies.FindAll(x => x.Name == "SearchText");
-            var result = await Api.GetListAsync<CompanyApi[]>("Company");
-            Companies = new List<CompanyApi>(result);
-            var companies = new List<CompanyApi>(Companies);
-            foreach (var company in companies)
-                if (company.Name == SearchText)
-                    Companies.Remove(company);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-            SignalChanged("Companies");
-            //await GetCompanies();
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));          
-        }
+
+        //public async Task Search()
+        //{
+        //    //if (SelectedCompany.Name == SearchText)
+        //    //    Companies = Companies.FindAll(x => x.Name == "SearchText");
+        //    var result = await Api.GetListAsync<CompanyApi[]>("Company");
+        //    Companies = new List<CompanyApi>(result);
+        //    var companies = new List<CompanyApi>(Companies);
+        //    foreach (var company in companies)
+        //        if (company.Name == SearchText)
+        //            Companies.Remove(company);
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        //    SignalChanged("Companies");
+        //    //await GetCompanies();
+        //    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));          
+        //}
         async Task GetCompanies()
         {
             try
@@ -82,7 +81,7 @@ namespace PersonnelRecordsClient.Views.Pages
                 Companies = new List<CompanyApi>(result);
                 var companies = new List<CompanyApi>(Companies);
                 foreach (var company in companies)
-                    if (company.Name == SearchText)
+                    if (company.IsRemuved != 1)
                         Companies.Remove(company);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
                 SignalChanged("Companies");

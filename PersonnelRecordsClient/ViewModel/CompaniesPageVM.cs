@@ -16,7 +16,47 @@ using System.Windows.Threading;
 namespace PersonnelRecordsClient.ViewModel
 {
     internal class CompaniesPageVM : INotifyPropertyChanged// BaseViewModel
-    {       
+    {
+        private string searchText="";
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+                Search();
+            }
+        }
+        public List<CompanyApi> searchResult;
+
+        public List<CompanyApi> mysearch { get; set; }
+        private void Search()
+        {
+            //var search = SearchText.ToLower();
+            //searchResult = mysearch.Where(s => s.NumberComputer.Contains(search)).ToList();
+            //Computers = searchResult;
+            //var result = await Api.GetListAsync<CompanyApi[]>("Company");
+            //Companies = new List<CompanyApi>(result);
+            //var companies = new List<CompanyApi>(Companies);
+            //foreach (var company in companies)
+            //    if (company.IsRemuved == 1)
+            //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            //SignalChanged("Companies");
+
+            //var search = SearchText.ToLower();
+            //var companies = new List<CompanyApi>(Companies);
+            //foreach (var company in companies)
+            //  if (company.Name == search)
+            //        Companies = searchResult;
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            //SignalChanged("Companies");
+            // searchResult = Companies.Where(s => s.Name.Contains(search)).ToList();
+            //Companies = searchResult;
+           
+            Task.Run(SortCompanies);
+            //await GetCompanies();
+
+        }
         public CustomCommand SearchCompany { get; set; }
 
         public CustomCommand GoToStaffingList { get; set; }
@@ -26,6 +66,8 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand TagCompany { get; set; }
         public CustomCommand SortCompany { get; set; }
         public CompanyApi selectedCompany { get; set; }
+
+            
         public CompanyApi SelectedCompany 
         { 
             get => selectedCompany;
@@ -55,11 +97,12 @@ namespace PersonnelRecordsClient.ViewModel
                 Task.Run(Add);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
             });
-            //SortCompany = new CustomCommand(() =>
-            //{
-            //    Task.Run(SortGetCompanies);
-            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-            //});
+
+            SearchCompany = new CustomCommand(() =>
+            {
+                Task.Run(Search);
+                // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+            });
             SaveCompany = new CustomCommand(() =>
             {
                 try
@@ -129,22 +172,29 @@ namespace PersonnelRecordsClient.ViewModel
             await GetCompanies();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
         }
-        
+        async Task SortCompanies()
+        {
+            var search = SearchText.ToLower();
+            searchResult = mysearch.Where(s => s.Name.Contains(search)).ToList();
+            Companies = searchResult;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+        }
+
+
 
         async Task GetCompanies()
         {
             try
-            {                
+            {             
                 var result = await Api.GetListAsync<CompanyApi[]>("Company");
+                mysearch = new List<CompanyApi>(result);    
+                
                 Companies = new List<CompanyApi>(result);
                 var companies = new List<CompanyApi>(Companies);
                 foreach (var company in companies)
-                    if(company.IsRemuved==1)
-                        Companies.Remove(company);
+                    if(company.IsRemuved==1)                
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
-                 SignalChanged("Companies");
-                
-               
+                 SignalChanged("Companies");                               
             }
             catch (Exception e)
             {

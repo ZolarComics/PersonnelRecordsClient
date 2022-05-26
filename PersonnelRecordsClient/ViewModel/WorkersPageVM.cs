@@ -53,12 +53,7 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand RemoveWorker { get; set; }
         public CustomCommand GoEdit { get; set; }
 
-        public CustomCommand RemoveManyWorker { get; set; }
-
-        public WorkersPageVM(Dispatcher dispatcher)
-        {
-
-        }
+        public CustomCommand RemoveManyWorker { get; set; }        
 
         public WorkersPageVM()
         {
@@ -102,7 +97,7 @@ namespace PersonnelRecordsClient.ViewModel
 
         List<ExperienceApi> ExperiencePosition { get; set; }
 
-        public TimeSpan ExperienceTimeSpan { get; set; }
+       // public TimeSpan ExperienceTimeSpan { get; set; }
 
 
         //public async Task GetExperienceWorker(WorkerExpGetDates options)
@@ -148,13 +143,13 @@ namespace PersonnelRecordsClient.ViewModel
 
 
 
-      /*  public async Task AddArchive()
-        {
-              DateTime TodayTime = DateTime.Now();
-             SelectedArchive = new ArchiveApi { OneRecord = SelectedWorker.Name, DateRecord = TodayTime };
-            var result = Api.PostAsync(SelectedWorker, "Worker");
-        }
-      */
+        //public async Task AddArchive()
+        //{
+        //    DateTime TodayTime = DateTime.Now();
+        //    SelectedArchive = new ArchiveApi { OneRecord = SelectedWorker.Name, DateRecord = TodayTime };
+        //    var result = Api.PostAsync(SelectedWorker, "Worker");
+        //}
+
 
         public async Task TagDelete()
         {
@@ -207,8 +202,25 @@ namespace PersonnelRecordsClient.ViewModel
         {
             try
             {
+                //var companies = new List<CompanyApi>(Companies);
+
+               //;
+
+               // var companies = new List<CompanyApi>(Companies);
+               // foreach (var company in companies)
+               //     if (company.IsRemuved == 1)
+               //         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Companies)));
+               // SignalChanged("Companies");
+
                 var result = await Api.GetListAsync<WorkerApi[]>("Worker");
+
                 Workers = new List<WorkerApi>(result);
+                var workers = new List<WorkerApi>(Workers);
+                foreach (var worker in workers)
+                    if (worker.IsRemuved != 1)
+                        Workers.Remove(worker);
+               // var result = await Api.GetListAsync<WorkerApi[]>("Worker");
+               // Workers = new List<WorkerApi>(result);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Workers)));
                 SignalChanged("Workers");
             }
