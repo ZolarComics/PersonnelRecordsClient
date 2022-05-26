@@ -24,7 +24,7 @@
                     <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Note}" Width="100"/>
                 </GridView>
             </ListView.View>
-            
+
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="AddCopmany" Command="{Binding AddStaffing}"/>
@@ -51,7 +51,7 @@
             <StackPanel Grid.Row="1">
                 <TextBlock Text="id"/>
                 <TextBox Text="{Binding SelectedStaffing.Id}"/>
-                
+
                 <TextBlock Text="Должность"/>
                 <TextBox Text="{Binding SelectedStaffing.Position}"/>
 
@@ -59,10 +59,14 @@
                 <TextBox Text="{Binding SelectedStaffing.Salary}" />
 
                 <TextBlock Text="id сотрудника"/>
-                <TextBox Text="{Binding SelectedStaffing.WorkerId}"/>
+                <ComboBox ItemsSource="{Binding Workers}" 
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding SelectedWorker}"/>
 
                 <TextBlock Text="id компании"/>
-                <TextBox Text="{Binding SelectedStaffing.CompanyId}" />
+                <ComboBox ItemsSource="{Binding Companies}" 
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding SelectedCompanies}"/>
 
                 <TextBlock Text="Заметки"/>
                 <TextBox Text="{Binding SelectedStaffing.Note}" />
@@ -78,7 +82,6 @@
                 <Button Content="Удалить" Grid.Column="1"
                       Command="{Binding RemoveStaffing}"  Grid.RowSpan="2"/>
             </StackPanel>
-
             <StackPanel Grid.Row="4">
                 <TextBlock HorizontalAlignment="Center" Text="------------------------------------------------"/>
                 <TextBlock HorizontalAlignment="Center" Text="Количество записей:"/>
@@ -88,6 +91,5 @@
                       Click="Button_Click" Grid.RowSpan="1"/>
             </StackPanel>
         </Grid>
-        
     </Grid>
 </Window>
