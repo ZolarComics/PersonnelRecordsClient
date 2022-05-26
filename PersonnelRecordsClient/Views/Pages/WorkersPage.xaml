@@ -48,30 +48,40 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto" MinHeight="20.97"/>
-                <RowDefinition Height="Auto" MinHeight="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock HorizontalAlignment="Center" Grid.Row="0"  FontSize="24" 
-                       Text="Опыт работы" Margin="0,0,0,15" Grid.RowSpan="2"/>
+                       Text="Опыт работы" Grid.RowSpan="1"/>
 
-            <ComboBox Grid.Row="1" ItemsSource="{Binding ExperiencePosition}" 
+            <StackPanel Grid.Row="1">
+                
+                
+                <ComboBox  ItemsSource="{Binding Companies}" 
+                      DisplayMemberPath="{Binding Companies.Name}"/>
+
+                <ComboBox ItemsSource="{Binding Worker}" 
                       DisplayMemberPath="{Binding PositionName}"/>
 
-            <TextBox x:Name="textBox1" 
-                         HorizontalAlignment="Center" 
-                         Width="252" 
+                <TextBlock HorizontalAlignment="Center" Text=""/>
+
+                <TextBox x:Name="textBox1" 
                          IsReadOnly="True" 
                          Grid.Row="2"
-                         Grid.RowSpan="3"
-                         Text="{Binding Experience}" Margin="0,0,0,195" />
+                         Grid.RowSpan="1"
+                         Text="{Binding ExperienceTimeSpan}"/>
 
-            <Button Grid.Row="3" Content="Посчитать" Command="{Binding GetExperience}" 
+                <Button Grid.Row="3" Content="Посчитать" Command="{Binding GetExperience}" 
                      Grid.RowSpan="1"/>
 
+
+            </StackPanel>
+            
+           
             <Grid  Grid.Row="4" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -79,6 +89,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Text="----------------------------------------------"/>
                     <TextBlock Text="Имя"/>
                     <TextBox Text="{Binding SelectedWorker.Name}"/>
                     
