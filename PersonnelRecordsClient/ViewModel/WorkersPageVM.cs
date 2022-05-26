@@ -55,7 +55,12 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand GoEdit { get; set; }
 
         public CustomCommand RemoveManyWorker { get; set; }
-              
+
+        public WorkersPageVM(Dispatcher dispatcher)
+        {
+
+        }
+
         public WorkersPageVM()
         {
             GoEditWorker = new CustomCommand(() =>
@@ -122,6 +127,8 @@ namespace PersonnelRecordsClient.ViewModel
                     ExperienceTimeSpan = time.Add(f.End.Value.Subtract(f.Start.Value));
                 }
             }
+
+            
 
             DateTime date1 = new DateTime(1996, 6, 3, 22, 15, 0);
             DateTime date2 = new DateTime(1996, 12, 6, 13, 2, 0);
