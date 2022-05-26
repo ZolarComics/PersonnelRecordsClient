@@ -60,23 +60,22 @@
                        Text="Опыт работы" Grid.RowSpan="1"/>
 
             <StackPanel Grid.Row="1">
-                
-                
-                <ComboBox  ItemsSource="{Binding Companies}" 
-                      DisplayMemberPath="{Binding Companies.Name}"/>
+                <TextBlock Text="Дата начала"/>
+                <DatePicker  SelectedDateFormat="Short" Name="datePickerStart"
+                             SelectedDate="{Binding ExperienceTimeStart}" />
 
-                <ComboBox ItemsSource="{Binding Worker}" 
-                      DisplayMemberPath="{Binding PositionName}"/>
+                <TextBlock Text="Дата окончания"/>
+                <DatePicker  SelectedDateFormat="Short"  Name="datePickerEnd"
+                             SelectedDate="{Binding ExperienceTimeEnd}" />
 
-                <TextBlock HorizontalAlignment="Center" Text=""/>
 
-                <TextBox x:Name="textBox1" 
+                <TextBox x:Name="textBoxTime" 
                          IsReadOnly="True" 
                          Grid.Row="2"
                          Grid.RowSpan="1"
-                         Text="{Binding ExperienceTimeSpan}"/>
+                         Text="{Binding GetDateString}"/>
 
-                <Button Grid.Row="3" Content="Посчитать" Command="{Binding GetExperience}" 
+                <Button Grid.Row="3" Content="Посчитать" Command="{Binding CalculateExp}" 
                      Grid.RowSpan="1"/>
 
 

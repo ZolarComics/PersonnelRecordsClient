@@ -52,11 +52,35 @@ namespace PersonnelRecordsClient.ViewModel
         public CustomCommand SaveWorker { get; set; }
         public CustomCommand RemoveWorker { get; set; }
         public CustomCommand GoEdit { get; set; }
+        public CustomCommand CalculateExp { get; set; }
+        
 
-        public CustomCommand RemoveManyWorker { get; set; }        
+        public CustomCommand RemoveManyWorker { get; set; }
 
+
+        public DateTime ExperienceTimeStart { get; set; } = DateTime.Today;
+        public DateTime ExperienceTimeEnd { get; set; } = DateTime.Today;
+
+        public TimeSpan ExperienceTimeCalculate { get; set; } 
+
+        public string GetDateString { get; set; }
         public WorkersPageVM()
         {
+            CalculateExp = new CustomCommand(() =>
+            {
+                DateTime dateStart = new DateTime();
+                dateStart = ExperienceTimeStart;
+
+                DateTime dateEnd = new DateTime();
+                dateEnd = ExperienceTimeEnd;
+
+                TimeSpan diffCalculate =  (dateEnd.Subtract(dateStart)) / 30;
+
+                GetDateString = "опыт работы: " + String.Format(Math.Round(diffCalculate.TotalDays, 2).ToString()) + " месяца";
+                SignalChanged("GetDateString");
+            });
+
+
             GoEditWorker = new CustomCommand(() =>
             {
                 EditWorker EditWorker = new EditWorker();

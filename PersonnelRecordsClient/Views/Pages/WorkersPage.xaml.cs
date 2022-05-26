@@ -29,6 +29,24 @@ namespace PersonnelRecordsClient.Views.Pages
             
         }
 
+        public DateTime ExperienceTimeStart { get; set; }
+        public DateTime ExperienceTimeEnd { get; set; }
+
+        public TimeSpan ExperienceTimeCalculate { get; set; }
+
+        private void Button_ClickTime(object sender, RoutedEventArgs e)
+        {
+            DateTime dateStart = new DateTime();
+            dateStart = ExperienceTimeStart;
+
+            DateTime dateEnd = new DateTime();
+            dateEnd = ExperienceTimeEnd;
+
+            TimeSpan diffCalculate = dateEnd.Subtract(dateStart);
+
+            textBoxTime.Text = "опыт работы: " + String.Format(diffCalculate.TotalHours.ToString()) + " часов";
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = ListViewWorkers.Items.Count.ToString();
